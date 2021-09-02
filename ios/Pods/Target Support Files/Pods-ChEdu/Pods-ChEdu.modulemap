@@ -1,0 +1,6 @@
+module Pods_ChEdu {
+  umbrella header "Pods-ChEdu-umbrella.h"
+
+  export *
+  module * { export * }
+}

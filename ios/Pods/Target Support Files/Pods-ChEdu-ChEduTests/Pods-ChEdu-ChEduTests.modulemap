@@ -1,0 +1,6 @@
+module Pods_ChEdu_ChEduTests {
+  umbrella header "Pods-ChEdu-ChEduTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
