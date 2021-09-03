@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View, Button, ViewPropTypes, Alert } from 'react-native';
 
 const Intro = () =>{
     return (
@@ -10,6 +10,21 @@ const Intro = () =>{
                     <Text style = {styles.Title}>
                         Intro Sequence!
                     </Text>
+                    <View style={{flexDirection:'row'}}>
+                        <View style={styles.BaseShadow}>
+                            <Button onPress={() => {
+                                alert('Beginner Pressed!')
+                            }} title ='Beginner'/>
+                        </View>
+                        <View style={styles.BaseShadow}>
+                            <Button onPress={() => {
+                                alert('Experiente Pressed!')
+                            }}
+                            title='Experiente' />
+                        </View>
+                        
+                        
+                    </View>
                     <Text>
                         Learn how to play chess!
                     </Text>
@@ -53,7 +68,8 @@ const styles = StyleSheet.create({
     },
   
     BaseShadow:{
-      padding:20,
+        margin:15,
+      padding:10,
       borderRadius: 20,
       backgroundColor: 'white',
       alignItems:"center",
