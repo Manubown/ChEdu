@@ -1,32 +1,16 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 
-const Home = ({ navigation }) =>{
+const MainView = () =>{
     return (
         <View style={{flex:1}}>
 
                 <View style={{flex:1,justifyContent: "center", alignItems: "center" }}>
-                    <View style={ styles.BaseShadow}>
-                    <Text style = {styles.Title}>
-                        <Text style = {styles.CheduBlue}>Ch</Text>
-                        <Text style = {styles.CheduDarkBlue}>Edu</Text>
-                    </Text>
-                    <Text>
-                        Learn how to play chess!
-                    </Text>
+                    <View style={styles.BaseShadow}><Text>Welcome to your chessboard</Text></View>
+                    <View style={{flexDirection:'row'}}>
+                      <View style={styles.ChessBoard}><Text>Test</Text></View>
+                      <View style = {styles.PlayLog}><Text>Play Log</Text></View>
                     </View>
-                    <View style={styles.BaseShadow}>
-                        <Text>Welcome to our Diplomproject</Text>
-                    </View>
-                </View>
-                
-                <View style = {styles.BottonVield}>
-                    <Button style={styles.ButtonStyle}
-                        onPress={() => {
-                            navigation.navigate('MainView');
-                        }}
-                        title="Start now!"
-                        />
                 </View>
 
         </View>
@@ -41,8 +25,43 @@ const styles = StyleSheet.create({
     CheduBlue:{
       color: '#00578a'
     },
+    PlayLog:{
+      height:250,
+      width:80,
+      backgroundColor: 'white',
+      borderRadius: 20,
+      alignSelf:'center',
+      shadowColor: "#000",
+      shadowOffset: {
+          width: 0,
+          height: 2,
+      },
+      shadowOpacity: 0.23,
+      shadowRadius: 2.62,
+      elevation: 4,
+      justifyContent: "center", 
+      alignItems: "center" 
+    },
     CheduDarkBlue:{
       color: '#0e113f'
+    },
+    ChessBoard:{
+      height:250,
+      width:250,
+      margin: 20,
+      backgroundColor: 'white',
+      borderRadius: 20,
+      alignSelf:'center',
+      shadowColor: "#000",
+      shadowOffset: {
+          width: 0,
+          height: 2,
+      },
+      shadowOpacity: 0.23,
+      shadowRadius: 2.62,
+      elevation: 4,
+      justifyContent: "center", 
+      alignItems: "center" 
     },
   
     BottonVield:{
@@ -65,7 +84,6 @@ const styles = StyleSheet.create({
     },
   
     BaseShadow:{
-    margin:20,
       padding:20,
       borderRadius: 20,
       backgroundColor: 'white',
@@ -82,4 +100,4 @@ const styles = StyleSheet.create({
     }
   });
 
-  export default Home;
+  export default MainView;

@@ -25,9 +25,9 @@ const Intro = () =>{
                         
                         
                     </View>
-                    <Text>
-                        Learn how to play chess!
-                    </Text>
+                        <Text>
+                            Learn how to play chess!
+                        </Text>
                     </View>
                 </View>
             </View>
