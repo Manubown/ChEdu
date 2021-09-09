@@ -4,7 +4,6 @@ import { StyleSheet, Text, View, Button } from 'react-native';
 const Home = ({ navigation }) =>{
     return (
         <View style={{flex:1}}>
-
                 <View style={{flex:1,justifyContent: "center", alignItems: "center" }}>
                     <View style={ styles.BaseShadow}>
                     <Text style = {styles.Title}>
