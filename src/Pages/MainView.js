@@ -1,10 +1,12 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 
+const x = 100;
+const y = 200;
+
 const MainView = () =>{
     return (
-        <View style={{flex:1}}>
-
+        <View style={{flexGrow:1}}>
                 <View style={{flex:1,justifyContent: "center", alignItems: "center" }}>
                     <View style={styles.BaseShadow}><Text>Welcome to your chessboard</Text></View>
                     <View style={{flexDirection:'row'}}>
@@ -18,6 +20,7 @@ const MainView = () =>{
 }
 
 const styles = StyleSheet.create({
+  
     Title: {
       fontWeight: 'bold',
       fontSize: 80,
