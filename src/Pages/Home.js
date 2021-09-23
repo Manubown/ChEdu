@@ -32,7 +32,12 @@ const Home = ({ navigation }) =>{
                 </View>
 
 
-                <View style={{flexDirection:'row', justifyContent:'center', alignItems:"center"}}>
+                
+        </View>
+    );
+}
+/*
+<View style={{flexDirection:'row', justifyContent:'center', alignItems:"center"}}>
                   <View style = {styles.BottonVield}>
                       <Button style={styles.ButtonStyle}
                           onPress={() => {
@@ -58,9 +63,7 @@ const Home = ({ navigation }) =>{
                         />
                   </View>
                 </View>
-        </View>
-    );
-}
+*/
 
 calculateView => {
     

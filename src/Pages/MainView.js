@@ -7,9 +7,10 @@ import { DataTable } from 'react-native-paper';
 
 import ReactDOM from 'react-dom';
 
+/*
 import Game from '../Chess/Components/Game';
 import '../Chess/index.css'
-
+*/
 
 
 const windowWidth = Dimensions.get('window').width;
@@ -41,7 +42,7 @@ const MainView = ({navigation}) =>{
                         <View style={styles.Buttons}><Button title="SAVE"/></View>
                       </View>
                       <View style={styles.ChessBoard}>
-                        <Game/>
+                        
                       </View>
                       <View style = {styles.PlayLog}><Text>Play Log</Text></View>
                     </View>
@@ -98,7 +99,7 @@ const styles = StyleSheet.create({
       height:(windowHeight/10)*5,
       width:(windowHeight/10)*5,
       margin: 40,
-      backgroundColor: 'black',
+      backgroundColor: 'white',
       borderRadius: 20,
       alignSelf:'center',
       shadowColor: "#000",
