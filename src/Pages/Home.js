@@ -1,6 +1,11 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 
+import { Dimensions } from 'react-native';
+
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
+
 //SetUp Links:
 // https://aureliomerenda.medium.com/create-a-native-web-app-with-react-native-web-419acac86b82
 // https://stackoverflow.com/questions/55235825/error-failed-to-build-ios-project-we-ran-xcodebuild-command-but-it-exited-wit
@@ -10,26 +15,48 @@ const Home = ({ navigation }) =>{
         <View style={styles.Container}>
                 <View style={{flex:1,justifyContent: "center", alignItems: "center" }}>
                     <View style={ styles.BaseShadow}>
-                    <Text style = {styles.Title}>
-                        <Text style = {styles.CheduBlue}>Ch</Text>
-                        <Text style = {styles.CheduDarkBlue}>Edu</Text>
-                    </Text>
-                    <Text>
-                        Learn how to play chess!
-                    </Text>
+                      <Text style = {styles.Title}>
+                          <Text style = {styles.CheduBlue}>Ch</Text>
+                          <Text style = {styles.CheduDarkBlue}>Edu</Text>
+                      </Text>
+                      <Text>
+                          Learn how to play chess!
+                      </Text>
                     </View>
                     <View style={styles.BaseShadow}>
-                        <Text>Welcome to our Diplomproject</Text>
+                        <Text>Welcome to our Diplomproject, we are currently under Developlment!</Text>
+                    </View>
+                    <View style={styles.BaseShadow}>
+                        <Text>Thanks you visited our side.</Text>
                     </View>
                 </View>
-                
-                <View style = {styles.BottonVield}>
+
+
+                <View style={{flexDirection:'row', justifyContent:'center', alignItems:"center"}}>
+                  <View style = {styles.BottonVield}>
+                      <Button style={styles.ButtonStyle}
+                          onPress={() => {
+                              navigation.navigate('MainView');//MainView
+                          }}
+                          title="Start now!"
+                          />
+                  </View>
+                  <View style = {styles.BottonVield}>
                     <Button style={styles.ButtonStyle}
                         onPress={() => {
-                            navigation.navigate('MainView');
+                            navigation.navigate('Setting');//Setting
                         }}
-                        title="Start now!"
+                        title="Settings"
                         />
+                  </View>
+                  <View style = {styles.BottonVield}>
+                    <Button style={styles.ButtonStyle}
+                        onPress={() => {
+                            navigation.navigate('Login');//Login
+                        }}
+                        title="Login"
+                        />
+                  </View>
                 </View>
         </View>
     );
@@ -42,6 +69,7 @@ calculateView => {
 const styles = StyleSheet.create({
     Container: {
       flexGrow:1,
+      //flexDirection: 'row',
     },
     Horizontal: {
         flexDirection: 'row'
@@ -60,11 +88,11 @@ const styles = StyleSheet.create({
       },
     
       BottonVield:{
-        height:100,
-        width:100,
-        margin: 10,
+        height:50,
+        width:200,
+        margin:20,
         backgroundColor: 'white',
-        borderRadius: 90,
+        borderRadius: 20,
         alignSelf:'center',
         shadowColor: "#000",
         shadowOffset: {
@@ -72,14 +100,14 @@ const styles = StyleSheet.create({
             height: 2,
         },
         shadowOpacity: 0.23,
-        shadowRadius: 2.62,
+        shadowRadius: 5,
         elevation: 4,
         justifyContent: "center", 
         alignItems: "center" 
       },
     
       BaseShadow:{
-      margin:20,
+      margin:10,
         padding:20,
         borderRadius: 20,
         backgroundColor: 'white',
@@ -91,7 +119,7 @@ const styles = StyleSheet.create({
         },
     
         shadowOpacity: 0.23,
-        shadowRadius: 2.62,
+        shadowRadius: 5,
         elevation: 4,
       }
 });

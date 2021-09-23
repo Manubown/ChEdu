@@ -4,6 +4,14 @@ module.exports = {
   entry: {
     main: './index.native.js',
   },
+  rules: [
+    {
+      test: require.resolve('chess.js'),
+      parser: {
+          amd: false
+      }
+  }
+  ],
   module: {
     loaders: [
       {
