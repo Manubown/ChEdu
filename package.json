@@ -1,5 +1,6 @@
 {
   "name": "chedu",
+  "homepage":"chedu.at",
   "version": "0.0.1",
   "private": true,
   "scripts": {
