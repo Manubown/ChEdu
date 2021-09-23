@@ -95,10 +95,10 @@ const styles = StyleSheet.create({
       color: '#0e113f'
     },
     ChessBoard:{       
-      height:(windowHeight/10)*8.5,
-      width:(windowHeight/10)*8.5,
-      margin: 20,
-      backgroundColor: 'white',
+      height:(windowHeight/10)*5,
+      width:(windowHeight/10)*5,
+      margin: 40,
+      backgroundColor: 'black',
       borderRadius: 20,
       alignSelf:'center',
       shadowColor: "#000",
