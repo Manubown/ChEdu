@@ -24,15 +24,12 @@ const Home = ({ navigation }) =>{
                       </Text>
                     </View>
                     <View style={styles.BaseShadow}>
-                        <Text>Welcome to our Diplomproject, we are currently under Developlment!</Text>
+                        <Text>Welcome to our Diploma Project, we are currently in development!</Text>
                     </View>
                     <View style={styles.BaseShadow}>
-                        <Text>Thanks you visited our side.</Text>
+                        <Text>Thank you for visiting our Site!</Text>
                     </View>
                 </View>
-
-
-                
         </View>
     );
 }
