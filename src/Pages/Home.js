@@ -31,7 +31,7 @@ const Home = ({ navigation }) => {
         </View>
         <Button
           onPress={() => {
-            navigation.navigate("Temp"); //MainView
+            navigation.navigate("Homepage"); //MainView
           }}
           title="Start now!"
         />
