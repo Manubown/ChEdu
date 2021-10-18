@@ -12,28 +12,34 @@ const x = 100;
 const y = 200;
 
 const Login = ({ navigation }) => {
-  const username = null,
-    password = null;
+  const [username, onChangeUsername] = React.useState(null);
+  const [password, onChangePassword] = React.useState(null);
   return (
     <View style={{ flexGrow: 1 }}>
       <View style={{ justifyContent: "center", alignItems: "center" }}>
-        <View style={{ flexDirection: "row-reverse" }}>
+        <View style={{ flexDirection: "column" }}>
+          <Text>Username</Text>
           <TextInput
             style={styles.Input}
             value={username}
-            placeholder="useless placeholder"
+            onChangeText={onChangeUsername}
+            placeholder="Username"
             keyboardType="numeric"
           />
+          <Text>Password</Text>
           <TextInput
+            secureTextEntry="true"
             style={styles.Input}
             value={password}
-            placeholder="useless placeholder"
+            onChangeText={onChangePassword}
+            placeholder="Password"
             keyboardType="numeric"
           />
           <Button
             style={styles.Buttons}
             onPress={() => {
               RequestLogin(username, password);
+              navigation.navigate("Home");
             }}
             title="Login"
           />
@@ -45,7 +51,7 @@ const Login = ({ navigation }) => {
 
 const RequestLogin = (username, password) => {
   //TODO: API Request
-  navigation.navigate("MainView");
+  console.log(username, password);
 };
 
 const styles = StyleSheet.create({
