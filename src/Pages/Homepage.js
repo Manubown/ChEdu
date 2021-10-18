@@ -2,7 +2,6 @@ import React from "react";
 import { StyleSheet, Text, View, Button, Image } from "react-native"; //components
 
 import cheduLogo from "./Pictures/Logo.png";
-import felix from "./Pictures/IMG_2492.png"
 
 import { SettingVariables } from "../Scripts/SettingVariables";
 
