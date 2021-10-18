@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
   BaseShadow: {
     margin: 10,
     padding: 20,
-    borderRadius: 20,
+    borderRadius: 10,
     backgroundColor: "white",
     alignItems: "center",
     shadowColor: "#000",

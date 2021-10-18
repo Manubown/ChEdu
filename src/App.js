@@ -10,7 +10,6 @@ import Login from "./Pages/Login";
 import Temp from "./Pages/TempPage";
 import Homepage from "./Pages/Homepage";
 
-
 const Stack = createNativeStackNavigator();
 
 const MyStack = () => {
@@ -22,12 +21,14 @@ const MyStack = () => {
           component={HomeScreen}
           options={{ title: "ChEdu" }}
         />
+        <Stack.Screen name="Homepage" component={Homepage} />
         <Stack.Screen name="Intro" component={IntroScreen} />
         <Stack.Screen name="MainView" component={MainView} />
         <Stack.Screen name="Setting" component={Settings} />
+        <Stack.Screen name="Profile" component={Temp} />
         <Stack.Screen name="Login" component={Login} />
-        <Stack.Screen name="Homepage" component={Homepage} />
         <Stack.Screen name="Temp" component={Temp} />
+        <Stack.Screen name="Game" component={Temp} />
       </Stack.Navigator>
     </NavigationContainer>
   );
