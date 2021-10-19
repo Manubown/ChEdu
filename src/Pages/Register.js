@@ -64,7 +64,7 @@ const Register = ({ navigation }) => {
 
 const RequestLogin = (username, password, email) => {
   //TODO: API Request
-  console.log(username, password, email);
+  console.log(username, email, password);
 };
 
 const styles = StyleSheet.create({
