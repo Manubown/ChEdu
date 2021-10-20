@@ -2,14 +2,14 @@ import * as React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-import HomeScreen from "./Pages/Home";
-import IntroScreen from "./Pages/Intro";
-import ChessBoard from "./Pages/ChessBoard";
-import Settings from "./Pages/Setting";
-import Login from "./Pages/Login";
-import Temp from "./Pages/TempPage";
-import Homepage from "./Pages/Homepage";
-import Register from "./Pages/Register";
+import HomeScreen from "./Pages/containers/Home";
+import IntroScreen from "./Pages/containers/Intro";
+import ChessBoard from "./Pages/containers/ChessBoardPage";
+import Settings from "./Pages/containers/Setting";
+import Login from "./Pages/containers/Login";
+import Temp from "./Pages/containers/TempPage";
+import Homepage from "./Pages/containers/Homepage";
+import Register from "./Pages/containers/Register";
 
 const Stack = createNativeStackNavigator();
 

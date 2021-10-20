@@ -1,7 +1,6 @@
 import React from "react";
 import { StyleSheet, Text, View, Button, TextInput } from "react-native";
 
-import { SettingVariables } from "../Scripts/SettingVariables";
 
 import { Dimensions } from "react-native";
 import { Title } from "react-native-paper";
@@ -12,31 +11,20 @@ const windowHeight = Dimensions.get("window").height;
 const x = 100;
 const y = 200;
 
-const Register = ({ navigation }) => {
+const Login = ({ navigation }) => {
   const [username, onChangeUsername] = React.useState(null);
   const [password, onChangePassword] = React.useState(null);
-  const [email, onChangeEmail] = React.useState(null);
-
   return (
     <View style={{ flexGrow: 1 }}>
       <View style={{ justifyContent: "center", alignItems: "center" }}>
         <View style={{ flexDirection: "column" }}>
-          <Title style={styles.Title}>Register</Title>
+          <Title style={styles.Title}>Login</Title>
           <Text>Username</Text>
           <TextInput
             style={styles.Input}
             value={username}
             onChangeText={onChangeUsername}
             placeholder="Username"
-            keyboardType="numeric"
-          />
-          <Text>Email</Text>
-          <TextInput
-            secureTextEntry="true"
-            style={styles.Input}
-            value={email}
-            onChangeText={onChangeEmail}
-            placeholder="Email"
             keyboardType="numeric"
           />
           <Text>Password</Text>
@@ -51,7 +39,7 @@ const Register = ({ navigation }) => {
           <Button
             style={styles.Buttons}
             onPress={() => {
-              RequestLogin(username, password, email);
+              RequestLogin(username, password);
               navigation.navigate("Home");
             }}
             title="Login"
@@ -62,15 +50,16 @@ const Register = ({ navigation }) => {
   );
 };
 
-const RequestLogin = (username, password, email) => {
+const RequestLogin = (username, password) => {
   //TODO: API Request
-  console.log(username, email, password);
+  console.log(username, password);
 };
 
 const styles = StyleSheet.create({
   Input: {
     margin: 20,
   },
+
   Title: {
     fontWeight: "bold",
     fontSize: 60,
@@ -171,4 +160,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Register;
+export default Login;

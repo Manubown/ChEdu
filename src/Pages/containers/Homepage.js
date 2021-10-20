@@ -1,9 +1,8 @@
 import React from "react";
 import { StyleSheet, Text, View, Button, Image } from "react-native"; //components
 
-import cheduLogo from "./Pictures/Logo.png";
+import cheduLogo from "../Pictures/Logo.png";
 
-import { SettingVariables } from "../Scripts/SettingVariables";
 
 import { Dimensions } from "react-native";
 
