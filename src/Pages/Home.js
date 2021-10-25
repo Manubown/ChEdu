@@ -1,5 +1,6 @@
+import { SCOPABLE_TYPES } from "@babel/types";
 import React from "react";
-import { StyleSheet, Text, View, Button } from "react-native";
+import { StyleSheet, Text, View, Button, TextInput } from "react-native";
 
 import { Dimensions } from "react-native";
 
@@ -11,9 +12,11 @@ const windowHeight = Dimensions.get("window").height;
 // https://stackoverflow.com/questions/55235825/error-failed-to-build-ios-project-we-ran-xcodebuild-command-but-it-exited-wit
 
 const Home = ({ navigation }) => {
+  const [email, onChangeEmail] = React.useState(null);
   return (
     <View style={styles.Container}>
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        <View style={styles.topSize}></View>
         <View style={styles.BaseShadow}>
           <Text style={styles.Title}>
             <Text style={styles.CheduBlue}>Ch</Text>
@@ -29,12 +32,28 @@ const Home = ({ navigation }) => {
         <View style={styles.BaseShadow}>
           <Text>Thank you for visiting our Site!</Text>
         </View>
-        <Button
-          onPress={() => {
-            navigation.navigate("Homepage"); //MainView
-          }}
-          title="Start now!"
-        />
+        <View style={styles.InputField}>
+          <Text style={styles.h2Title}>Updates and Progress</Text>
+          <Text style={styles.EmailText}>
+            Do you want to get updates how we progress? Insert your E-mail down
+            below:
+          </Text>
+          <View style={{ flexDirection: "row" }}>
+            <TextInput
+              style={styles.input}
+              onChangeText={onChangeEmail}
+              value={email}
+              placeholder="Email"
+            />
+            <Button
+              style={styles.Button}
+              onPress={() => {
+                navigation.navigate("Homepage"); //MainView
+              }}
+              title="Submit"
+            />
+          </View>
+        </View>
       </View>
     </View>
   );
@@ -71,6 +90,35 @@ const Home = ({ navigation }) => {
 (calculateView) => {};
 
 const styles = StyleSheet.create({
+  topSize: {
+    height: windowHeight / 10,
+  },
+  input: {
+    height: 40,
+    margin: 12,
+    borderWidth: 1,
+    borderRadius: 10,
+    padding: 10,
+  },
+
+  h2Title: {
+    fontWeight: "bold",
+    fontSize: 30,
+    margin: 10,
+  },
+  EmailText: {
+    fontSize: 15,
+    margin: 10,
+  },
+
+  Button: {
+    width: 40,
+    margin: 12,
+    borderWidth: 1,
+    borderRadius: 10,
+    padding: 10,
+  },
+
   Container: {
     flexGrow: 1,
     //flexDirection: 'row',
@@ -88,6 +136,23 @@ const styles = StyleSheet.create({
   },
   CheduDarkBlue: {
     color: "#0e113f",
+  },
+
+  InputField: {
+    margin: 10,
+    padding: 20,
+    borderRadius: 10,
+    backgroundColor: "white",
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+
+    shadowOpacity: 0.23,
+    shadowRadius: 5,
+    elevation: 4,
   },
 
   BottonVield: {
