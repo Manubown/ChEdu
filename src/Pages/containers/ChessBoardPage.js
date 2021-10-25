@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, Text, View, Button, Dimensions } from "react-native";
-import {Chessboard} from "react-chessboard";
-
+import { Chessboard } from "react-chessboard";
+import { ChessInstance } from "chess.js";
 
 import { DataTable } from "react-native-paper";
 
@@ -19,11 +19,7 @@ const x = 100;
 const y = 200;
 const firstLogin = true;
 
-
-
-
 const ChessBoardPage = ({ navigation }) => {
-  
   return (
     <View style={{ flexGrow: 1 }}>
       <View
@@ -52,7 +48,7 @@ const ChessBoardPage = ({ navigation }) => {
             </View>
           </View>
           <View style={styles.ChessBoard}>
-            <Chessboard id="BasicBoard"/>
+            <Chessboard id="BasicBoard" />
           </View>
           <View style={styles.PlayLog}>
             <Text>Play Log</Text>
