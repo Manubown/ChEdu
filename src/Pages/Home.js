@@ -1,8 +1,9 @@
 import { SCOPABLE_TYPES } from "@babel/types";
 import React from "react";
-import { StyleSheet, Text, View, Button, TextInput } from "react-native";
+import { StyleSheet, Text, View, Button, TextInput, Image } from "react-native";
 
 import { Dimensions } from "react-native";
+import cheduLogo from "./Pictures/Logo.png";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -17,13 +18,18 @@ const Home = ({ navigation }) => {
     <View style={styles.Container}>
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
         <View style={styles.topSize}></View>
-        <View style={styles.BaseShadow}>
-          <Text style={styles.Title}>
-            <Text style={styles.CheduBlue}>Ch</Text>
-            <Text style={styles.CheduDarkBlue}>Edu</Text>
-          </Text>
-          <Text>Learn how to play chess!</Text>
+
+        <View style={{ flexDirection: "row" }}>
+          <View style={styles.BaseShadow}>
+            <Text style={styles.Title}>
+              <Text style={styles.CheduBlue}>Ch</Text>
+              <Text style={styles.CheduDarkBlue}>Edu</Text>
+            </Text>
+            <Text>Learn how to play chess!</Text>
+          </View>
+          <Image source={cheduLogo} style={styles.Logo} />
         </View>
+
         <View style={styles.BaseShadow}>
           <Text>
             Welcome to our Diploma Project, we are currently in development!
@@ -32,6 +38,7 @@ const Home = ({ navigation }) => {
         <View style={styles.BaseShadow}>
           <Text>Thank you for visiting our Site!</Text>
         </View>
+        {/* Email Input */}
         <View style={styles.InputField}>
           <Text style={styles.h2Title}>Updates and Progress</Text>
           <Text style={styles.EmailText}>
@@ -54,6 +61,30 @@ const Home = ({ navigation }) => {
             />
           </View>
         </View>
+        {/* Jahres Verlauf */}
+        <View style={styles.YearField}>
+          <View style={styles.SprintViewBox}>
+            <Text style={styles.YearHeader}>1 Juni - 11 September</Text>
+            <Text style={styles.YearTextField}>
+              Main React Native setup {"\n"}Test
+            </Text>
+          </View>
+          <Text>
+            . {"\n"}. {"\n"}. {"\n"}
+          </Text>
+          <View style={styles.SprintViewBox}>
+            <Text style={styles.YearHeader}>1 October - 30. October</Text>
+            <Text style={styles.YearTextField}>
+              Basic UI {"\n"}
+              Basic Chess Board {"\n"}
+              Basic Data Base {"\n"}
+              Basic E-mail Client {"\n"}
+              Basic Chess API
+            </Text>
+          </View>
+        </View>
+
+        <View style={styles.topSize}></View>
       </View>
     </View>
   );
@@ -93,6 +124,42 @@ const styles = StyleSheet.create({
   topSize: {
     height: windowHeight / 10,
   },
+
+  YearHeader: {
+    textAlign: "left",
+    fontSize: 30,
+    margin: 10,
+  },
+
+  YearTextField: {
+    fontSize: 15,
+    margin: 10,
+  },
+
+  SprintViewBox: {
+    marginTop: 60,
+    padding: 20,
+    width: 600,
+    borderRadius: 50,
+    backgroundColor: "white",
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+
+    shadowOpacity: 0.23,
+    shadowRadius: 5,
+    elevation: 4,
+  },
+
+  Logo: {
+    width: 150,
+    height: 150,
+    margin: 10,
+  },
+
   input: {
     height: 40,
     margin: 12,
