@@ -6,8 +6,8 @@ import { StyleSheet, Text, View, Button, TextInput, Image } from "react-native";
 import axios from "axios";
 
 import { Dimensions } from "react-native";
-import cheduLogo from "./Pictures/Logo.png";
-import cheduQrCode from "./Pictures/CheduQR.png";
+import cheduLogo from "../Pictures/Logo.png";
+import cheduQrCode from "../Pictures/CheduQR.png";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -89,7 +89,6 @@ const Home = ({ navigation }) => {
           </View>
         </View>
         <Image source={cheduQrCode} style={styles.Logo} />
-
         <View style={styles.topSize}></View>
       </View>
     </View>
@@ -128,7 +127,7 @@ const componentDidMount = (emailText) => {
   // Simple POST request with a JSON body using axios
   const postRequest = { email: emailText };
   axios
-    .post("http://chedu.at:5000/NewDemoUser", postRequest)
+    .post("https://chedu.at:5000/NewDemoUser", postRequest)
     .then(console.log("Email Sended! \n Post request send!"));
 };
 
