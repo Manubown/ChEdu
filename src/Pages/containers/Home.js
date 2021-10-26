@@ -177,7 +177,7 @@ const styles = StyleSheet.create({
   SprintViewBox: {
     margin: 10,
     padding: 20,
-    width: 600,
+    width: windowWidth - 100,
     borderRadius: 50,
     backgroundColor: "white",
     alignItems: "center",
@@ -193,8 +193,8 @@ const styles = StyleSheet.create({
   },
 
   Logo: {
-    width: windowWidth / 15,
-    height: windowWidth / 15,
+    width: windowWidth / 3,
+    height: windowWidth / 3,
     margin: 10,
     borderRadius: 10,
   },
