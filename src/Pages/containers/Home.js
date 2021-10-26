@@ -31,7 +31,7 @@ const Home = ({ navigation }) => {
             </Text>
             <Text>Learn how to play chess!</Text>
           </View>
-          <Image source={cheduLogo} style={styles.Logo} />
+          {/*<Image source={cheduLogo} style={styles.Logo} />*/}
         </View>
 
         <View style={styles.BaseShadow}>
@@ -40,7 +40,7 @@ const Home = ({ navigation }) => {
           </Text>
         </View>
         <View style={styles.BaseShadow}>
-          <Text>Thank you for visiting our Site!</Text>
+          <Text>Thank you for visiting our website!</Text>
         </View>
         {/* Email Input */}
         <View style={styles.InputField}>
