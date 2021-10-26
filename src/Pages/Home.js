@@ -2,8 +2,12 @@ import { SCOPABLE_TYPES } from "@babel/types";
 import React from "react";
 import { StyleSheet, Text, View, Button, TextInput, Image } from "react-native";
 
+//WebRequest
+import axios from "axios";
+
 import { Dimensions } from "react-native";
 import cheduLogo from "./Pictures/Logo.png";
+import cheduQrCode from "./Pictures/CheduQR.png";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -55,34 +59,36 @@ const Home = ({ navigation }) => {
             <Button
               style={styles.Button}
               onPress={() => {
-                navigation.navigate("Homepage"); //MainView
+                componentDidMount(email); //email Submit
               }}
               title="Submit"
             />
           </View>
         </View>
+        <View style={styles.triangleCorner} />
         {/* Jahres Verlauf */}
-        <View style={styles.YearField}>
+        <Text style={styles.YearTitle}>Our Progress:</Text>
+
+        <View>
           <View style={styles.SprintViewBox}>
             <Text style={styles.YearHeader}>1 Juni - 11 September</Text>
             <Text style={styles.YearTextField}>
-              Main React Native setup {"\n"}Test
+              Main React Native setup {"\n"}
+              Server {"\n"}
+              Domain DNS setup{"\n"}
+              TypeScript first research
             </Text>
           </View>
-          <Text>
-            . {"\n"}. {"\n"}. {"\n"}
-          </Text>
           <View style={styles.SprintViewBox}>
             <Text style={styles.YearHeader}>1 October - 30. October</Text>
             <Text style={styles.YearTextField}>
-              Basic UI {"\n"}
-              Basic Chess Board {"\n"}
-              Basic Data Base {"\n"}
-              Basic E-mail Client {"\n"}
-              Basic Chess API
+              React Native: {"\n"}~ Basic UI {"\n"}~ Basic Chess Board {"\n"}
+              {"\n"}Server: {"\n"}~ Basic Data Base {"\n"}~ Basic E-mail Client{" "}
+              {"\n"}~ Basic Chess API
             </Text>
           </View>
         </View>
+        <Image source={cheduQrCode} style={styles.Logo} />
 
         <View style={styles.topSize}></View>
       </View>
@@ -118,11 +124,44 @@ const Home = ({ navigation }) => {
                 </View>
 */
 
+const componentDidMount = (emailText) => {
+  // Simple POST request with a JSON body using axios
+  const postRequest = { email: emailText };
+  axios
+    .post("http://chedu.at:5000/NewDemoUser", postRequest)
+    .then(console.log("Email Sended! \n Post request send!"));
+};
+
 (calculateView) => {};
 
 const styles = StyleSheet.create({
   topSize: {
     height: windowHeight / 10,
+  },
+
+  triangleCorner: {
+    position: "absolute",
+    right: 0,
+    bottom: 0,
+    width: 0,
+    height: 200,
+    backgroundColor: "transparent",
+    borderStyle: "solid",
+    borderLeftWidth: Dimensions.get("window").width,
+    borderRightWidth: windowHeight / 0.8,
+    borderBottomWidth: windowHeight / 1,
+    borderLeftColor: "transparent",
+    borderRightColor: "transparent",
+    borderBottomColor: "#0e113f",
+    zIndex: -100,
+  },
+
+  YearTitle: {
+    marginTop: 60,
+    margin: 10,
+    fontSize: 40,
+    fontWeight: "bold",
+    color: "#00578a",
   },
 
   YearHeader: {
@@ -137,7 +176,7 @@ const styles = StyleSheet.create({
   },
 
   SprintViewBox: {
-    marginTop: 60,
+    margin: 10,
     padding: 20,
     width: 600,
     borderRadius: 50,
@@ -158,6 +197,7 @@ const styles = StyleSheet.create({
     width: 150,
     height: 150,
     margin: 10,
+    borderRadius: 10,
   },
 
   input: {
