@@ -6,45 +6,29 @@ import cheduLogo from "../Pictures/Logo.png";
 
 import { Dimensions } from "react-native";
 
+import { Layout } from 'antd';
+
+const { Header, Footer, Sider, Content } = Layout;
+
+
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
 const x = 100;
 const y = 200;
 
+
+
 const Homepage = ({ navigation }) => {
   return (
-    //Text, images, etc.
-
-    <View style={styles.Mainview}>
-      <View>
-        <View style={styles.Column}>
-          <Text style={styles.Title}>
-            <Text style={styles.CheduBlue}>Ch</Text>
-            <Text style={styles.CheduDarkBlue}>Edu</Text>
-          </Text>
-          <Image source={cheduLogo} style={styles.Logo} />
-        </View>
-        <View style={styles.Row}>
-          <View style={styles.BaseShadow}>
-            <Button
-              onPress={() => {
-                navigation.navigate("Profile"); //Profile
-              }}
-              title="Profile"
-            />
-          </View>
-          <View style={styles.BaseShadow}>
-            <Button
-              onPress={() => {
-                navigation.navigate("Game"); //Game
-              }}
-              title="Start Game"
-            />
-          </View>
-        </View>
-      </View>
-    </View>
+    <Layout>
+      <Sider>Sider</Sider>
+      <Layout>
+        <Header>Header</Header>
+        <Content>Content</Content>
+        <Footer>Footer</Footer>
+      </Layout>
+    </Layout>
   );
 };
 
