@@ -5,10 +5,9 @@ import cheduLogo from "../Pictures/Logo.png";
 
 
 import { Dimensions } from "react-native";
-
-import { Layout } from 'antd';
-
-const { Header, Footer, Sider, Content } = Layout;
+import Table, { Column } from "rc-table";
+import { bgYellowBright } from "chalk";
+import { Content } from "antd/lib/layout/layout";
 
 
 const windowWidth = Dimensions.get("window").width;
@@ -21,45 +20,122 @@ const y = 200;
 
 const Homepage = ({ navigation }) => {
   return (
-    <Layout>
-      <Sider>Sider</Sider>
-      <Layout>
-        <Header>Header</Header>
-        <Content>Content</Content>
-        <Footer>Footer</Footer>
-      </Layout>
-    </Layout>
+        <View style = {windowWidth,windowHeight}>
+          <View style={{ flexDirection: "row"}, styles.Column}>
+            <View style={styles.BaseShadow}>
+              <Text style={styles.Title}>
+                <Text style={styles.CheduBlue}>Ch</Text>
+                <Text style={styles.CheduDarkBlue}>Edu</Text>
+              </Text>
+              {<Image source={cheduLogo} style={styles.Logo} />}
+            </View>
+          </View>
+
+          <View style={styles.Column}>
+            <View style={styles.BaseShadow}>
+                <Text>Want to learn chess or improve at the Game?</Text>
+                <Text> </Text>
+                <Text>ChEdu is your change to master it!</Text>
+            </View>
+
+            <View style={styles.BaseShadow}>
+              <View style={styles.Box}>
+                <Button style={styles.ButtonStyle}
+                          onPress={() => {
+                              navigation.navigate('Intro');
+                          }}
+                          title="Introduction"
+                          />
+                
+              </View>
+              <Text>Learn chess at any level of expirience and any age of life!</Text>
+            </View>
+            
+            <View style={styles.BaseShadow}>
+              <View style={styles.Box}>
+                <Button style={styles.ButtonStyle}
+                            onPress={() => {
+                                navigation.navigate('Intro');
+                            }}
+                            title="Training"
+                            />
+              </View>
+            </View>
+            
+            <View style={styles.BaseShadow}>
+              <View style={styles.Box}>
+              <Button style={styles.ButtonStyle}
+                            onPress={() => {
+                                navigation.navigate('Intro');
+                            }}
+                            title="Engine Practice"
+                            />
+              </View>
+            </View>
+
+            <View style={styles.BaseShadow}>
+              <View style={styles.Box}>
+                <Button style={styles.ButtonStyle}
+                              onPress={() => {
+                                  navigation.navigate('Intro');
+                              }}
+                              title="Chessboard (1v1)"
+                              />
+              </View>
+            </View>
+
+            <View style={styles.BaseShadow}>
+              <View style={styles.Box}>
+                <Button style={styles.ButtonStyle}
+                              onPress={() => {
+                                  navigation.navigate('Intro');
+                              }}
+                              title="Online"
+                              />
+              </View>
+            </View>
+
+            <View style={styles.BaseShadow}>
+              <View style={styles.Box}>
+                <Button style={styles.ButtonStyle}
+                              onPress={() => {
+                                  navigation.navigate('Intro');
+                              }}
+                              title="Statistics"
+                              />
+              </View>
+            </View>
+          </View>
+        </View>
   );
 };
 
+
 const styles = StyleSheet.create({
-  Mainview: {
-    flexGrow: 1,
+    Column: {
+    justifyContent: "center",
+    flex: 1,
+    alignItems: "center", 
   },
-  Title: {
-    fontWeight: "bold",
-    fontSize: 100,
+
+  Box: {
+    justifyContent: "center",
   },
+  
+  Logo: {
+    width: 50,
+    height: 50,
+  },
+
   CheduBlue: {
     color: "#00578a",
+    fontSize: 40
   },
   CheduDarkBlue: {
     color: "#0e113f",
+    fontSize: 40
   },
 
-  Column: {
-    flexDirection: "column",
-    flexDirection: "row",
-    alignSelf: "center",
-    justifyContent: "space-between",
-  },
-
-  Row: {
-    flex: 1,
-    flexDirection: "row",
-    alignSelf: "center",
-    justifyContent: "space-between",
-  },
   BaseShadow: {
     margin: 10,
     padding: 20,
@@ -71,15 +147,9 @@ const styles = StyleSheet.create({
       width: 0,
       height: 2,
     },
-
     shadowOpacity: 0.23,
     shadowRadius: 5,
     elevation: 4,
-  },
-  Logo: {
-    width: 100,
-    height: 100,
-    margin: 10,
   },
 });
 
