@@ -33,7 +33,7 @@ const Homepage = ({ navigation }) => {
 
           <View style={styles.Column}>
             <View style={styles.BaseShadow}>
-                <Text>Want to learn chess or improve at the Game?</Text>
+                <Text>Want to learn chess or improve at the game?</Text>
                 <Text> </Text>
                 <Text>ChEdu is your change to master it!</Text>
             </View>
