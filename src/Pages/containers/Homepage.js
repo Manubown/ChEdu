@@ -2,6 +2,7 @@ import React from "react";
 import { StyleSheet, Text, View, Button, Image } from "react-native"; //components
 
 import cheduLogo from "../Pictures/Logo.png";
+import twokings from "../Pictures/two_kings.jpg"
 
 
 import { Dimensions } from "react-native";
@@ -82,6 +83,8 @@ const Homepage = ({ navigation }) => {
                               title="Chessboard (1v1)"
                               />
               </View>
+              <Text> </Text>
+              {<Image source={twokings} style={styles.TwoKings} />}
             </View>
 
             <View style={styles.BaseShadow}>
@@ -125,6 +128,12 @@ const styles = StyleSheet.create({
   Logo: {
     width: 50,
     height: 50,
+  },
+
+  TwoKings: {
+    width: 200,
+    height: 200,
+    borderRadius: 50,
   },
 
   CheduBlue: {
