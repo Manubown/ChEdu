@@ -15,116 +15,118 @@ const y = 200;
 
 const Homepage = ({ navigation }) => {
   return (
-    <View style={styles.mainView}>
-      <View style={styles.TopButton}>
-        <Button
-          style={styles.ButtonsStyleTop}
-          onPress={() => {
-            navigation.navigate("Intro");
-          }}
-          title="Profile"
-        />
-        <Button
-          style={styles.ButtonsStyleTop}
-          onPress={() => {
-            navigation.navigate("Intro");
-          }}
-          title="Settings"
-        />
-      </View>
-      <View style={styles.Column}>
-        <View style={styles.TopBar}>
-          <View style={styles.Row}>
-            <Text style={styles.Title}>
-              <Text style={styles.CheduBlue}>Ch</Text>
-              <Text style={styles.CheduDarkBlue}>Edu</Text>
+    <View>
+      <View>Droner VIew</View>
+      <View style={styles.mainView}>
+        <View style={styles.TopButton}>
+          <Button
+            style={styles.ButtonsStyleTop}
+            onPress={() => {
+              navigation.navigate("Intro");
+            }}
+            title="Profile"
+          />
+          <Button
+            style={styles.ButtonsStyleTop}
+            onPress={() => {
+              navigation.navigate("Intro");
+            }}
+            title="Settings"
+          />
+        </View>
+        <View style={styles.Column}>
+          <View style={styles.TopBar}>
+            <View style={styles.Row}>
+              <Text style={styles.Title}>
+                <Text style={styles.CheduBlue}>Ch</Text>
+                <Text style={styles.CheduDarkBlue}>Edu</Text>
+              </Text>
+              {<Image source={cheduLogo} style={styles.Logo} />}
+            </View>
+          </View>
+        </View>
+        <View>
+          <View style={styles.BaseShadow}>
+            <Text>Want to learn chess or improve at the game?</Text>
+            <Text> </Text>
+            <Text>ChEdu is your chance to master it!</Text>
+          </View>
+
+          <View style={styles.BaseShadow}>
+            <View style={styles.Box}>
+              <Button
+                style={styles.ButtonStyle}
+                onPress={() => {
+                  navigation.navigate("Intro");
+                }}
+                title="Introduction"
+              />
+            </View>
+            <Text>
+              Learn chess at any level of expirience and any age of life!
             </Text>
-            {<Image source={cheduLogo} style={styles.Logo} />}
           </View>
-        </View>
-      </View>
 
-      <View>
-        <View style={styles.BaseShadow}>
-          <Text>Want to learn chess or improve at the game?</Text>
-          <Text> </Text>
-          <Text>ChEdu is your chance to master it!</Text>
-        </View>
-
-        <View style={styles.BaseShadow}>
-          <View style={styles.Box}>
-            <Button
-              style={styles.ButtonStyle}
-              onPress={() => {
-                navigation.navigate("Intro");
-              }}
-              title="Introduction"
-            />
+          <View style={styles.BaseShadow}>
+            <View style={styles.Box}>
+              <Button
+                style={styles.ButtonStyle}
+                onPress={() => {
+                  navigation.navigate("Intro");
+                }}
+                title="Training"
+              />
+            </View>
           </View>
-          <Text>
-            Learn chess at any level of expirience and any age of life!
-          </Text>
-        </View>
 
-        <View style={styles.BaseShadow}>
-          <View style={styles.Box}>
-            <Button
-              style={styles.ButtonStyle}
-              onPress={() => {
-                navigation.navigate("Intro");
-              }}
-              title="Training"
-            />
+          <View style={styles.BaseShadow}>
+            <View style={styles.Box}>
+              <Button
+                style={styles.ButtonStyle}
+                onPress={() => {
+                  navigation.navigate("Intro");
+                }}
+                title="Engine Practice"
+              />
+            </View>
           </View>
-        </View>
 
-        <View style={styles.BaseShadow}>
-          <View style={styles.Box}>
-            <Button
-              style={styles.ButtonStyle}
-              onPress={() => {
-                navigation.navigate("Intro");
-              }}
-              title="Engine Practice"
-            />
+          <View style={styles.BaseShadow}>
+            <View style={styles.Box}>
+              <Button
+                style={styles.ButtonStyle}
+                onPress={() => {
+                  navigation.navigate("Intro");
+                }}
+                title="Chessboard (1v1)"
+              />
+            </View>
+            <Text> </Text>
+            {<Image source={twokings} style={styles.TwoKings} />}
           </View>
-        </View>
 
-        <View style={styles.BaseShadow}>
-          <View style={styles.Box}>
-            <Button
-              style={styles.ButtonStyle}
-              onPress={() => {
-                navigation.navigate("Intro");
-              }}
-              title="Chessboard (1v1)"
-            />
+          <View style={styles.BaseShadow}>
+            <View style={styles.Box}>
+              <Button
+                style={styles.ButtonStyle}
+                onPress={() => {
+                  navigation.navigate("Intro");
+                }}
+                title="Online"
+              />
+            </View>
           </View>
-          <Text> </Text>
-          {<Image source={twokings} style={styles.TwoKings} />}
-        </View>
 
-        <View style={styles.BaseShadow}>
-          <View style={styles.Box}>
-            <Button
-              style={styles.ButtonStyle}
-              onPress={() => {
-                navigation.navigate("Intro");
-              }}
-              title="Online"
-            />
-          </View>
-        </View>
-
-        <View style={styles.BaseShadow}>
-          <View style={styles.Box}>
-            <Button
-              style={styles.ButtonStyle}
-              onPress={() => {
-                navigation.navigate("Intro");
-              }}
-              title="Statistics"
-            />
+          <View style={styles.BaseShadow}>
+            <View style={styles.Box}>
+              <Button
+                style={styles.ButtonStyle}
+                onPress={() => {
+                  navigation.navigate("Intro");
+                }}
+                title="Statistics"
+              />
+            </View>
           </View>
         </View>
       </View>
