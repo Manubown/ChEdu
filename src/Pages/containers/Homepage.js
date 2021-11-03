@@ -2,14 +2,10 @@ import React from "react";
 import { StyleSheet, Text, View, Button, Image } from "react-native"; //components
 
 import cheduLogo from "../Pictures/Logo.png";
-import twokings from "../Pictures/two_kings.jpg"
-
+import twokings from "../Pictures/two_kings.jpg";
 
 import { Dimensions } from "react-native";
-import Table, { Column } from "rc-table";
-import { bgYellowBright } from "chalk";
-import { Content } from "antd/lib/layout/layout";
-
+import { grey } from "chalk";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -17,117 +13,170 @@ const windowHeight = Dimensions.get("window").height;
 const x = 100;
 const y = 200;
 
-
-
 const Homepage = ({ navigation }) => {
   return (
-        <View style = {windowWidth,windowHeight}>
-          <View style={{ flexDirection: "row"}, styles.Column}>
-            <View style={styles.BaseShadow}>
-              <Text style={styles.Title}>
-                <Text style={styles.CheduBlue}>Ch</Text>
-                <Text style={styles.CheduDarkBlue}>Edu</Text>
-              </Text>
-              {<Image source={cheduLogo} style={styles.Logo} />}
-            </View>
-          </View>
-
-          <View style={styles.Column}>
-            <View style={styles.BaseShadow}>
-                <Text>Want to learn chess or improve at the game?</Text>
-                <Text> </Text>
-                <Text>ChEdu is your change to master it!</Text>
-            </View>
-
-            <View style={styles.BaseShadow}>
-              <View style={styles.Box}>
-                <Button style={styles.ButtonStyle}
-                          onPress={() => {
-                              navigation.navigate('Intro');
-                          }}
-                          title="Introduction"
-                          />
-                
-              </View>
-              <Text>Learn chess at any level of expirience and any age of life!</Text>
-            </View>
-            
-            <View style={styles.BaseShadow}>
-              <View style={styles.Box}>
-                <Button style={styles.ButtonStyle}
-                            onPress={() => {
-                                navigation.navigate('Intro');
-                            }}
-                            title="Training"
-                            />
-              </View>
-            </View>
-            
-            <View style={styles.BaseShadow}>
-              <View style={styles.Box}>
-              <Button style={styles.ButtonStyle}
-                            onPress={() => {
-                                navigation.navigate('Intro');
-                            }}
-                            title="Engine Practice"
-                            />
-              </View>
-            </View>
-
-            <View style={styles.BaseShadow}>
-              <View style={styles.Box}>
-                <Button style={styles.ButtonStyle}
-                              onPress={() => {
-                                  navigation.navigate('Intro');
-                              }}
-                              title="Chessboard (1v1)"
-                              />
-              </View>
-              <Text> </Text>
-              {<Image source={twokings} style={styles.TwoKings} />}
-            </View>
-
-            <View style={styles.BaseShadow}>
-              <View style={styles.Box}>
-                <Button style={styles.ButtonStyle}
-                              onPress={() => {
-                                  navigation.navigate('Intro');
-                              }}
-                              title="Online"
-                              />
-              </View>
-            </View>
-
-            <View style={styles.BaseShadow}>
-              <View style={styles.Box}>
-                <Button style={styles.ButtonStyle}
-                              onPress={() => {
-                                  navigation.navigate('Intro');
-                              }}
-                              title="Statistics"
-                              />
-              </View>
-            </View>
+    <View style={styles.mainView}>
+      <View style={styles.TopButton}>
+        <Button
+          style={styles.ButtonsStyleTop}
+          onPress={() => {
+            navigation.navigate("Intro");
+          }}
+          title="Profile"
+        />
+        <Button
+          style={styles.ButtonsStyleTop}
+          onPress={() => {
+            navigation.navigate("Intro");
+          }}
+          title="Settings"
+        />
+      </View>
+      <View style={styles.Column}>
+        <View style={styles.TopBar}>
+          <View style={styles.Row}>
+            <Text style={styles.Title}>
+              <Text style={styles.CheduBlue}>Ch</Text>
+              <Text style={styles.CheduDarkBlue}>Edu</Text>
+            </Text>
+            {<Image source={cheduLogo} style={styles.Logo} />}
           </View>
         </View>
+      </View>
+
+      <View>
+        <View style={styles.BaseShadow}>
+          <Text>Want to learn chess or improve at the game?</Text>
+          <Text> </Text>
+          <Text>ChEdu is your chance to master it!</Text>
+        </View>
+
+        <View style={styles.BaseShadow}>
+          <View style={styles.Box}>
+            <Button
+              style={styles.ButtonStyle}
+              onPress={() => {
+                navigation.navigate("Intro");
+              }}
+              title="Introduction"
+            />
+          </View>
+          <Text>
+            Learn chess at any level of expirience and any age of life!
+          </Text>
+        </View>
+
+        <View style={styles.BaseShadow}>
+          <View style={styles.Box}>
+            <Button
+              style={styles.ButtonStyle}
+              onPress={() => {
+                navigation.navigate("Intro");
+              }}
+              title="Training"
+            />
+          </View>
+        </View>
+
+        <View style={styles.BaseShadow}>
+          <View style={styles.Box}>
+            <Button
+              style={styles.ButtonStyle}
+              onPress={() => {
+                navigation.navigate("Intro");
+              }}
+              title="Engine Practice"
+            />
+          </View>
+        </View>
+
+        <View style={styles.BaseShadow}>
+          <View style={styles.Box}>
+            <Button
+              style={styles.ButtonStyle}
+              onPress={() => {
+                navigation.navigate("Intro");
+              }}
+              title="Chessboard (1v1)"
+            />
+          </View>
+          <Text> </Text>
+          {<Image source={twokings} style={styles.TwoKings} />}
+        </View>
+
+        <View style={styles.BaseShadow}>
+          <View style={styles.Box}>
+            <Button
+              style={styles.ButtonStyle}
+              onPress={() => {
+                navigation.navigate("Intro");
+              }}
+              title="Online"
+            />
+          </View>
+        </View>
+
+        <View style={styles.BaseShadow}>
+          <View style={styles.Box}>
+            <Button
+              style={styles.ButtonStyle}
+              onPress={() => {
+                navigation.navigate("Intro");
+              }}
+              title="Statistics"
+            />
+          </View>
+        </View>
+      </View>
+    </View>
   );
 };
 
-
 const styles = StyleSheet.create({
-    Column: {
-    justifyContent: "center",
-    flex: 1,
-    alignItems: "center", 
+  //Styling
+  Row: {
+    flexDirection: "row",
   },
 
-  Box: {
-    justifyContent: "center",
+  mainView: {
+    paddingTop: windowWidth / 10,
+    paddingLeft: windowWidth / 5,
+    paddingRight: windowWidth / 5,
   },
-  
+
+  TopBar: {
+    alignItems: "center",
+  },
+
+  ButtonsStyleTop: {
+    width: 100,
+    height: 20,
+  },
+
+  //ChEdu
+  Title: {
+    fontWeight: "bold",
+    fontSize: 80,
+    margin: 10,
+  },
+
+  TopButton: {
+    flexDirection: "row-reverse",
+  },
+
+  //COLORS
+  CheduBlue: {
+    color: "#00578a",
+  },
+  CheduDarkBlue: {
+    color: "#0e113f",
+  },
+
+  //Images
   Logo: {
-    width: 50,
-    height: 50,
+    margin: 10,
+    width: 100,
+    height: 100,
   },
 
   TwoKings: {
@@ -136,19 +185,12 @@ const styles = StyleSheet.create({
     borderRadius: 50,
   },
 
-  CheduBlue: {
-    color: "#00578a",
-    fontSize: 40
-  },
-  CheduDarkBlue: {
-    color: "#0e113f",
-    fontSize: 40
-  },
-
+  //BaseShadowBox
   BaseShadow: {
-    margin: 10,
+    backgroundColor: "black",
+    margin: 20,
     padding: 20,
-    borderRadius: 10,
+    borderRadius: 20,
     backgroundColor: "white",
     alignItems: "center",
     shadowColor: "#000",
@@ -156,8 +198,9 @@ const styles = StyleSheet.create({
       width: 0,
       height: 2,
     },
+
     shadowOpacity: 0.23,
-    shadowRadius: 5,
+    shadowRadius: 2.62,
     elevation: 4,
   },
 });
