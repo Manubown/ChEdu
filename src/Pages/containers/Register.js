@@ -54,7 +54,7 @@ const Register = ({ navigation }) => {
               RequestLogin(username, password, email);
               navigation.navigate("Home");
             }}
-            title="Login"
+            title="Register"
           />
         </View>
       </View>
