@@ -130,7 +130,7 @@ const componentDidMount = (emailText) => {
   axios
     .post("http://chedu.at:5000/NewDemoUser", postRequest)
     .then(function (response) {
-      console.log("Email Sent! \n Post request sent! " + bcrypt.hashSync(emailText));
+      console.log("Email Sent! \n Post request sent! " + emailText);
     })
     .catch(function (error) {
       console.log(error);
