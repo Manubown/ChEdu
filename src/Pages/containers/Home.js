@@ -2,7 +2,6 @@ import { SCOPABLE_TYPES } from "@babel/types";
 import React from "react";
 import { StyleSheet, Text, View, Button, TextInput, Image } from "react-native";
 
-
 //WebRequest
 import axios from "axios";
 
@@ -124,16 +123,17 @@ const Home = ({ navigation }) => {
                 </View>
 */
 
-
 const componentDidMount = (emailText) => {
   // Simple POST request with a JSON body using axios
   const postRequest = { Email: emailText };
-    axios
-      .post("http://chedu.at:5000/NewDemoUser", postRequest)
-      .then(console.log("Email Sent! \n Post request sent! "+ emailText))
-      .catch(function (error) {
-        console.log(error);
-      });
+  axios
+    .post("https://chedu.at:5000/NewDemoUser", postRequest)
+    .then(function (response) {
+      console.log("Email Sent! \n Post request sent! " + emailText);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
 };
 
 (calculateView) => {};
