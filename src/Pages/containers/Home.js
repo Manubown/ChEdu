@@ -127,7 +127,7 @@ const componentDidMount = (emailText) => {
   // Simple POST request with a JSON body using axios
   const postRequest = { Email: emailText };
   axios
-    .post("https://chedu.at:5000/NewDemoUser", postRequest)
+    .post("http://chedu.at:5000/NewDemoUser", postRequest)
     .then(function (response) {
       console.log("Email Sent! \n Post request sent! " + emailText);
     })
