@@ -64,6 +64,13 @@ const Home = ({ navigation }) => {
               }}
               title="Submit"
             />
+            <Button
+              style={styles.Button}
+              onPress={() => {
+                navigation.navigate("Register"); //email Submit
+              }}
+              title="Register"
+            />
           </View>
         </View>
         <View style={styles.triangleCorner} />

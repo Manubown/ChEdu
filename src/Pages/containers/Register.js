@@ -1,6 +1,9 @@
 import React from "react";
 import { StyleSheet, Text, View, Button, TextInput } from "react-native";
 
+//WebRequest
+import axios from "axios";
+import bcrypt from "bcryptjs";
 
 
 import { Dimensions } from "react-native";
@@ -8,6 +11,8 @@ import { Title } from "react-native-paper";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
+
+
 
 const x = 100;
 const y = 200;
@@ -32,7 +37,6 @@ const Register = ({ navigation }) => {
           />
           <Text>Email</Text>
           <TextInput
-            secureTextEntry="true"
             style={styles.Input}
             value={email}
             onChangeText={onChangeEmail}
@@ -65,6 +69,16 @@ const Register = ({ navigation }) => {
 const RequestLogin = (username, password, email) => {
   //TODO: API Request
   console.log(username, email, password);
+  var postRequest = {PlayerName:username, Email: email,HashedPassword:bcrypt.hashSync(password) };
+
+  axios
+    .post("https://chedu.at:5000/register", postRequest)
+    .then(function (response) {
+      console.log("Email Sent! \n Post request sent! " + postRequest);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
 };
 
 const styles = StyleSheet.create({
