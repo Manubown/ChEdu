@@ -51,6 +51,22 @@ export default class Homepage extends React.Component {
           duration: 100
         }).start(),
         Animated.spring(translateXTabThree, {
+          toValue: width*2,
+          duration: 200
+        }).start(),
+      ])
+    }
+    if(active === 1){
+      Animated.parallel([
+        Animated.spring(translateXTabOne,{
+          toValue: -width,
+          duration: 100
+        }).start(),
+        Animated.spring(translateXTabTwo, {
+          toValue: 0,
+          duration: 100
+        }).start(),
+        Animated.spring(translateXTabThree, {
           toValue: width,
           duration: 100
         }).start(),
@@ -59,11 +75,11 @@ export default class Homepage extends React.Component {
     else{
       Animated.parallel([
         Animated.spring(translateXTabOne,{
-          toValue: -width,
-          duration: 100
+          toValue: -width*2,
+          duration: 200
         }).start(),
         Animated.spring(translateXTabTwo, {
-          toValue: 0,
+          toValue: -width,
           duration: 100
         }).start(),
         Animated.spring(translateXTabThree, {
@@ -75,7 +91,7 @@ export default class Homepage extends React.Component {
   };
 
   render(){
-    let{xTabOne, xTabTwo, translateX, active, translateXTabOne, translateXTabTwo, translateXTabThree, translateY} = this.state;
+    let{xTabOne, xTabTwo, xTabThree, translateX, active, translateXTabOne, translateXTabTwo, translateXTabThree, translateY} = this.state;
     return (
           <View style = {windowWidth,windowHeight}>
             <View style={{ flexDirection: "row"}, styles.Column}>
@@ -184,7 +200,7 @@ export default class Homepage extends React.Component {
                     <Animated.View style = {{justifyContent: 'center', alignItems: 'center', transform: [{translateX: translateXTabOne}],}}
                       onLayout = {event => this.setState({translateY: event.nativeEvent.layout.height})}
                     >
-                      <Text>Learn to play Chess</Text>
+                      <Text>Tab 1</Text>
                       <View style={{ marginTop: 20 }}>
                         <Image source={twokings} style={{width: 30, height: 30, borderRadius: 15}}/>
                       </View>
@@ -203,7 +219,7 @@ export default class Homepage extends React.Component {
                         ],
                       }}
                     >
-                      <Text>Hi, I am a cute dog</Text>
+                      <Text>Tab Two</Text>
                         <View style={{ marginTop: 20 }}>
                             <Image source={twokings} style={{width: 30, height: 30, borderRadius: 15}}/>
                         </View>
@@ -222,7 +238,7 @@ export default class Homepage extends React.Component {
                         ],
                       }}
                     >
-                      <Text>Hi, I am a cute rat</Text>
+                      <Text>Tab Three</Text>
                         <View style={{ marginTop: 20 }}>
                             <Image source={twokings} style={{width: 30, height: 30, borderRadius: 15}}/>
                         </View>
