@@ -26,14 +26,16 @@ export default class Homepage extends React.Component {
     active: 0,
     xTabOne: 0, //x co-ordinate of tab one
     xTabTwo: 0, //x co-ordinate of tab two
+    xTabThree: 0, //x co-ordinate of tab three
     translateX: new Animated.Value(0),
     translateXTabOne: new Animated.Value(0),
     translateXTabTwo: new Animated.Value(width),
+    translateXTabThree: new Animated.Value(width),
     translateY: -1000
 };
 
   handleSlide = type => {
-    let {active, xTabOne, xTabTwo, translateX, translateXTabOne, translateXTabTwo} = this.state;
+    let {active, xTabOne, xTabTwo, xTabThree, translateX, translateXTabOne, translateXTabTwo, translateXTabThree} = this.state;
     Animated.spring(translateX, {
         toValue: type,
         duration: 100
@@ -45,6 +47,10 @@ export default class Homepage extends React.Component {
           duration: 100
         }).start(),
         Animated.spring(translateXTabTwo, {
+          toValue: width,
+          duration: 100
+        }).start(),
+        Animated.spring(translateXTabThree, {
           toValue: width,
           duration: 100
         }).start(),
@@ -60,12 +66,16 @@ export default class Homepage extends React.Component {
           toValue: 0,
           duration: 100
         }).start(),
+        Animated.spring(translateXTabThree, {
+          toValue: 0,
+          duration: 100
+        }).start(),
       ])
     }
   };
 
   render(){
-    let{xTabOne, xTabTwo, translateX, active, translateXTabOne, translateXTabTwo, translateY} = this.state;
+    let{xTabOne, xTabTwo, translateX, active, translateXTabOne, translateXTabTwo, translateXTabThree, translateY} = this.state;
     return (
           <View style = {windowWidth,windowHeight}>
             <View style={{ flexDirection: "row"}, styles.Column}>
@@ -78,7 +88,6 @@ export default class Homepage extends React.Component {
               </View>
             </View>
             
-            //Sliding Tab bar
             <View style={{ flex: 1 }}>
                   <View
                       style={{
@@ -128,6 +137,7 @@ export default class Homepage extends React.Component {
                                   Tab One
                               </Text>
                           </TouchableOpacity>
+                          
                           <TouchableOpacity
                               style={{
                                   flex: 1,
@@ -147,6 +157,26 @@ export default class Homepage extends React.Component {
                                   Tab Two
                               </Text>
                           </TouchableOpacity>
+
+                          <TouchableOpacity
+                              style={{
+                                  flex: 1,
+                                  justifyContent: "center",
+                                  alignItems: "center",
+                                  borderWidth: 1,
+                                  borderColor: "#007aff",
+                                  borderRadius: 4,
+                                  borderLeftWidth: 0,
+                                  borderTopLeftRadius: 0,
+                                  borderBottomLeftRadius: 0
+                              }}
+                              onLayout={event => this.setState({xTabThree: event.nativeEvent.layout.x})}
+                              onPress={() => this.setState({ active: 2 }, () => this.handleSlide(xTabThree))}
+                          >
+                              <Text style = {{color: active === 2 ? '#fff' : '#007aff'}}>
+                                  Tab Three
+                              </Text>
+                          </TouchableOpacity>
                       </View>
                   </View>
 
@@ -154,7 +184,7 @@ export default class Homepage extends React.Component {
                     <Animated.View style = {{justifyContent: 'center', alignItems: 'center', transform: [{translateX: translateXTabOne}],}}
                       onLayout = {event => this.setState({translateY: event.nativeEvent.layout.height})}
                     >
-                      <Text>Hi, I am a cute cat</Text>
+                      <Text>Learn to play Chess</Text>
                       <View style={{ marginTop: 20 }}>
                         <Image source={twokings} style={{width: 30, height: 30, borderRadius: 15}}/>
                       </View>
@@ -165,7 +195,7 @@ export default class Homepage extends React.Component {
                         alignItems: 'center', 
                         transform: [
                           {
-                          translateX: translateXTabTwo
+                            translateX: translateXTabTwo
                           },
                           {
                             translateY: -translateY
@@ -174,6 +204,25 @@ export default class Homepage extends React.Component {
                       }}
                     >
                       <Text>Hi, I am a cute dog</Text>
+                        <View style={{ marginTop: 20 }}>
+                            <Image source={twokings} style={{width: 30, height: 30, borderRadius: 15}}/>
+                        </View>
+                    </Animated.View>
+
+                    <Animated.View style = {{
+                        justifyContent: 'center', 
+                        alignItems: 'center', 
+                        transform: [
+                          {
+                            translateX: translateXTabThree
+                          },
+                          {
+                            translateY: -translateY
+                          }
+                        ],
+                      }}
+                    >
+                      <Text>Hi, I am a cute rat</Text>
                         <View style={{ marginTop: 20 }}>
                             <Image source={twokings} style={{width: 30, height: 30, borderRadius: 15}}/>
                         </View>
