@@ -50,7 +50,9 @@ const Home = ({ navigation }) => {
             Do you want to get updates how we progress? Insert your E-mail down
             below:
           </Text>
-          <View style={{ flexDirection: "row" }}>
+          <View
+            style={{ flexDirection: "row", justifyContent: "space-between" }}
+          >
             <TextInput
               style={styles.input}
               onChangeText={onChangeEmail}
@@ -64,6 +66,8 @@ const Home = ({ navigation }) => {
               }}
               title="Submit"
             />
+
+            {/*
             <Button
               style={styles.Button}
               onPress={() => {
@@ -71,6 +75,7 @@ const Home = ({ navigation }) => {
               }}
               title="Register"
             />
+*/}
           </View>
         </View>
         <View style={styles.triangleCorner} />
@@ -137,7 +142,7 @@ const componentDidMount = (emailText) => {
   axios
     .post("https://chedu.at:5000/NewDemoUser", postRequest)
     .then(function (response) {
-      console.log("Email Sent! \n Post request sent! " + emailText);
+      console.log("Email Sent! \n Post request sent! " + emailText + response);
     })
     .catch(function (error) {
       console.log(error);
@@ -231,9 +236,7 @@ const styles = StyleSheet.create({
   },
 
   Button: {
-    width: 40,
-    margin: 12,
-    borderWidth: 1,
+    width: 60,
     borderRadius: 10,
     padding: 10,
   },
