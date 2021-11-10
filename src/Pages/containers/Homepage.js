@@ -5,9 +5,7 @@ import cheduLogo from "../Pictures/Logo.png";
 import twokings from "../Pictures/two_kings.jpg"
 
 
-import Table, { Column } from "rc-table";
 import { bgYellowBright } from "chalk";
-import { Content } from "antd/lib/layout/layout";
 import { render } from "react-dom";
 
 
@@ -40,22 +38,6 @@ export default class Homepage extends React.Component {
         toValue: type,
         duration: 100
     }).start();
-    if(active === 0){
-      Animated.parallel([
-        Animated.spring(translateXTabOne,{
-          toValue: 0,
-          duration: 100
-        }).start(),
-        Animated.spring(translateXTabTwo, {
-          toValue: width,
-          duration: 100
-        }).start(),
-        Animated.spring(translateXTabThree, {
-          toValue: width*2,
-          duration: 200
-        }).start(),
-      ])
-    }
     if(active === 1){
       Animated.parallel([
         Animated.spring(translateXTabOne,{
@@ -72,11 +54,11 @@ export default class Homepage extends React.Component {
         }).start(),
       ])
     }
-    else{
+    else if(active ===2){
       Animated.parallel([
         Animated.spring(translateXTabOne,{
           toValue: -width*2,
-          duration: 200
+          duration: 100
         }).start(),
         Animated.spring(translateXTabTwo, {
           toValue: -width,
@@ -84,6 +66,22 @@ export default class Homepage extends React.Component {
         }).start(),
         Animated.spring(translateXTabThree, {
           toValue: 0,
+          duration: 100
+        }).start(),
+      ])
+    }
+    else{
+      Animated.parallel([
+        Animated.spring(translateXTabOne,{
+          toValue: 0,
+          duration: 100
+        }).start(),
+        Animated.spring(translateXTabTwo, {
+          toValue: width,
+          duration: 100
+        }).start(),
+        Animated.spring(translateXTabThree, {
+          toValue: width*2,
           duration: 100
         }).start(),
       ])
@@ -208,7 +206,8 @@ export default class Homepage extends React.Component {
                     
                     <Animated.View style = {{
                         justifyContent: 'center', 
-                        alignItems: 'center', 
+                        alignItems: 'center',
+                        //Transform, damit die Position von oben koriigiert wird hier eben -translateY
                         transform: [
                           {
                             translateX: translateXTabTwo
@@ -227,13 +226,14 @@ export default class Homepage extends React.Component {
 
                     <Animated.View style = {{
                         justifyContent: 'center', 
-                        alignItems: 'center', 
-                        transform: [
+                        alignItems: 'center',
+                        //Transform, damit die Position von oben koriigiert wird hier eben -translateY*2
+                        transform: [ 
                           {
                             translateX: translateXTabThree
                           },
                           {
-                            translateY: -translateY
+                            translateY: -translateY*2
                           }
                         ],
                       }}
