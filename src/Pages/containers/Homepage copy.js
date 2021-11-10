@@ -14,8 +14,20 @@ const y = 200;
 const Homepage = ({ navigation }) => {
   return (
     //Text, images, etc.
-
+      
     <View style={styles.Mainview}>
+      <View style = {{flex: 1}}>
+        <View style = {{width:'90%',marginLeft: 'auto', marginRight: 'auto'}}>
+          <View style = {{flexDirection: 'row',marginTop:40, marginBottom: 20}}>
+            <TouchableOpacity style = {{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+              <Text>Tab One</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style = {{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+              <Text>Tab Two</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </View>
       <View>
         <View style={styles.Column}>
           <Text style={styles.Title}>
