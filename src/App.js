@@ -17,6 +17,7 @@ const MyStack = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+      <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="Homepage" component={Homepage} />
         <Stack.Screen
           name="Home"
@@ -27,7 +28,6 @@ const MyStack = () => {
         <Stack.Screen name="ChessBoard" component={ChessBoard} />
         <Stack.Screen name="Setting" component={Settings} />
         <Stack.Screen name="Profile" component={Temp} />
-        <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Register" component={Register} />
         <Stack.Screen name="Temp" component={Temp} />
         <Stack.Screen name="Game" component={Temp} />

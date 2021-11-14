@@ -10,6 +10,8 @@ import twokings from "../Pictures/two_kings.jpg"
 import { bgYellowBright } from "chalk";
 import { render } from "react-dom";
 
+import { useNavigation } from '@react-navigation/native';
+
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -19,9 +21,11 @@ const {width} = Dimensions.get('window');
 const x = 100;
 const y = 200;
 
-
-
-export default class Homepage extends React.Component {
+//TODO create a Hyperlink to Login => ask Manuel
+/*const Home = ({ navigation }) => {
+  return new Homepage();
+}*/
+  export default class Homepage extends React.Component {
   state = {
     active: 0,
     xTabOne: 0, //x co-ordinate of tab one
@@ -124,10 +128,13 @@ export default class Homepage extends React.Component {
   };
 
   render(){
+
     let{xTabOne, xTabTwo, xTabThree, xTabFour, translateX, active, translateXTabOne, translateXTabTwo, translateXTabThree, translateXTabFour, translateY} = this.state;
     return (
           <View style = {windowWidth,windowHeight}>
             <View style={{ flexDirection: "row"}, styles.Column}>
+            {/*<Text style={styles.Buttons} 
+              onPress={() => navigation.navigate('Login')}>Continue</Text>*/}
               <View style={styles.BaseShadow}>
                 <Text style={styles.Title}>
                   <Text style={styles.CheduBlue}>Ch</Text>
