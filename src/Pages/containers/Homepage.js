@@ -15,6 +15,8 @@ import { Chessboard } from "react-chessboard";
 
 import cheduLogo from "../Pictures/Logo.png";
 import twokings from "../Pictures/two_kings.jpg";
+import loginpic from "../Pictures/login.png";
+import { TouchableHighlight, TouchableWithoutFeedback } from "react-native-gesture-handler";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -155,13 +157,19 @@ export default class Homepage extends React.Component {
     } = this.state;
     return (
       <View style={(windowWidth, windowHeight)}>
-        <View style={({ flexDirection: "row" }, styles.Column)}>
-          <Button
-            title="Login"
+        <View>
+          <TouchableOpacity 
             onPress={() => this.props.navigation.navigate("Login")}
-          />
-
-          <View style={styles.BaseShadow}>
+            style={{ width: windowWidth/15, height: windowWidth/15,}}>
+            <Image
+              source={loginpic}
+              style={{ width: windowWidth/15, height: windowWidth/15,}}
+            />
+          </TouchableOpacity>
+        </View>
+        
+        <View style={({ flexDirection: "row" }, styles.Column)}>
+          <View  style={styles.BaseShadow}>
             <Text style={styles.Title}>
               <Text style={styles.CheduBlue}>Ch</Text>
               <Text style={styles.CheduDarkBlue}>Edu</Text>
@@ -424,7 +432,6 @@ const styles = StyleSheet.create({
   //Homepage styles
   Column: {
     justifyContent: "center",
-    flex: 1,
     alignItems: "center",
   },
 
@@ -453,7 +460,6 @@ const styles = StyleSheet.create({
   },
 
   BaseShadow: {
-    margin: 50,
     width: windowWidth / 2,
     borderRadius: 100,
     backgroundColor: "white",
