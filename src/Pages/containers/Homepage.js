@@ -18,7 +18,8 @@ import { Chessboard } from "react-chessboard";
 
 import cheduLogo from "../Pictures/Logo.png";
 import twokings from "../Pictures/two_kings.jpg";
-import loginpic from "../Pictures/login.png";
+import loginPictureBlack from "../Pictures/login.png";
+import loginPictureWhite from "../Pictures/login_white.png";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -42,6 +43,46 @@ export default class Homepage extends React.Component {
     translateY: -1000,
     switchValue: false,
     backgroundColor: "white",
+    SwitchLogin: loginPictureBlack,
+  };
+
+  handleSwitchBackground = () =>{
+    let{
+      switchValue,
+    } = this.state;
+   
+    if(switchValue===true){
+      this.setState({
+        switchValue,
+        backgroundColor: "black",
+      })
+    }
+    else if(switchValue===false){
+      this.setState({
+        switchValue,
+        backgroundColor: "white",
+      })
+    }
+  };
+
+  handleSwitchLogin = () =>{
+    let{
+      switchValue,
+      loginpic
+    } = this.state;
+
+    if(switchValue === true){
+      this.setState({
+        switchValue,
+        loginpic: loginPictureBlack,
+      }) 
+    }
+    else if(switchValue === false){
+      this.setState({
+        switchValue,
+        loginpic: loginPictureWhite,
+      })
+    }
   };
 
   handleSlide = (type) => {
@@ -170,18 +211,18 @@ export default class Homepage extends React.Component {
             style={{ width: windowWidth / 15, height: windowWidth / 15 }}
           >
             <Image
-              source={loginpic}
+              value = {this.state.switchValue}
+              onValueChange={(switchValue) =>
+                this.setState({ switchValue }, () => this.handleSwitchLogin())
+              }
               style={{ width: windowWidth / 15, height: windowWidth / 15 }}
             />
           </TouchableOpacity>
           <View style={styles.RightSwitch}>
             <Switch
-              value={this.state.switchValue}
+              value = {this.state.switchValue}
               onValueChange={(switchValue) =>
-                this.setState({
-                  switchValue,
-                  backgroundColor: "black",
-                })
+                this.setState({ switchValue }, () => this.handleSwitchBackground())
               }
             />
           </View>
