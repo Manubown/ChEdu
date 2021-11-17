@@ -50,6 +50,7 @@ const Home = ({ navigation }) => {
             Do you want to get updates how we progress? Insert your E-mail down
             below:
           </Text>
+          3
           <View
             style={{ flexDirection: "row", justifyContent: "space-between" }}
           >
