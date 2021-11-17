@@ -1,24 +1,33 @@
 import React from "react";
-import { StyleSheet, Text, View, Button, Image, TouchableOpacity, Animated, ScrollView, Dimensions } from "react-native"; //components
+import {
+  StyleSheet,
+  Text,
+  View,
+  Button,
+  Image,
+  TouchableOpacity,
+  Animated,
+  ScrollView,
+  Dimensions,
+} from "react-native"; //components
+
+import {AppearanceProvider} from 'react-native-appearance';
+import { ThemeContext } from "./theme/ThemeContext";
+import {Screen, Switch, Message} from './theme'
 
 import { Chessboard } from "react-chessboard";
 
 import cheduLogo from "../Pictures/Logo.png";
-import twokings from "../Pictures/two_kings.jpg"
-
-
-import { bgYellowBright } from "chalk";
-import { render } from "react-dom";
-
+import twokings from "../Pictures/two_kings.jpg";
+import loginpic from "../Pictures/login.png";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
-const {width} = Dimensions.get('window');
+const { width } = Dimensions.get("window");
 
 const x = 100;
 const y = 200;
-
 
 
 export default class Homepage extends React.Component {
@@ -30,326 +39,410 @@ export default class Homepage extends React.Component {
     translateX: new Animated.Value(0),
     translateXTabOne: new Animated.Value(0),
     translateXTabTwo: new Animated.Value(width),
-    translateXTabThree: new Animated.Value(width*2),
-    translateXTabFour: new Animated.Value(width*3),
-    translateY: -1000
-};
+    translateXTabThree: new Animated.Value(width * 2),
+    translateXTabFour: new Animated.Value(width * 3),
+    translateY: -1000,
+  };
 
-  handleSlide = type => {
-    let {active, xTabOne, xTabTwo, xTabThree, xTabFour, translateX, translateXTabOne, translateXTabTwo, translateXTabThree, translateXTabFour} = this.state;
+  handleSlide = (type) => {
+    let {
+      active,
+      xTabOne,
+      xTabTwo,
+      xTabThree,
+      xTabFour,
+      translateX,
+      translateXTabOne,
+      translateXTabTwo,
+      translateXTabThree,
+      translateXTabFour,
+    } = this.state;
     Animated.spring(translateX, {
-        toValue: type,
-        duration: 100
+      toValue: type,
+      duration: 100,
     }).start();
-    if(active === 1){
+    if (active === 1) {
       Animated.parallel([
-        Animated.spring(translateXTabOne,{
+        Animated.spring(translateXTabOne, {
           toValue: -width,
-          duration: 100
+          duration: 100,
         }).start(),
         Animated.spring(translateXTabTwo, {
           toValue: 0,
-          duration: 100
+          duration: 100,
         }).start(),
         Animated.spring(translateXTabThree, {
           toValue: width,
-          duration: 100
+          duration: 100,
         }).start(),
-      ])
+      ]);
       Animated.spring(translateXTabFour, {
-        toValue: width*2,
-        duration: 100
-      }).start()
-    }
-    else if(active === 2){
+        toValue: width * 2,
+        duration: 100,
+      }).start();
+    } else if (active === 2) {
       Animated.parallel([
-        Animated.spring(translateXTabOne,{
-          toValue: -width*2,
-          duration: 100
+        Animated.spring(translateXTabOne, {
+          toValue: -width * 2,
+          duration: 100,
         }).start(),
         Animated.spring(translateXTabTwo, {
           toValue: -width,
-          duration: 100
+          duration: 100,
         }).start(),
         Animated.spring(translateXTabThree, {
           toValue: 0,
-          duration: 100
+          duration: 100,
         }).start(),
         Animated.spring(translateXTabFour, {
           toValue: width,
-          duration: 100
-        }).start()
-      ])
-    }
-    else if(active === 3){
+          duration: 100,
+        }).start(),
+      ]);
+    } else if (active === 3) {
       Animated.parallel([
-        Animated.spring(translateXTabOne,{
-          toValue: -width*3,
-          duration: 100
+        Animated.spring(translateXTabOne, {
+          toValue: -width * 3,
+          duration: 100,
         }).start(),
         Animated.spring(translateXTabTwo, {
-          toValue: -width*2,
-          duration: 100
+          toValue: -width * 2,
+          duration: 100,
         }).start(),
         Animated.spring(translateXTabThree, {
           toValue: -width,
-          duration: 100
+          duration: 100,
         }).start(),
         Animated.spring(translateXTabFour, {
           toValue: 0,
-          duration: 100
-        }).start()
-      ])
-    }
-    else{
+          duration: 100,
+        }).start(),
+      ]);
+    } else {
       Animated.parallel([
-        Animated.spring(translateXTabOne,{
+        Animated.spring(translateXTabOne, {
           toValue: 0,
-          duration: 100
+          duration: 100,
         }).start(),
         Animated.spring(translateXTabTwo, {
           toValue: width,
-          duration: 100
+          duration: 100,
         }).start(),
         Animated.spring(translateXTabThree, {
-          toValue: width*2,
-          duration: 100
+          toValue: width * 2,
+          duration: 100,
         }).start(),
         Animated.spring(translateXTabFour, {
-          toValue: width*3,
-          duration: 100
-        }).start()
-      ])
+          toValue: width * 3,
+          duration: 100,
+        }).start(),
+      ]);
     }
   };
 
-  render(){
-    let{xTabOne, xTabTwo, xTabThree, xTabFour, translateX, active, translateXTabOne, translateXTabTwo, translateXTabThree, translateXTabFour, translateY} = this.state;
+  render() {
+    let {
+      xTabOne,
+      xTabTwo,
+      xTabThree,
+      xTabFour,
+      translateX,
+      active,
+      translateXTabOne,
+      translateXTabTwo,
+      translateXTabThree,
+      translateXTabFour,
+      translateY,
+    } = this.state;
+
     return (
-          <View style = {windowWidth,windowHeight}>
-            <View style={{ flexDirection: "row"}, styles.Column}>
-              <View style={styles.BaseShadow}>
+      
+          <View style={{windowWidth, windowHeight, backgroundColor: ''}}>
+            <View>
+              <TouchableOpacity 
+                onPress={() => this.props.navigation.navigate("Login")}
+                style={{ width: windowWidth/15, height: windowWidth/15,}}>
+                <Image
+                  source={loginpic}
+                  style={{ width: windowWidth/15, height: windowWidth/15,}}
+                />
+              </TouchableOpacity>
+            </View>
+            
+            <View style={({ flexDirection: "row" }, styles.Column)}>
+              <View  style={styles.BaseShadow}>
                 <Text style={styles.Title}>
                   <Text style={styles.CheduBlue}>Ch</Text>
                   <Text style={styles.CheduDarkBlue}>Edu</Text>
                 </Text>
                 {<Image source={cheduLogo} style={styles.Logo} />}
-                <Text style={{marginTop: windowHeight/20, marginBottom: windowHeight/20, fontSize: windowWidth/30}}>Learn playing chess!</Text>
+                <Text
+                  style={{
+                    marginTop: windowHeight / 20,
+                    marginBottom: windowHeight / 20,
+                    fontSize: windowWidth / 30,
+                  }}
+                >
+                  Learn to play chess!
+                </Text>
               </View>
             </View>
-            
+
             <View style={{ flex: 1 }}>
-                  <View
-                      style={{
-                          width: "90%",
-                          marginLeft: "auto",
-                          marginRight: "auto"
-                      }}
+              <View
+                style={{
+                  width: "90%",
+                  marginLeft: "auto",
+                  marginRight: "auto",
+                }}
+              >
+                <View
+                  style={{
+                    flexDirection: "row",
+                    marginTop: 60,
+                    marginBottom: 20,
+                    height: 36,
+                    position: "relative",
+                  }}
+                >
+                  <Animated.View
+                    style={{
+                      position: "absolute",
+                      width: "25%",
+                      height: "100%",
+                      top: 0,
+                      left: 0,
+                      backgroundColor: "#007aff",
+                      borderRadius: 4,
+                      transform: [{ translateX }],
+                    }}
+                  />
+
+                  <TouchableOpacity
+                    style={{
+                      flex: 1,
+                      justifyContent: "center",
+                      alignItems: "center",
+                      borderWidth: 1,
+                      borderColor: "#007aff",
+                      borderRadius: 4,
+                      borderRightWidth: 0,
+                      borderTopRightRadius: 0,
+                      borderBottomRightRadius: 0,
+                    }}
+                    onLayout={(event) =>
+                      this.setState({ xTabOne: event.nativeEvent.layout.x })
+                    }
+                    onPress={() =>
+                      this.setState({ active: 0 }, () => this.handleSlide(xTabOne))
+                    }
                   >
-                      <View
-                        style={{
-                            flexDirection: "row",
-                            marginTop: 60,
-                            marginBottom: 20,
-                            height: 36,
-                            position: 'relative'
-                        }}
-                    >
-                        <Animated.View
-                            style={{
-                                position: "absolute",
-                                width: "25%",
-                                height: "100%",
-                                top: 0,
-                                left: 0,
-                                backgroundColor: "#007aff",
-                                borderRadius: 4,
-                                transform: [{translateX}],
-                            }}
-                        />
-                      
-                          <TouchableOpacity
-                              style={{
-                                  flex: 1,
-                                  justifyContent: "center",
-                                  alignItems: "center",
-                                  borderWidth: 1,
-                                  borderColor: "#007aff",
-                                  borderRadius: 4,
-                                  borderRightWidth: 0,
-                                  borderTopRightRadius: 0,
-                                  borderBottomRightRadius: 0
-                              }}
-                              onLayout={event => this.setState({xTabOne: event.nativeEvent.layout.x})}
-                              onPress={() => this.setState({ active: 0 }, () => this.handleSlide(xTabOne))}
-                          >   
-                              <Text style = {{color: active === 0 ? '#fff' : '#007aff'}}>
-                                  Learn to play
-                              </Text>
-                          </TouchableOpacity>
-                          
-                          <TouchableOpacity
-                              style={{
-                                  flex: 1,
-                                  justifyContent: "center",
-                                  alignItems: "center",
-                                  borderWidth: 1,
-                                  borderColor: "#007aff",
-                                  borderRadius: 4,
-                                  borderLeftWidth: 0,
-                                  borderTopLeftRadius: 0,
-                                  borderBottomLeftRadius: 0
-                              }}
-                              onLayout={event => this.setState({xTabTwo: event.nativeEvent.layout.x})}
-                              onPress={() => this.setState({ active: 1 }, () => this.handleSlide(xTabTwo))}
-                          >
-                              <Text style = {{color: active === 1 ? '#fff' : '#007aff'}}>
-                                  Online
-                              </Text>
-                          </TouchableOpacity>
+                    <Text style={{ color: active === 0 ? "#fff" : "#007aff" }}>
+                      Learn to play
+                    </Text>
+                  </TouchableOpacity>
 
-                          <TouchableOpacity
-                              style={{
-                                  flex: 1,
-                                  justifyContent: "center",
-                                  alignItems: "center",
-                                  borderWidth: 1,
-                                  borderColor: "#007aff",
-                                  borderRadius: 4,
-                                  borderLeftWidth: 0,
-                                  borderTopLeftRadius: 0,
-                                  borderBottomLeftRadius: 0
-                              }}
-                              onLayout={event => this.setState({xTabThree: event.nativeEvent.layout.x})}
-                              onPress={() => this.setState({ active: 2 }, () => this.handleSlide(xTabThree))}
-                          >
-                              <Text style = {{color: active === 2 ? '#fff' : '#007aff'}}>
-                                  Chessboard
-                              </Text>
-                          </TouchableOpacity>
+                  <TouchableOpacity
+                    style={{
+                      flex: 1,
+                      justifyContent: "center",
+                      alignItems: "center",
+                      borderWidth: 1,
+                      borderColor: "#007aff",
+                      borderRadius: 4,
+                      borderLeftWidth: 0,
+                      borderTopLeftRadius: 0,
+                      borderBottomLeftRadius: 0,
+                    }}
+                    onLayout={(event) =>
+                      this.setState({ xTabTwo: event.nativeEvent.layout.x })
+                    }
+                    onPress={() =>
+                      this.setState({ active: 1 }, () => this.handleSlide(xTabTwo))
+                    }
+                  >
+                    <Text style={{ color: active === 1 ? "#fff" : "#007aff" }}>
+                      Online
+                    </Text>
+                  </TouchableOpacity>
 
-                          <TouchableOpacity
-                              style={{
-                                  flex: 1,
-                                  justifyContent: "center",
-                                  alignItems: "center",
-                                  borderWidth: 1,
-                                  borderColor: "#007aff",
-                                  borderRadius: 4,
-                                  borderLeftWidth: 0,
-                                  borderTopLeftRadius: 0,
-                                  borderBottomLeftRadius: 0
-                              }}
-                              onLayout={event => this.setState({xTabFour: event.nativeEvent.layout.x})}
-                              onPress={() => this.setState({ active: 3 }, () => this.handleSlide(xTabFour))}
-                          >
-                              <Text style = {{color: active === 3 ? '#fff' : '#007aff'}}>
-                                  Analysis
-                              </Text>
-                          </TouchableOpacity>
-                      </View>
+                  <TouchableOpacity
+                    style={{
+                      flex: 1,
+                      justifyContent: "center",
+                      alignItems: "center",
+                      borderWidth: 1,
+                      borderColor: "#007aff",
+                      borderRadius: 4,
+                      borderLeftWidth: 0,
+                      borderTopLeftRadius: 0,
+                      borderBottomLeftRadius: 0,
+                    }}
+                    onLayout={(event) =>
+                      this.setState({ xTabThree: event.nativeEvent.layout.x })
+                    }
+                    onPress={() =>
+                      this.setState({ active: 2 }, () =>
+                        this.handleSlide(xTabThree)
+                      )
+                    }
+                  >
+                    <Text style={{ color: active === 2 ? "#fff" : "#007aff" }}>
+                      Chessboard
+                    </Text>
+                  </TouchableOpacity>
+
+                  <TouchableOpacity
+                    style={{
+                      flex: 1,
+                      justifyContent: "center",
+                      alignItems: "center",
+                      borderWidth: 1,
+                      borderColor: "#007aff",
+                      borderRadius: 4,
+                      borderLeftWidth: 0,
+                      borderTopLeftRadius: 0,
+                      borderBottomLeftRadius: 0,
+                    }}
+                    onLayout={(event) =>
+                      this.setState({ xTabFour: event.nativeEvent.layout.x })
+                    }
+                    onPress={() =>
+                      this.setState({ active: 3 }, () => this.handleSlide(xTabFour))
+                    }
+                  >
+                    <Text style={{ color: active === 3 ? "#fff" : "#007aff" }}>
+                      Analysis
+                    </Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+
+              <ScrollView>
+                <Animated.View
+                  style={{
+                    //Learn to play
+                    justifyContent: "center",
+                    alignItems: "center",
+                    transform: [{ translateX: translateXTabOne }],
+                  }}
+                  onLayout={(event) =>
+                    this.setState({ translateY: event.nativeEvent.layout.height })
+                  }
+                >
+                  <Text>d</Text>
+                  <Text>d</Text>
+                  <View style={{ marginTop: 20 }}>
+                    <Image
+                      source={twokings}
+                      style={{ width: 30, height: 30, borderRadius: 15 }}
+                    />
                   </View>
+                </Animated.View>
 
-                  <ScrollView>
-                    <Animated.View style = {{//Learn to play 
-                      justifyContent: 'center', alignItems: 'center', transform: [{translateX: translateXTabOne}]}}
-                      onLayout = {event => this.setState({translateY: event.nativeEvent.layout.height})}
+                <Animated.View
+                  style={{
+                    //Online
+                    justifyContent: "center",
+                    alignItems: "center",
+                    //Transform, damit die Position von oben koriigiert wird hier eben -translateY
+                    transform: [
+                      {
+                        translateX: translateXTabTwo,
+                      },
+                      {
+                        translateY: -translateY,
+                      },
+                    ],
+                  }}
+                >
+                  <Text>Tab Two</Text>
+                  <View style={{ marginTop: 20 }}>
+                    <Image
+                      source={twokings}
+                      style={{ width: 30, height: 30, borderRadius: 15 }}
+                    />
+                  </View>
+                </Animated.View>
+
+                <Animated.View
+                  style={{
+                    //Chessboard
+                    justifyContent: "center",
+                    alignItems: "center",
+                    //TODO: Transform
+                    transform: [
+                      {
+                        translateX: translateXTabThree,
+                      },
+                      {
+                        translateY: -translateY,
+                      },
+                    ],
+                  }}
+                >
+                  <View style={{ flexGrow: 1 }}>
+                    <View
+                      style={{
+                        flexGrow: 1,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
                     >
-                      <Text>d</Text>
-                      <Text>d</Text>
-                      <View style={{ marginTop: 20 }}>
-                        <Image source={twokings} style={{width: 30, height: 30, borderRadius: 15}}/>
+                      <View style={{ flexDirection: "row" }}>
+                        <View style={styles.ChessBoard}>
+                          <Chessboard id="BasicBoard" />
+                        </View>
                       </View>
-                    </Animated.View> 
-                    
-                    <Animated.View style = {{//Online
-                        justifyContent: 'center', 
-                        alignItems: 'center',
-                        //Transform, damit die Position von oben koriigiert wird hier eben -translateY
-                        transform: [
-                          {
-                            translateX: translateXTabTwo
-                          },
-                          {
-                            translateY: -translateY
-                          }
-                        ],
-                      }}
-                    >
-                      <Text>Tab Two</Text>
-                        <View style={{ marginTop: 20 }}>
-                            <Image source={twokings} style={{width: 30, height: 30, borderRadius: 15}}/>
-                        </View>
-                    </Animated.View>
+                    </View>
+                  </View>
+                </Animated.View>
 
-                    
-                    <Animated.View style = {{//Chessboard
-                        justifyContent: 'center', 
-                        alignItems: 'center',
-                        //TODO: Transform 
-                        transform: [ 
-                          {
-                            translateX: translateXTabThree
-                          },
-                          {
-                            translateY: -translateY
-                          }
-                        ],
-                      }}
-                    >
-                      <View style={{ flexGrow: 1 }}>
-                        <View style={{ flexGrow: 1, justifyContent: "center", alignItems: "center" }}>
-                          <View style={{flexDirection: "row",}}>
-                            <View style={styles.ChessBoard}>
-                              <Chessboard id="BasicBoard" />
-                            </View>
-                          </View>
-                        </View>
-                      </View>
-                    </Animated.View>
-
-                    <Animated.View style = {{ //Online
-                        justifyContent: 'center', 
-                        alignItems: 'center',
-                        //Transform TODO
-                        transform: [
-                          {
-                            translateX: translateXTabFour
-                          },
-                          {
-                            translateY: -translateY
-                          }
-                        ],
-                      }}
-                    >
-                      <Text>Tab Four</Text>
-                        <View style={{ marginTop: 20 }}>
-                            <Image source={twokings} style={{width: 30, height: 30, borderRadius: 15}}/>
-                        </View>
-                    </Animated.View>
-                  </ScrollView>
-              </View>          
+                <Animated.View
+                  style={{
+                    //Online
+                    justifyContent: "center",
+                    alignItems: "center",
+                    //Transform TODO
+                    transform: [
+                      {
+                        translateX: translateXTabFour,
+                      },
+                      {
+                        translateY: -translateY,
+                      },
+                    ],
+                  }}
+                >
+                  <Text>Tab Four</Text>
+                  <View style={{ marginTop: 20 }}>
+                    <Image
+                      source={twokings}
+                      style={{ width: 30, height: 30, borderRadius: 15 }}
+                    />
+                  </View>
+                </Animated.View>
+              </ScrollView>
+            </View>
           </View>
-      );
-  };  
-};
-
+    );
+  }
+}
 
 const styles = StyleSheet.create({
-//Homepage styles
-    Column: {
+  //Homepage styles
+  Column: {
     justifyContent: "center",
-    flex: 1,
-    alignItems: "center", 
+    alignItems: "center",
   },
 
   Box: {
     justifyContent: "center",
   },
-  
+
   Logo: {
-    width: windowWidth/6.85,
-    height: windowWidth/6.85,
+    width: windowWidth / 6.85,
+    height: windowWidth / 6.85,
   },
 
   TwoKings: {
@@ -360,16 +453,15 @@ const styles = StyleSheet.create({
 
   CheduBlue: {
     color: "#00578a",
-    fontSize: windowWidth/20
+    fontSize: windowWidth / 20,
   },
   CheduDarkBlue: {
     color: "#0e113f",
-    fontSize: windowWidth/20
+    fontSize: windowWidth / 20,
   },
 
   BaseShadow: {
-    margin: 50,
-    width: windowWidth/2,
+    width: windowWidth / 2,
     borderRadius: 100,
     backgroundColor: "white",
     alignItems: "center",
@@ -402,7 +494,7 @@ const styles = StyleSheet.create({
     margin: 30,
     padding: 20,
   },
-  
+
   PlayLog: {
     flex: 1,
     height: (windowHeight / 10) * 8,

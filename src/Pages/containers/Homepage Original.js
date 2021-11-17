@@ -3,7 +3,6 @@ import { StyleSheet, Text, View, Button, Image } from "react-native"; //componen
 
 import cheduLogo from "../Pictures/Logo.png";
 
-
 import { Dimensions } from "react-native";
 
 const windowWidth = Dimensions.get("window").width;
