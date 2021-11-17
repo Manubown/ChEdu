@@ -5,6 +5,7 @@ import { StyleSheet, Text, View, Button, TextInput, Image } from "react-native";
 import { Dimensions } from "react-native";
 
 import blankProfile from "../Pictures/blank-profile.png";
+import MichaelDorner from "../Pictures/Michael_5EHIF.png";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -18,7 +19,7 @@ const AboutUs = ({ navigation }) => {
       <View style={styles.MainRow}>
         <View style={styles.PersonBox}>
           <View style={styles.TopProfileField}>
-            <Image source={blankProfile} style={styles.Profile} />
+            <Image source={MichaelDorner} style={styles.Profile} />
             <Text style={styles.PersonName}>Michael Dorner</Text>
             <View style={styles.ProfileTextBox}>
               <Text style={styles.ProfileText}>
