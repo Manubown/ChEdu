@@ -44,6 +44,8 @@ export default class Homepage extends React.Component {
     switchValue: false,
     backgroundColor: "white",
     SwitchLogin: loginPictureBlack,
+    SunMoon: "☀️",
+    ShadowBackgroundColor: "white",
   };
 
   handleSwitchBackground = () => {
@@ -52,14 +54,16 @@ export default class Homepage extends React.Component {
     if (switchValue === true) {
       this.setState({
         switchValue,
-        backgroundColor: "black",
+        backgroundColor: "#121212",
         SwitchLogin: loginPictureWhite,
+        SunMoon: "🌙",
       });
     } else if (switchValue === false) {
       this.setState({
         switchValue,
         backgroundColor: "white",
         SwitchLogin: loginPictureBlack,
+        SunMoon: "☀️",
       });
     }
   };
@@ -195,6 +199,7 @@ export default class Homepage extends React.Component {
             />
           </TouchableOpacity>
           <View style={styles.RightSwitch}>
+            <Text>{this.state.SunMoon}</Text>
             <Switch
               value={this.state.switchValue}
               onValueChange={(switchValue) =>
@@ -205,25 +210,26 @@ export default class Homepage extends React.Component {
             />
           </View>
         </View>
-
-        <View style={({ flexDirection: "row" }, styles.Column)}>
-          <View style={styles.BaseShadow}>
-            <Text style={styles.Title}>
-              <Text style={styles.CheduBlue}>Ch</Text>
-              <Text style={styles.CheduDarkBlue}>Edu</Text>
-            </Text>
-            {<Image source={cheduLogo} style={styles.Logo} />}
-            <Text
-              style={{
-                marginTop: windowHeight / 20,
-                marginBottom: windowHeight / 20,
-                fontSize: windowWidth / 30,
-              }}
-            >
-              Learn to play chess!
-            </Text>
+        <TouchableOpacity onPress={() => this.props.navigation.navigate("Homepage")}>
+          <View style={({ flexDirection: "row" }, styles.Column)}>
+            <View style={styles.BaseShadow}>
+              <Text style={styles.Title}>
+                <Text style={styles.CheduBlue}>Ch</Text>
+                <Text style={styles.CheduDarkBlue}>Edu</Text>
+              </Text>
+              {<Image source={cheduLogo} style={styles.Logo} />}
+              <Text
+                style={{
+                  marginTop: windowHeight / 20,
+                  marginBottom: windowHeight / 20,
+                  fontSize: windowWidth / 30,
+                }}
+              >
+                Learn to play chess!
+              </Text>
+            </View>
           </View>
-        </View>
+        </TouchableOpacity>
 
         <View style={{ flex: 1 }}>
           <View
@@ -477,6 +483,7 @@ const styles = StyleSheet.create({
   RightSwitch: {
     position: "absolute",
     right: 0,
+    flexDirection: "row"
   },
   //Homepage styles
   Column: {
@@ -511,8 +518,8 @@ const styles = StyleSheet.create({
   BaseShadow: {
     width: windowWidth / 2,
     borderRadius: 100,
-    backgroundColor: "white",
     alignItems: "center",
+    backgroundColor: "#328da8",
     shadowColor: "#000",
     shadowOffset: {
       width: 10,

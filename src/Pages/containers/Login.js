@@ -1,9 +1,9 @@
 import React from "react";
-import { StyleSheet, Text, View, Button, TextInput } from "react-native";
+import { StyleSheet, Text, View, Button, TextInput, TouchableOpacity, Dimensions, Image } from "react-native";
 
-
-import { Dimensions } from "react-native";
 import { Title } from "react-native-paper";
+
+import cheduLogo from "../Pictures/Logo.png";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -15,7 +15,28 @@ const Login = ({ navigation }) => {
   const [username, onChangeUsername] = React.useState(null);
   const [password, onChangePassword] = React.useState(null);
   return (
+    
     <View style={{ flexGrow: 1 }}>
+      <TouchableOpacity onPress={() => this.props.navigation.navigate("Homepage")}>
+        <View style={({ flexDirection: "row" }, styles.Column)}>
+          <View style={styles.BaseShadow}>
+            <Text style={styles.Title}>
+              <Text style={styles.CheduBlue}>Ch</Text>
+              <Text style={styles.CheduDarkBlue}>Edu</Text>
+             </Text>
+             {<Image source={cheduLogo} style={styles.Logo} />}
+            <Text
+              style={{
+                 marginTop: windowHeight / 20,
+                marginBottom: windowHeight / 20,
+                fontSize: windowWidth / 30,
+              }}
+             >
+              Learn to play chess!
+             </Text>
+          </View>
+        </View>
+      </TouchableOpacity>
       <View style={{ justifyContent: "center", alignItems: "center" }}>
         <View style={{ flexDirection: "column" }}>
           <Title style={styles.Title}>Login</Title>
@@ -102,6 +123,10 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
+  Logo: {
+    width: windowWidth / 6.85,
+    height: windowWidth / 6.85,
+  },
   CheduDarkBlue: {
     color: "#0e113f",
   },
@@ -146,7 +171,7 @@ const styles = StyleSheet.create({
   BaseShadow: {
     padding: 20,
     borderRadius: 20,
-    backgroundColor: "white",
+    backgroundColor: "#328da8",
     alignItems: "center",
     shadowColor: "#000",
     shadowOffset: {
