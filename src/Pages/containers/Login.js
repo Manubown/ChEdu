@@ -49,7 +49,11 @@ export default class Login extends React.Component {
   render(){
     return (
     
-      <View style={{ flexGrow: 1, windowWidth, windowHeight, backgroundColor: this.state.backgroundColor }}>
+      <View 
+        style={{ 
+          windowWidth, 
+          windowHeight, 
+          backgroundColor: this.state.backgroundColor }}>
         <View style={styles.Topbar}>
           <View style={styles.RightSwitch}>
             <Text>{this.state.SunMoon}</Text>
