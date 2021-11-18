@@ -21,6 +21,7 @@ export default class Login extends React.Component {
   state = {
     switchValue: false,
     backgroundColor: "white",
+    textColor: "#121212",
     SunMoon: "☀️",
     username: "",
     password: "",
@@ -33,12 +34,14 @@ export default class Login extends React.Component {
       this.setState({
         switchValue,
         backgroundColor: "#121212",
+        textColor: "white",
         SunMoon: "🌙",
       });
     } else if (switchValue === false) {
       this.setState({
         switchValue,
         backgroundColor: "white",
+        textColor: "#121212",
         SunMoon: "☀️",
       });
     }
@@ -85,15 +88,15 @@ export default class Login extends React.Component {
         
         <View style={{ justifyContent: "center", alignItems: "center" }}>
           <View style={{ flexDirection: "column" }}>
-            <Title style={styles.Title}>Login</Title>
-            <Text>Username</Text>
+            <Title style = {{color: this.state.textColor}}>Login</Title>
+            <Text style = {{color: this.state.textColor}}>Username</Text>
             <TextInput
               style={styles.Input}
               onChangeText={this.setState.username}
               placeholder="Username"
               keyboardType="numeric"
             />
-            <Text>Password</Text>
+            <Text style = {{color: this.state.textColor}}>Password</Text>
             <TextInput
               secureTextEntry="true"
               style={styles.Input}
