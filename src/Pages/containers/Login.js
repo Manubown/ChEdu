@@ -1,5 +1,5 @@
-import React from "react";
-import { StyleSheet, Text, View, Button, TextInput, TouchableOpacity, Dimensions, Image } from "react-native";
+import React, {useState} from "react";
+import { StyleSheet, Text, View, Button, TextInput, TouchableOpacity, Dimensions, Image, Switch } from "react-native";
 
 import { Title } from "react-native-paper";
 
@@ -11,72 +11,133 @@ const windowHeight = Dimensions.get("window").height;
 const x = 100;
 const y = 200;
 
-const Login = ({ navigation }) => {
-  const [username, onChangeUsername] = React.useState(null);
-  const [password, onChangePassword] = React.useState(null);
-  return (
+
+
+
+export default class Login extends React.Component {
+  /*const [username, onChangeUsername] = React.useState(null);
+  const [password, onChangePassword] = React.useState(null)};*/
+  
+  state = {
+    switchValue: false,
+    backgroundColor: "white",
+    SunMoon: "☀️",
+    username: "",
+    password: "",
+  };
+  
+  handleSwitchBackground = () => {
+    let { switchValue } = this.state;
     
-    <View style={{ flexGrow: 1 }}>
-      <TouchableOpacity onPress={() => navigation.navigate("Homepage")}>
-        <View style={({ flexDirection: "row" }, styles.Column)}>
-          <View style={styles.BaseShadow}>
-            <Text style={styles.Title}>
-              <Text style={styles.CheduBlue}>Ch</Text>
-              <Text style={styles.CheduDarkBlue}>Edu</Text>
-             </Text>
-             {<Image source={cheduLogo} style={styles.Logo} />}
-            <Text
-              style={{
-                 marginTop: windowHeight / 20,
-                marginBottom: windowHeight / 20,
-                fontSize: windowWidth / 30,
-              }}
-             >
-              Learn to play chess!
-             </Text>
+    if (switchValue === true) {
+      this.setState({
+        switchValue,
+        backgroundColor: "#121212",
+        SunMoon: "🌙",
+      });
+    } else if (switchValue === false) {
+      this.setState({
+        switchValue,
+        backgroundColor: "white",
+        SunMoon: "☀️",
+      });
+    }
+  };
+  render(){
+    return (
+    
+      <View style={{ flexGrow: 1, windowWidth, windowHeight, backgroundColor: this.state.backgroundColor }}>
+        <View style={styles.Topbar}>
+          <View style={styles.RightSwitch}>
+            <Text>{this.state.SunMoon}</Text>
+            <Switch
+              value={this.state.switchValue}
+              onValueChange={(switchValue) =>
+                this.setState({ switchValue }, () =>
+                  this.handleSwitchBackground()
+                )
+              }
+            />
           </View>
         </View>
-      </TouchableOpacity>
-      <View style={{ justifyContent: "center", alignItems: "center" }}>
-        <View style={{ flexDirection: "column" }}>
-          <Title style={styles.Title}>Login</Title>
-          <Text>Username</Text>
-          <TextInput
-            style={styles.Input}
-            value={username}
-            onChangeText={onChangeUsername}
-            placeholder="Username"
-            keyboardType="numeric"
-          />
-          <Text>Password</Text>
-          <TextInput
-            secureTextEntry="true"
-            style={styles.Input}
-            value={password}
-            onChangeText={onChangePassword}
-            placeholder="Password"
-            keyboardType="numeric"
-          />
-          <Button
-            style={styles.Buttons}
-            onPress={() => {
-              RequestLogin(username, password);
-              navigation.navigate("Home");
-            }}
-            title="Login"
-          />
+
+        
+          <View style={({ flexDirection: "row" }, styles.Column)}>
+            <TouchableOpacity onPress={() => this.props.navigation.navigate("Homepage")}>
+              <View style={styles.BaseShadow}>
+                <Text style={styles.Title}>
+                  <Text style={styles.CheduBlue}>Ch</Text>
+                  <Text style={styles.CheduDarkBlue}>Edu</Text>
+                </Text>
+                {<Image source={cheduLogo} style={styles.Logo} />}
+                <Text
+                  style={{
+                    marginTop: windowHeight / 20,
+                    marginBottom: windowHeight / 20,
+                    fontSize: windowWidth / 30,
+                  }}
+                >
+                  Learn to play chess!
+                </Text>
+              </View>
+            </TouchableOpacity>
+          </View>
+        
+        <View style={{ justifyContent: "center", alignItems: "center" }}>
+          <View style={{ flexDirection: "column" }}>
+            <Title style={styles.Title}>Login</Title>
+            <Text>Username</Text>
+            <TextInput
+              style={styles.Input}
+              onChangeText={this.setState.username}
+              placeholder="Username"
+              keyboardType="numeric"
+            />
+            <Text>Password</Text>
+            <TextInput
+              secureTextEntry="true"
+              style={styles.Input}
+              onChangeText={this.setState.password}
+              placeholder="Password"
+              keyboardType="numeric"
+            />
+            <Button
+              style={styles.Buttons}
+              onPress={() => {
+                RequestLogin(this.setState.username, this.setState.username);
+                this.props.navigation.navigate("Home");
+              }}
+              title="Login"
+            />
+          </View>
         </View>
       </View>
-    </View>
-  );
-};
+      );
+    };
+  };
 
-const RequestLogin = (username, password) => {
-  //TODO: API Request
-  console.log(username, password);
+  const RequestLogin = (username, password) => {
+    //TODO: API Request
+    console.log(username, password);
 };
 
 const styles = StyleSheet.create({
+  
+  Topbar: {
+    margin: 10,
+    flexDirection: "row",
+    alignContent: "center",
+    alignItems: "center",
+  },
+  RightSwitch: {
+    position: "absolute",
+    right: 0,
+    flexDirection: "row"
+  },
+  Column: {
+    justifyContent: "center",
+    alignItems: "center",
+  },
   Input: {
     margin: 20,
   },
@@ -184,5 +245,3 @@ const styles = StyleSheet.create({
     elevation: 4,
   },
 });
-
-export default Login;

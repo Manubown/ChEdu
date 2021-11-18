@@ -210,26 +210,29 @@ export default class Homepage extends React.Component {
             />
           </View>
         </View>
-        <TouchableOpacity onPress={() => this.props.navigation.navigate("Homepage")}>
+
+        
           <View style={({ flexDirection: "row" }, styles.Column)}>
-            <View style={styles.BaseShadow}>
-              <Text style={styles.Title}>
-                <Text style={styles.CheduBlue}>Ch</Text>
-                <Text style={styles.CheduDarkBlue}>Edu</Text>
-              </Text>
-              {<Image source={cheduLogo} style={styles.Logo} />}
-              <Text
-                style={{
-                  marginTop: windowHeight / 20,
-                  marginBottom: windowHeight / 20,
-                  fontSize: windowWidth / 30,
-                }}
-              >
-                Learn to play chess!
-              </Text>
-            </View>
+            <TouchableOpacity onPress={() => this.props.navigation.navigate("Homepage")}>
+              <View style={styles.BaseShadow}>
+                <Text style={styles.Title}>
+                  <Text style={styles.CheduBlue}>Ch</Text>
+                  <Text style={styles.CheduDarkBlue}>Edu</Text>
+                </Text>
+                {<Image source={cheduLogo} style={styles.Logo} />}
+                <Text
+                  style={{
+                    marginTop: windowHeight / 20,
+                    marginBottom: windowHeight / 20,
+                    fontSize: windowWidth / 30,
+                  }}
+                >
+                  Learn to play chess!
+                </Text>
+              </View>
+            </TouchableOpacity>
           </View>
-        </TouchableOpacity>
+        
 
         <View style={{ flex: 1 }}>
           <View
