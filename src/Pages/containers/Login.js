@@ -17,7 +17,7 @@ const Login = ({ navigation }) => {
   return (
     
     <View style={{ flexGrow: 1 }}>
-      <TouchableOpacity onPress={() => this.props.navigation.navigate("Homepage")}>
+      <TouchableOpacity onPress={() => navigation.navigate("Homepage")}>
         <View style={({ flexDirection: "row" }, styles.Column)}>
           <View style={styles.BaseShadow}>
             <Text style={styles.Title}>
