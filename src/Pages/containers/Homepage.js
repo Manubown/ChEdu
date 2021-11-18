@@ -46,42 +46,21 @@ export default class Homepage extends React.Component {
     SwitchLogin: loginPictureBlack,
   };
 
-  handleSwitchBackground = () =>{
-    let{
-      switchValue,
-    } = this.state;
-   
-    if(switchValue===true){
+  handleSwitchBackground = () => {
+    let { switchValue } = this.state;
+
+    if (switchValue === true) {
       this.setState({
         switchValue,
         backgroundColor: "black",
-      })
-    }
-    else if(switchValue===false){
+        SwitchLogin: loginPictureWhite,
+      });
+    } else if (switchValue === false) {
       this.setState({
         switchValue,
         backgroundColor: "white",
-      })
-    }
-  };
-
-  handleSwitchLogin = () =>{
-    let{
-      switchValue,
-      loginpic
-    } = this.state;
-
-    if(switchValue === true){
-      this.setState({
-        switchValue,
-        loginpic: loginPictureBlack,
-      }) 
-    }
-    else if(switchValue === false){
-      this.setState({
-        switchValue,
-        loginpic: loginPictureWhite,
-      })
+        SwitchLogin: loginPictureBlack,
+      });
     }
   };
 
@@ -211,18 +190,17 @@ export default class Homepage extends React.Component {
             style={{ width: windowWidth / 15, height: windowWidth / 15 }}
           >
             <Image
-              value = {this.state.switchValue}
-              onValueChange={(switchValue) =>
-                this.setState({ switchValue }, () => this.handleSwitchLogin())
-              }
+              source={this.state.SwitchLogin}
               style={{ width: windowWidth / 15, height: windowWidth / 15 }}
             />
           </TouchableOpacity>
           <View style={styles.RightSwitch}>
             <Switch
-              value = {this.state.switchValue}
+              value={this.state.switchValue}
               onValueChange={(switchValue) =>
-                this.setState({ switchValue }, () => this.handleSwitchBackground())
+                this.setState({ switchValue }, () =>
+                  this.handleSwitchBackground()
+                )
               }
             />
           </View>
