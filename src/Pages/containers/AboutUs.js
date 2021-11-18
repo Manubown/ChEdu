@@ -17,6 +17,7 @@ const AboutUs = ({ navigation }) => {
   return (
     <View style={{ flexGrow: 1 }}>
       <View style={styles.MainRow}>
+        <Text style={styles.TitleText}>About Us</Text>
         <View style={styles.PersonBox}>
           <View style={styles.TopProfileField}>
             <Image source={MichaelDorner} style={styles.Profile} />
@@ -85,6 +86,11 @@ const AboutUs = ({ navigation }) => {
 const styles = StyleSheet.create({
   MainRow: {
     flexDirection: "row",
+  },
+
+  TitleText: {
+    textAlign: "center",
+    fontSize: 30,
   },
 
   PersonBox: {
