@@ -48,12 +48,13 @@ export default class Login extends React.Component {
   };
   render(){
     return (
-    
       <View 
         style={{ 
           windowWidth, 
           windowHeight, 
           backgroundColor: this.state.backgroundColor }}>
+        
+        {/*Topbar*/}
         <View style={styles.Topbar}>
           <View style={styles.RightSwitch}>
             <Text>{this.state.SunMoon}</Text>
@@ -67,29 +68,30 @@ export default class Login extends React.Component {
             />
           </View>
         </View>
-
         
-          <View style={({ flexDirection: "row" }, styles.Column)}>
-            <TouchableOpacity onPress={() => this.props.navigation.navigate("Homepage")}>
-              <View style={styles.BaseShadow}>
-                <Text style={styles.Title}>
-                  <Text style={styles.CheduBlue}>Ch</Text>
-                  <Text style={styles.CheduDarkBlue}>Edu</Text>
-                </Text>
-                {<Image source={cheduLogo} style={styles.Logo} />}
-                <Text
-                  style={{
-                    marginTop: windowHeight / 20,
-                    marginBottom: windowHeight / 20,
-                    fontSize: windowWidth / 30,
-                  }}
-                >
-                  Learn to play chess!
-                </Text>
-              </View>
-            </TouchableOpacity>
-          </View>
+        {/*Logo*/}
+        <View style={({ flexDirection: "row" }, styles.Column)}>
+          <TouchableOpacity onPress={() => this.props.navigation.navigate("Homepage")}>
+            <View style={styles.BaseShadow}>
+              <Text style={styles.Title}>
+                <Text style={styles.CheduBlue}>Ch</Text>
+                <Text style={styles.CheduDarkBlue}>Edu</Text>
+              </Text>
+              {<Image source={cheduLogo} style={styles.Logo} />}
+              <Text
+                style={{
+                  marginTop: windowHeight / 20,
+                  marginBottom: windowHeight / 20,
+                  fontSize: windowWidth / 30,
+                }}
+              >
+                Learn to play chess!
+              </Text>
+            </View>
+          </TouchableOpacity>
+        </View>
         
+        {/*Content*/}
         <View style={{ justifyContent: "center", alignItems: "center" }}>
           <View style={{ flexDirection: "column" }}>
             <Title style = {{color: this.state.textColor}}>Login</Title>
@@ -111,7 +113,7 @@ export default class Login extends React.Component {
             <Button
               style={styles.Buttons}
               onPress={() => {
-                RequestLogin(this.setState.username, this.setState.username);
+                RequestLogin(this.setState.username, this.setState.password);
                 this.props.navigation.navigate("Home");
               }}
               title="Login"
@@ -123,9 +125,9 @@ export default class Login extends React.Component {
     };
   };
 
-  const RequestLogin = (username, password) => {
-    //TODO: API Request
-    console.log(username, password);
+const RequestLogin = (username, password) => {
+  //TODO: API Request
+  console.log(username, password);
 };
 
 const styles = StyleSheet.create({
