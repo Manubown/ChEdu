@@ -73,7 +73,7 @@ export default class Login extends React.Component {
         <View style={({ flexDirection: "row" }, styles.Column)}>
           <TouchableOpacity onPress={() => this.props.navigation.navigate("Homepage")}>
             <View style={styles.BaseShadow}>
-              <Text style={styles.Title}>
+              <Text>
                 <Text style={styles.CheduBlue}>Ch</Text>
                 <Text style={styles.CheduDarkBlue}>Edu</Text>
               </Text>
@@ -174,6 +174,13 @@ const styles = StyleSheet.create({
   },
   CheduBlue: {
     color: "#00578a",
+    fontSize: windowWidth / 20,
+    fontWeight: "bold",
+  },
+  CheduDarkBlue: {
+    color: "#0e113f",
+    fontSize: windowWidth / 20,
+    fontWeight: "bold",
   },
   PlayLog: {
     flex: 1,
@@ -197,9 +204,7 @@ const styles = StyleSheet.create({
     width: windowWidth / 6.85,
     height: windowWidth / 6.85,
   },
-  CheduDarkBlue: {
-    color: "#0e113f",
-  },
+
   ChessBoard: {
     height: (windowHeight / 10) * 8.5,
     width: (windowHeight / 10) * 8.5,

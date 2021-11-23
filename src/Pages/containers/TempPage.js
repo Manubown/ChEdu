@@ -12,6 +12,10 @@ import {
 import cheduLogo from "../Pictures/Logo.png";
 import loginPictureBlack from "../Pictures/login.png";
 import loginPictureWhite from "../Pictures/login_white.png";
+import registerPictureBlack from "../Pictures/register.png";
+import registerPictureWhite from "../Pictures/register_white.png";
+import userPictureBlack from "../Pictures/user.png";
+import userPictureWhite from "../Pictures/user_white.png";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -26,6 +30,8 @@ export default class TempPage extends React.Component {
     switchValue: false,
     backgroundColor: "white",
     SwitchLogin: loginPictureBlack,
+    SwitchRegister: registerPictureBlack,
+    SwitchUser: userPictureBlack,
     SunMoon: "☀️",
     ShadowBackgroundColor: "white",
   };
@@ -38,6 +44,8 @@ export default class TempPage extends React.Component {
         switchValue,
         backgroundColor: "#121212",
         SwitchLogin: loginPictureWhite,
+        SwitchRegister: registerPictureWhite,
+        SwitchUser: userPictureWhite,
         SunMoon: "🌙",
       });
     } else if (switchValue === false) {
@@ -45,6 +53,8 @@ export default class TempPage extends React.Component {
         switchValue,
         backgroundColor: "white",
         SwitchLogin: loginPictureBlack,
+        SwitchRegister: registerPictureBlack,
+        SwitchUser: userPictureBlack,
         SunMoon: "☀️",
       });
     }
@@ -64,15 +74,46 @@ export default class TempPage extends React.Component {
       >
         {/*Topbar*/}
         <View style={styles.Topbar}>
-          <TouchableOpacity
-            onPress={() => this.props.navigation.navigate("Login")}
-            style={{ width: windowWidth / 15, height: windowWidth / 15 }}
-          >
-            <Image
-              source={this.state.SwitchLogin}
+          {/*Login*/}
+          <View style={styles.LoginStyle}>
+            <TouchableOpacity
+              onPress={() => this.props.navigation.navigate("Login")}
               style={{ width: windowWidth / 15, height: windowWidth / 15 }}
-            />
-          </TouchableOpacity>
+            >
+              <Image
+                source={this.state.SwitchLogin}
+                style={{ width: windowWidth / 15, height: windowWidth / 15 }}
+              />
+            </TouchableOpacity>
+          </View>
+          
+          {/*Register*/}
+          <View style={styles.RegisterStyle}>
+            <TouchableOpacity
+              onPress={() => this.props.navigation.navigate("Register")}
+              style={{ width: windowWidth / 15, height: windowWidth / 15 }}
+            >
+              <Image
+                source={this.state.SwitchRegister}
+                style={{ width: windowWidth / 15, height: windowWidth / 15 }}
+              />
+            </TouchableOpacity>
+          </View>
+
+          {/*User*/}
+          <View style={styles.UserStyle}>
+            <TouchableOpacity
+              onPress={() => this.props.navigation.navigate("User")}
+              style={{ width: windowWidth / 15, height: windowWidth / 15 }}
+            >
+              <Image
+                source={this.state.SwitchUser}
+                style={{ width: windowWidth / 15, height: windowWidth / 15 }}
+              />
+            </TouchableOpacity>
+          </View>
+
+          {/*Darkmode Switch*/}
           <View style={styles.RightSwitch}>
             <Text>{this.state.SunMoon}</Text>
             <Switch
@@ -90,7 +131,7 @@ export default class TempPage extends React.Component {
         <View style={({ flexDirection: "row" }, styles.Column)}>
           <TouchableOpacity onPress={() => this.props.navigation.navigate("Homepage")}>
             <View style={styles.BaseShadow}>
-              <Text style={styles.Title}>
+              <Text>
                 <Text style={styles.CheduBlue}>Ch</Text>
                 <Text style={styles.CheduDarkBlue}>Edu</Text>
               </Text>
@@ -125,9 +166,32 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
 
+  //Topbar Styles
   RightSwitch: {
     position: "absolute",
     right: 0,
+    flexDirection: "row"
+  },
+
+  LoginStyle: {
+    left: 0,
+    flexDirection: "row"
+  },
+
+  RegisterStyle:{
+    left: (windowWidth/4),
+    flexDirection: "row"
+  },
+
+  UserStyle:{
+    position: "absolute",
+    right: (windowWidth/4),
+    flexDirection: "row"
+  },
+
+  RegisterStyle:{
+    position: "absolute",
+    left: (windowWidth/4),
     flexDirection: "row"
   },
   //Homepage styles
@@ -154,10 +218,12 @@ const styles = StyleSheet.create({
   CheduBlue: {
     color: "#00578a",
     fontSize: windowWidth / 20,
+    fontWeight: "bold",
   },
   CheduDarkBlue: {
     color: "#0e113f",
     fontSize: windowWidth / 20,
+    fontWeight: "bold",
   },
 
   BaseShadow: {
@@ -173,11 +239,6 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.23,
     shadowRadius: 5,
     elevation: 4,
-  },
-
-  Title: {
-    fontWeight: "bold",
-    fontSize: 80,
   },
 
   Buttons: {
