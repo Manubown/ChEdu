@@ -11,6 +11,7 @@ import Temp from "./Pages/containers/TempPage";
 import Homepage from "./Pages/containers/Homepage";
 import Register from "./Pages/containers/Register";
 import AboutUs from "./Pages/containers/AboutUs";
+import WebViewMobile from "./Pages/containers/WebViewMobile";
 
 const Stack = createNativeStackNavigator();
 
@@ -19,10 +20,11 @@ const MyStack = () => {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
-          name="Homepage"
-          component={Homepage}
+          name="WebViewMobile"
+          component={WebViewMobile}
           options={{ title: "ChEdu" }}
         />
+        <Stack.Screen name="Homepage" component={Homepage} />
         <Stack.Screen name="AboutUs" component={AboutUs} />
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Intro" component={IntroScreen} />
