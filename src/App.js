@@ -1,7 +1,6 @@
 import * as React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-
 import HomeScreen from "./Pages/containers/Home";
 import IntroScreen from "./Pages/containers/Intro";
 import ChessBoard from "./Pages/containers/ChessBoardPage";
@@ -11,6 +10,7 @@ import Temp from "./Pages/containers/TempPage";
 import Homepage from "./Pages/containers/Homepage";
 import Register from "./Pages/containers/Register";
 import User from "./Pages/containers/User";
+import App from "./Pages/containers/ChessBoard/App";
 
 const Stack = createNativeStackNavigator();
 
@@ -27,6 +27,7 @@ const MyStack = () => {
         <Stack.Screen name="Login" component={Login} options={{ title: "ChEdu_Login" }}/>
         <Stack.Screen name="ChessBoard" component={ChessBoard} options={{ title: "ChEdu_ChessBoard" }}/>
         <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="App" component={App} options={{title: "ChEdu_ChessBoard"}}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
