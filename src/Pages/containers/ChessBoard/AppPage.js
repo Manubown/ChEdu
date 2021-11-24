@@ -9,13 +9,17 @@ import {
   Switch,
 } from "react-native"; //components
 
-import cheduLogo from "../Pictures/Logo.png";
-import loginPictureBlack from "../Pictures/login.png";
-import loginPictureWhite from "../Pictures/login_white.png";
-import registerPictureBlack from "../Pictures/register.png";
-import registerPictureWhite from "../Pictures/register_white.png";
-import userPictureBlack from "../Pictures/user.png";
-import userPictureWhite from "../Pictures/user_white.png";
+import cheduLogo from "../../Pictures/Logo.png";
+import loginPictureBlack from "../../Pictures/login.png";
+import loginPictureWhite from "../../Pictures/login_white.png";
+import registerPictureBlack from "../../Pictures/register.png";
+import registerPictureWhite from "../../Pictures/register_white.png";
+import userPictureBlack from "../../Pictures/user.png";
+import userPictureWhite from "../../Pictures/user_white.png";
+
+import App from "./App";
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -25,7 +29,7 @@ const { width } = Dimensions.get("window");
 const x = 100;
 const y = 200;
 
-export default class TempPage extends React.Component {
+export default class AppPage extends React.Component {
   state = {
     switchValue: false,
     backgroundColor: "white",
@@ -150,7 +154,9 @@ export default class TempPage extends React.Component {
         </View>
 
         {/*Content*/}
-        <View stlye={{ flexGrow: 1 }}></View>
+        <View stlye={{ flex: 1 }}>
+          <App />
+        </View>
       </View>
     );
   }

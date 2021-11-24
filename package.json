@@ -13,6 +13,7 @@
     "build": "react-scripts build"
   },
   "dependencies": {
+    "@babel/plugin-syntax-jsx": "^7.16.0",
     "@chrisoakman/chessboardjs": "^1.0.0",
     "@react-native-community/async-storage": "^1.12.1",
     "@react-native-community/masked-view": "^0.1.11",
@@ -41,7 +42,7 @@
     "react-native-safe-area-context": "^3.3.2",
     "react-native-screens": "^3.6.0",
     "react-native-table-component": "^1.2.1",
-    "react-native-vector-icons": "^8.1.0",
+    "react-native-vector-icons": "^9.0.0",
     "react-native-web": "^0.17.5",
     "react-native-webview": "^11.13.0",
     "react-scripts": "^4.0.3",
