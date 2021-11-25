@@ -10,7 +10,7 @@ import Temp from "./Pages/containers/TempPage";
 import Homepage from "./Pages/containers/Homepage";
 import Register from "./Pages/containers/Register";
 import User from "./Pages/containers/User";
-import AppPage from "./Pages/containers/ChessBoard/AppPage";
+import App from "./Pages/containers/ChessBoard/App";
 
 const Stack = createNativeStackNavigator();
 
@@ -18,44 +18,16 @@ const MyStack = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen
-          name="App"
-          component={AppPage}
-          options={{ title: "ChEdu_ChessBoard" }}
-        />
-        <Stack.Screen
-          name="Homepage"
-          component={Homepage}
-          options={{ title: "ChEdu_Home" }}
-        />
-        <Stack.Screen
-          name="Temp"
-          component={Temp}
-          options={{ title: "ChEdu_Temp" }}
-        />
-        <Stack.Screen
-          name="User"
-          component={User}
-          options={{ title: "ChEdu_User" }}
-        />
+        <Stack.Screen name="Temp" component={Temp} options={{ title: "ChEdu_Temp" }}/>
+        <Stack.Screen name="User" component={User} options={{ title: "ChEdu_User" }}/>
+        <Stack.Screen name="Homepage" component={Homepage} options={{ title: "ChEdu_Home" }}/>
         <Stack.Screen name="Intro" component={IntroScreen} />
         <Stack.Screen name="Setting" component={Settings} />
-        <Stack.Screen
-          name="Register"
-          component={Register}
-          options={{ title: "ChEdu_Register" }}
-        />
-        <Stack.Screen
-          name="Login"
-          component={Login}
-          options={{ title: "ChEdu_Login" }}
-        />
-        <Stack.Screen
-          name="ChessBoard"
-          component={ChessBoard}
-          options={{ title: "ChEdu_ChessBoard" }}
-        />
+        <Stack.Screen name="Register" component={Register} options={{ title: "ChEdu_Register" }}/>
+        <Stack.Screen name="Login" component={Login} options={{ title: "ChEdu_Login" }}/>
+        <Stack.Screen name="ChessBoard" component={ChessBoard} options={{ title: "ChEdu_ChessBoard" }}/>
         <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="App" component={App} options={{title: "ChEdu_ChessBoard"}}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
