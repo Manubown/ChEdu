@@ -30,6 +30,8 @@
     "preset-react": "^1.0.0",
     "react": "^17.0.2",
     "react-chessboard": "^0.0.15",
+    "react-dnd": "^14.0.4",
+    "react-dnd-html5-backend": "^14.0.2",
     "react-dom": "^17.0.2",
     "react-favicon": "^0.0.25",
     "react-native": "0.65.1",
@@ -44,6 +46,7 @@
     "react-native-web": "^0.17.5",
     "react-native-webview": "^11.13.0",
     "react-scripts": "^4.0.3",
+    "rxjs": "^7.4.0",
     "yarn": "^1.22.17"
   },
   "devDependencies": {

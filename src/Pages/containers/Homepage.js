@@ -20,6 +20,11 @@ import cheduLogo from "../Pictures/Logo.png";
 import twokings from "../Pictures/two_kings.jpg";
 import loginPictureBlack from "../Pictures/login.png";
 import loginPictureWhite from "../Pictures/login_white.png";
+import registerPictureBlack from "../Pictures/register.png";
+import registerPictureWhite from "../Pictures/register_white.png";
+import userPictureBlack from "../Pictures/user.png";
+import userPictureWhite from "../Pictures/user_white.png";
+
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -44,6 +49,10 @@ export default class Homepage extends React.Component {
     switchValue: false,
     backgroundColor: "white",
     SwitchLogin: loginPictureBlack,
+    SwitchRegister: registerPictureBlack,
+    SwitchUser: userPictureBlack,
+    SunMoon: "☀️",
+    ShadowBackgroundColor: "white",
   };
 
   handleSwitchBackground = () => {
@@ -52,14 +61,20 @@ export default class Homepage extends React.Component {
     if (switchValue === true) {
       this.setState({
         switchValue,
-        backgroundColor: "black",
+        backgroundColor: "#121212",
         SwitchLogin: loginPictureWhite,
+        SwitchRegister: registerPictureWhite,
+        SwitchUser: userPictureWhite,
+        SunMoon: "🌙",
       });
     } else if (switchValue === false) {
       this.setState({
         switchValue,
         backgroundColor: "white",
         SwitchLogin: loginPictureBlack,
+        SwitchRegister: registerPictureBlack,
+        SwitchUser: userPictureBlack,
+        SunMoon: "☀️",
       });
     }
   };
@@ -159,6 +174,7 @@ export default class Homepage extends React.Component {
       ]);
     }
   };
+ 
 
   render() {
     let {
@@ -184,17 +200,50 @@ export default class Homepage extends React.Component {
           backgroundColor: this.state.backgroundColor,
         }}
       >
+        {/*Topbar*/}
         <View style={styles.Topbar}>
-          <TouchableOpacity
-            onPress={() => this.props.navigation.navigate("Login")}
-            style={{ width: windowWidth / 15, height: windowWidth / 15 }}
-          >
-            <Image
-              source={this.state.SwitchLogin}
+          {/*Login*/}
+          <View style={styles.LoginStyle}>
+            <TouchableOpacity
+              onPress={() => this.props.navigation.navigate("Login")}
               style={{ width: windowWidth / 15, height: windowWidth / 15 }}
-            />
-          </TouchableOpacity>
+            >
+              <Image
+                source={this.state.SwitchLogin}
+                style={{ width: windowWidth / 15, height: windowWidth / 15 }}
+              />
+            </TouchableOpacity>
+          </View>
+          
+          {/*Register*/}
+          <View style={styles.RegisterStyle}>
+            <TouchableOpacity
+              onPress={() => this.props.navigation.navigate("Register")}
+              style={{ width: windowWidth / 15, height: windowWidth / 15 }}
+            >
+              <Image
+                source={this.state.SwitchRegister}
+                style={{ width: windowWidth / 15, height: windowWidth / 15 }}
+              />
+            </TouchableOpacity>
+          </View>
+
+          {/*User*/}
+          <View style={styles.UserStyle}>
+            <TouchableOpacity
+              onPress={() => this.props.navigation.navigate("User")}
+              style={{ width: windowWidth / 15, height: windowWidth / 15 }}
+            >
+              <Image
+                source={this.state.SwitchUser}
+                style={{ width: windowWidth / 15, height: windowWidth / 15 }}
+              />
+            </TouchableOpacity>
+          </View>
+
+          {/*Darkmode Switch*/}
           <View style={styles.RightSwitch}>
+            <Text>{this.state.SunMoon}</Text>
             <Switch
               value={this.state.switchValue}
               onValueChange={(switchValue) =>
@@ -206,26 +255,32 @@ export default class Homepage extends React.Component {
           </View>
         </View>
 
+        {/*Logo*/}
         <View style={({ flexDirection: "row" }, styles.Column)}>
-          <View style={styles.BaseShadow}>
-            <Text style={styles.Title}>
-              <Text style={styles.CheduBlue}>Ch</Text>
-              <Text style={styles.CheduDarkBlue}>Edu</Text>
-            </Text>
-            {<Image source={cheduLogo} style={styles.Logo} />}
-            <Text
-              style={{
-                marginTop: windowHeight / 20,
-                marginBottom: windowHeight / 20,
-                fontSize: windowWidth / 30,
-              }}
-            >
-              Learn to play chess!
-            </Text>
-          </View>
+          <TouchableOpacity onPress={() => this.props.navigation.navigate("Homepage")}>
+            <View style={styles.BaseShadow}>
+              <Text>
+                <Text style={styles.CheduBlue}>Ch</Text>
+                <Text style={styles.CheduDarkBlue}>Edu</Text>
+              </Text>
+              {<Image source={cheduLogo} style={styles.Logo} />}
+              <Text
+                style={{
+                  marginTop: windowHeight / 20,
+                  marginBottom: windowHeight / 20,
+                  fontSize: windowWidth / 30,
+                }}
+              >
+                Learn to play chess!
+              </Text>
+            </View>
+          </TouchableOpacity>
         </View>
-
+        
+        {/*Content*/}
         <View style={{ flex: 1 }}>
+          
+          {/*Scroll Bar*/}
           <View
             style={{
               width: "90%",
@@ -255,6 +310,7 @@ export default class Homepage extends React.Component {
                 }}
               />
 
+              {/*Learn to play*/}
               <TouchableOpacity
                 style={{
                   flex: 1,
@@ -279,6 +335,7 @@ export default class Homepage extends React.Component {
                 </Text>
               </TouchableOpacity>
 
+              {/*Online*/}
               <TouchableOpacity
                 style={{
                   flex: 1,
@@ -303,6 +360,7 @@ export default class Homepage extends React.Component {
                 </Text>
               </TouchableOpacity>
 
+              {/*Chessboard*/}
               <TouchableOpacity
                 style={{
                   flex: 1,
@@ -329,6 +387,7 @@ export default class Homepage extends React.Component {
                 </Text>
               </TouchableOpacity>
 
+              {/*Online*/}
               <TouchableOpacity
                 style={{
                   flex: 1,
@@ -355,10 +414,11 @@ export default class Homepage extends React.Component {
             </View>
           </View>
 
+          {/*Single Slides*/}
           <ScrollView>
+            {/*Learn to play*/}
             <Animated.View
               style={{
-                //Learn to play
                 justifyContent: "center",
                 alignItems: "center",
                 transform: [{ translateX: translateXTabOne }],
@@ -377,9 +437,9 @@ export default class Homepage extends React.Component {
               </View>
             </Animated.View>
 
+            {/*Online*/}
             <Animated.View
               style={{
-                //Online
                 justifyContent: "center",
                 alignItems: "center",
                 //Transform, damit die Position von oben koriigiert wird hier eben -translateY
@@ -402,9 +462,9 @@ export default class Homepage extends React.Component {
               </View>
             </Animated.View>
 
+            {/*Chessboard*/}
             <Animated.View
               style={{
-                //Chessboard
                 justifyContent: "center",
                 alignItems: "center",
                 //TODO: Transform
@@ -427,17 +487,16 @@ export default class Homepage extends React.Component {
                   }}
                 >
                   <View style={{ flexDirection: "row" }}>
-                    <View style={styles.ChessBoard}>
-                      <Chessboard id="BasicBoard" />
-                    </View>
+                    {/*Chessboard*/}
                   </View>
                 </View>
               </View>
             </Animated.View>
 
+            {/*Online*/}
             <Animated.View
               style={{
-                //Online
+                
                 justifyContent: "center",
                 alignItems: "center",
                 //Transform TODO
@@ -474,11 +533,30 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
 
+//Topbar Styles
   RightSwitch: {
     position: "absolute",
     right: 0,
+    flexDirection: "row"
   },
-  //Homepage styles
+
+  LoginStyle: {
+    left: 0,
+    flexDirection: "row"
+  },
+
+  RegisterStyle:{
+    left: (windowWidth/4),
+    flexDirection: "row"
+  },
+
+  UserStyle:{
+    position: "absolute",
+    right: (windowWidth/4),
+    flexDirection: "row"
+  },
+
+  //Homepage Styles
   Column: {
     justifyContent: "center",
     alignItems: "center",
@@ -502,17 +580,19 @@ const styles = StyleSheet.create({
   CheduBlue: {
     color: "#00578a",
     fontSize: windowWidth / 20,
+    fontWeight: "bold",
   },
   CheduDarkBlue: {
     color: "#0e113f",
     fontSize: windowWidth / 20,
+    fontWeight: "bold",
   },
 
   BaseShadow: {
     width: windowWidth / 2,
     borderRadius: 100,
-    backgroundColor: "white",
     alignItems: "center",
+    backgroundColor: "#328da8",
     shadowColor: "#000",
     shadowOffset: {
       width: 10,
@@ -521,11 +601,6 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.23,
     shadowRadius: 5,
     elevation: 4,
-  },
-
-  Title: {
-    fontWeight: "bold",
-    fontSize: 80,
   },
 
   Buttons: {
