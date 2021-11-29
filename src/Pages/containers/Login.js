@@ -1,12 +1,15 @@
 import React from "react";
 import { StyleSheet, Text, View, Button, TextInput } from "react-native";
 
-
 import { Dimensions } from "react-native";
 import { Title } from "react-native-paper";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
+
+//WebRequest
+import axios from "axios";
+import bcrypt from "bcryptjs";
 
 const x = 100;
 const y = 200;
@@ -53,6 +56,20 @@ const Login = ({ navigation }) => {
 const RequestLogin = (username, password) => {
   //TODO: API Request
   console.log(username, password);
+  var postRequest = {
+    PlayerName: username,
+    HashedPassword: bcrypt.hashSync(password),
+  };
+  axios
+    .post("https://chedu.at:5000/VerifyPlayer", postRequest)
+    .then(function (response) {
+      if (response) {
+        console.log("Login request Sent! \n Post request sent! " + postRequest);
+      }
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
 };
 
 const styles = StyleSheet.create({

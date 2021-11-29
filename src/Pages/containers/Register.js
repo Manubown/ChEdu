@@ -5,14 +5,11 @@ import { StyleSheet, Text, View, Button, TextInput } from "react-native";
 import axios from "axios";
 import bcrypt from "bcryptjs";
 
-
 import { Dimensions } from "react-native";
 import { Title } from "react-native-paper";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
-
-
 
 const x = 100;
 const y = 200;
@@ -67,9 +64,12 @@ const Register = ({ navigation }) => {
 };
 
 const RequestLogin = (username, password, email) => {
-  //TODO: API Request
   console.log(username, email, password);
-  var postRequest = {PlayerName:username, Email: email,HashedPassword:bcrypt.hashSync(password) };
+  var postRequest = {
+    PlayerName: username,
+    Email: email,
+    HashedPassword: bcrypt.hashSync(password),
+  };
 
   axios
     .post("https://chedu.at:5000/register", postRequest)

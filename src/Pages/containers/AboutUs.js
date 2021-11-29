@@ -16,8 +16,8 @@ const y = 200;
 const AboutUs = ({ navigation }) => {
   return (
     <View style={{ flexGrow: 1 }}>
+      <Text style={styles.TitleText}>About Us</Text>
       <View style={styles.MainRow}>
-        <Text style={styles.TitleText}>About Us</Text>
         <View style={styles.PersonBox}>
           <View style={styles.TopProfileField}>
             <Image source={MichaelDorner} style={styles.Profile} />
