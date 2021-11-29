@@ -18,7 +18,8 @@ import registerPictureBlack from "../Pictures/register.png";
 import registerPictureWhite from "../Pictures/register_white.png";
 import userPictureBlack from "../Pictures/user.png";
 import userPictureWhite from "../Pictures/user_white.png";
-import App from "./ChessBoard/App";
+
+import ChessGame from "./ChessBoard/index";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -154,14 +155,12 @@ export default class TempPage extends React.Component {
 
         {/*Content*/}
         <View stlye={{ flex: 1 }}>
-          <View nativeID="ChessBoard" />
+          <ChessGame />
         </View>
       </View>
     );
   }
 }
-
-ReactDOM.render(App, document.getElementById("ChessBoard"));
 
 const styles = StyleSheet.create({
   Topbar: {
