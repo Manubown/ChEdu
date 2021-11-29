@@ -487,9 +487,7 @@ export default class Homepage extends React.Component {
                   }}
                 >
                   <View style={{ flexDirection: "row" }}>
-<<<<<<< Updated upstream
                     {/*Chessboard*/}
-=======
                     <TouchableOpacity
                       onPress={() =>
                         this.props.navigation.navigate("ChessBoard")
@@ -499,7 +497,6 @@ export default class Homepage extends React.Component {
                         height: windowWidth / 15,
                       }}
                     ></TouchableOpacity>
->>>>>>> Stashed changes
                   </View>
                 </View>
               </View>
