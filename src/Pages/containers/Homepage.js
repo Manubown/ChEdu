@@ -546,6 +546,7 @@ const styles = StyleSheet.create({
   },
 
   RegisterStyle:{
+    position: "absolute",
     left: (windowWidth/4),
     flexDirection: "row"
   },
