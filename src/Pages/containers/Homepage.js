@@ -14,7 +14,7 @@ import {
 
 import { AppearanceProvider } from "react-native-appearance";
 
-import { App } from "./ChessBoard/App.jsx";
+import { Chessboard } from "react-chessboard";
 
 import cheduLogo from "../Pictures/Logo.png";
 import twokings from "../Pictures/two_kings.jpg";
@@ -488,15 +488,6 @@ export default class Homepage extends React.Component {
                 >
                   <View style={{ flexDirection: "row" }}>
                     {/*Chessboard*/}
-                    <TouchableOpacity
-                      onPress={() =>
-                        this.props.navigation.navigate("ChessBoard")
-                      }
-                      style={{
-                        width: windowWidth / 15,
-                        height: windowWidth / 15,
-                      }}
-                    ></TouchableOpacity>
                   </View>
                 </View>
               </View>
