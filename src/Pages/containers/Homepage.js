@@ -14,7 +14,7 @@ import {
 
 import { AppearanceProvider } from "react-native-appearance";
 
-import { Chessboard } from "react-chessboard";
+import Chess from "../ChessBoard/chess/model/chess";
 
 import cheduLogo from "../Pictures/Logo.png";
 import twokings from "../Pictures/two_kings.jpg";
@@ -24,7 +24,6 @@ import registerPictureBlack from "../Pictures/register.png";
 import registerPictureWhite from "../Pictures/register_white.png";
 import userPictureBlack from "../Pictures/user.png";
 import userPictureWhite from "../Pictures/user_white.png";
-
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -174,7 +173,6 @@ export default class Homepage extends React.Component {
       ]);
     }
   };
- 
 
   render() {
     let {
@@ -214,7 +212,7 @@ export default class Homepage extends React.Component {
               />
             </TouchableOpacity>
           </View>
-          
+
           {/*Register*/}
           <View style={styles.RegisterStyle}>
             <TouchableOpacity
@@ -257,7 +255,9 @@ export default class Homepage extends React.Component {
 
         {/*Logo*/}
         <View style={({ flexDirection: "row" }, styles.Column)}>
-          <TouchableOpacity onPress={() => this.props.navigation.navigate("Homepage")}>
+          <TouchableOpacity
+            onPress={() => this.props.navigation.navigate("Homepage")}
+          >
             <View style={styles.BaseShadow}>
               <Text>
                 <Text style={styles.CheduBlue}>Ch</Text>
@@ -276,10 +276,9 @@ export default class Homepage extends React.Component {
             </View>
           </TouchableOpacity>
         </View>
-        
+
         {/*Content*/}
         <View style={{ flex: 1 }}>
-          
           {/*Scroll Bar*/}
           <View
             style={{
@@ -487,7 +486,7 @@ export default class Homepage extends React.Component {
                   }}
                 >
                   <View style={{ flexDirection: "row" }}>
-                    {/*Chessboard*/}
+                    {Chess.getBoard()}
                   </View>
                 </View>
               </View>
@@ -496,7 +495,6 @@ export default class Homepage extends React.Component {
             {/*Online*/}
             <Animated.View
               style={{
-                
                 justifyContent: "center",
                 alignItems: "center",
                 //Transform TODO
@@ -533,27 +531,27 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
 
-//Topbar Styles
+  //Topbar Styles
   RightSwitch: {
     position: "absolute",
     right: 0,
-    flexDirection: "row"
+    flexDirection: "row",
   },
 
   LoginStyle: {
     left: 0,
-    flexDirection: "row"
+    flexDirection: "row",
   },
 
-  RegisterStyle:{
-    left: (windowWidth/4),
-    flexDirection: "row"
+  RegisterStyle: {
+    left: windowWidth / 4,
+    flexDirection: "row",
   },
 
-  UserStyle:{
+  UserStyle: {
     position: "absolute",
-    right: (windowWidth/4),
-    flexDirection: "row"
+    right: windowWidth / 4,
+    flexDirection: "row",
   },
 
   //Homepage Styles
