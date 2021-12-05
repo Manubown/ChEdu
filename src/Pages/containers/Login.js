@@ -116,14 +116,18 @@ export default class Login extends React.Component {
               <Text style={{ color: this.state.textColor }}>Username</Text>
               <TextInput
                 style={styles.Input}
-                onChangeText={this.setState.Ssername}
+                onChangeText={(Username) => {
+                  this.setState({ Username });
+                }}
                 placeholder="Username"
                 keyboardType="default"
               />
               <Text style={{ color: this.state.textColor }}>Password</Text>
               <TextInput
                 style={styles.Input}
-                onChangeText={this.setState.Password}
+                onChangeText={(Password) => {
+                  this.setState({ Password });
+                }}
                 placeholder="Password"
                 keyboardType="default"
               />

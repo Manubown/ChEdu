@@ -10,19 +10,30 @@ export const RequestRegister = (username, password, email) => {
   console.log(bcrypt.hashSync(password));
   var postRequest = {
     PlayerName: username,
-    Emaiil: email,
+    Email: email,
     HashedPassword: bcrypt.hashSync(password),
   };
-  axios
-    .post("https://chedu.at:5000/register", postRequest)
-    .then(function (response) {
-      if (response) {
-        console.log("Login request Sent! \n Post request sent! " + postRequest);
-      }
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
+  console.log(
+    postRequest.PlayerName + postRequest.Email + postRequest.HashedPassword
+  );
+  try {
+    const response = axios
+      .post("https://chedu.at:5000/register", postRequest)
+      .then(function (response) {
+        if (response) {
+          console.log(
+            "Login request Sent! \n Post request sent! " +
+              postRequest.username +
+              postRequest.email
+          );
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 export const RequestLogin = (username, password) => {
@@ -31,17 +42,27 @@ export const RequestLogin = (username, password) => {
     PlayerName: username,
     HashedPassword: bcrypt.hashSync(password),
   };
-  axios
-    .post("https://chedu.at:5000/VerifyPlayer", postRequest)
-    .then(function (response) {
-      if (response) {
-        console.log("Login request Sent! \n Post request sent! " + postRequest);
+  console.log(postRequest.PlayerName + postRequest.HashedPassword);
+  try {
+    const response = axios
+      .get("https://chedu.at:5000/VerifyPlayer", postRequest)
+      .then((response) => {
         if (response) {
-          UserData.username = username;
+          React.useState.UserData.username = username;
+          console.log("Username saved to UserData");
+          console.log(
+            "Login request Sent! \n Post request sent! " +
+              postRequest.username +
+              postRequest.password
+          );
+          if (response) {
+          }
         }
-      }
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  } catch (error) {
+    console.log(error);
+  }
 };
