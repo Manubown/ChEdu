@@ -1,35 +1,45 @@
-import React, {useState} from "react";
-import { StyleSheet, Text, View, Button, TextInput, TouchableOpacity, Dimensions, Image, Switch } from "react-native";
+import React, { useState } from "react";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Button,
+  TextInput,
+  TouchableOpacity,
+  Dimensions,
+  Image,
+  Switch,
+} from "react-native";
 
 import { Title } from "react-native-paper";
 
 import cheduLogo from "../Pictures/Logo.png";
 
+//API Communication
+import { RequestLogin } from "../Connection/ApiCommunication";
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
 const x = 100;
 const y = 200;
 
-
-
-
 export default class Login extends React.Component {
   /*const [username, onChangeUsername] = React.useState(null);
   const [password, onChangePassword] = React.useState(null)};*/
-  
+
   state = {
     switchValue: false,
     backgroundColor: "white",
     textColor: "#121212",
     SunMoon: "☀️",
-    username: "",
-    password: "",
+    Username: "",
+    Password: "",
+    Email: "",
   };
-  
+
   handleSwitchBackground = () => {
     let { switchValue } = this.state;
-    
+
     if (switchValue === true) {
       this.setState({
         switchValue,
@@ -46,14 +56,15 @@ export default class Login extends React.Component {
       });
     }
   };
-  render(){
+  render() {
     return (
-      <View 
-        style={{ 
-          windowWidth, 
-          windowHeight, 
-          backgroundColor: this.state.backgroundColor }}>
-        
+      <View
+        style={{
+          windowWidth,
+          windowHeight,
+          backgroundColor: this.state.backgroundColor,
+        }}
+      >
         {/*Topbar*/}
         <View style={styles.Topbar}>
           <View style={styles.RightSwitch}>
@@ -68,10 +79,12 @@ export default class Login extends React.Component {
             />
           </View>
         </View>
-        
+
         {/*Logo*/}
         <View style={({ flexDirection: "row" }, styles.Column)}>
-          <TouchableOpacity onPress={() => this.props.navigation.navigate("Homepage")}>
+          <TouchableOpacity
+            onPress={() => this.props.navigation.navigate("Homepage")}
+          >
             <View style={styles.BaseShadow}>
               <Text>
                 <Text style={styles.CheduBlue}>Ch</Text>
@@ -90,48 +103,43 @@ export default class Login extends React.Component {
             </View>
           </TouchableOpacity>
         </View>
-        
+
         {/*Content*/}
-        <View style={{ justifyContent: "center", alignItems: "center" }}>
-          <View style={{ flexDirection: "column" }}>
-            <Title style = {{color: this.state.textColor}}>Login</Title>
-            <Text style = {{color: this.state.textColor}}>Username</Text>
-            <TextInput
-              style={styles.Input}
-              onChangeText={this.setState.username}
-              placeholder="Username"
-              keyboardType="numeric"
-            />
-            <Text style = {{color: this.state.textColor}}>Password</Text>
-            <TextInput
-              secureTextEntry="true"
-              style={styles.Input}
-              onChangeText={this.setState.password}
-              placeholder="Password"
-              keyboardType="numeric"
-            />
-            <Button
-              style={styles.Buttons}
-              onPress={() => {
-                RequestLogin(this.setState.username, this.setState.password);
-                this.props.navigation.navigate("Home");
-              }}
-              title="Login"
-            />
+        <View style={{ flexGrow: 1 }}>
+          <View style={{ justifyContent: "center", alignItems: "center" }}>
+            <View style={{ flexDirection: "column" }}>
+              <Title style={{ color: this.state.textColor }}>Login</Title>
+              <Text style={{ color: this.state.textColor }}>Username</Text>
+              <TextInput
+                style={styles.Input}
+                onChangeText={this.setState.Ssername}
+                placeholder="Username"
+                keyboardType="default"
+              />
+              <Text style={{ color: this.state.textColor }}>Password</Text>
+              <TextInput
+                style={styles.Input}
+                onChangeText={this.setState.Password}
+                placeholder="Password"
+                keyboardType="default"
+              />
+              <Button
+                style={styles.Buttons}
+                onPress={() => {
+                  RequestLogin(this.state.Username, this.state.Password);
+                  this.props.navigation.navigate("Homepage");
+                }}
+                title="Login"
+              />
+            </View>
           </View>
         </View>
       </View>
-      );
-    };
-  };
-
-const RequestLogin = (username, password) => {
-  //TODO: API Request
-  console.log(username, password);
-};
+    );
+  }
+}
 
 const styles = StyleSheet.create({
-  
   Topbar: {
     margin: 10,
     flexDirection: "row",
@@ -141,7 +149,7 @@ const styles = StyleSheet.create({
   RightSwitch: {
     position: "absolute",
     right: 0,
-    flexDirection: "row"
+    flexDirection: "row",
   },
   Column: {
     justifyContent: "center",
@@ -204,7 +212,6 @@ const styles = StyleSheet.create({
     width: windowWidth / 6.85,
     height: windowWidth / 6.85,
   },
-
   ChessBoard: {
     height: (windowHeight / 10) * 8.5,
     width: (windowHeight / 10) * 8.5,

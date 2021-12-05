@@ -14,7 +14,7 @@ const socket = require("../../connection/socket").socket;
 
 class ChessGame extends React.Component {
   state = {
-    gameState: new Game(this.props.color),
+    gameState: new Game(this.props.color), //Gets Color [Black/White]
     draggedPieceTargetId: "", // empty string means no piece is being dragged
     playerTurnToMoveIsWhite: true,
     whiteKingInCheck: false,
@@ -204,9 +204,11 @@ class ChessGame extends React.Component {
             height: "720px",
           }}
         >
-          <Stage width={720} height={720}>
-            <Layer>
-              {this.state.gameState.getBoard().map((row) => {
+          <Stage width={720} height={720}> {//Background for Chessboard}
+            <Layer> 
+
+              {//Rendering the models
+                this.state.gameState.getBoard().map((row) => { 
                 return (
                   <React.Fragment>
                     {row.map((square) => {

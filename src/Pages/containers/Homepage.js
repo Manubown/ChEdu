@@ -12,6 +12,8 @@ import {
   Switch,
 } from "react-native"; //components
 
+import { UserData } from "../../User/UserData";
+
 import { AppearanceProvider } from "react-native-appearance";
 
 import Chess from "../ChessBoard/chess/model/chess";
@@ -52,6 +54,7 @@ export default class Homepage extends React.Component {
     SwitchUser: userPictureBlack,
     SunMoon: "☀️",
     ShadowBackgroundColor: "white",
+    StateUserData: UserData,
   };
 
   handleSwitchBackground = () => {
@@ -273,6 +276,7 @@ export default class Homepage extends React.Component {
               >
                 Learn to play chess!
               </Text>
+              <Text>Welcome {this.state.StateUserData.Username}</Text>
             </View>
           </TouchableOpacity>
         </View>
@@ -485,9 +489,7 @@ export default class Homepage extends React.Component {
                     alignItems: "center",
                   }}
                 >
-                  <View style={{ flexDirection: "row" }}>
-                    {Chess.getBoard()}
-                  </View>
+                  <View style={{ flexDirection: "row" }}></View>
                 </View>
               </View>
             </Animated.View>
