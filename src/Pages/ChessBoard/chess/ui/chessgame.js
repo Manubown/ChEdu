@@ -204,42 +204,46 @@ class ChessGame extends React.Component {
             height: "720px",
           }}
         >
-          <Stage width={720} height={720}> {//Background for Chessboard}
-            <Layer> 
-
-              {//Rendering the models
-                this.state.gameState.getBoard().map((row) => { 
-                return (
-                  <React.Fragment>
-                    {row.map((square) => {
-                      if (square.isOccupied()) {
-                        return (
-                          <Piece
-                            x={square.getCanvasCoord()[0]}
-                            y={square.getCanvasCoord()[1]}
-                            imgurls={piecemap[square.getPiece().name]}
-                            isWhite={square.getPiece().color === "white"}
-                            draggedPieceTargetId={
-                              this.state.draggedPieceTargetId
-                            }
-                            onDragStart={this.startDragging}
-                            onDragEnd={this.endDragging}
-                            id={square.getPieceIdOnThisSquare()}
-                            thisPlayersColorIsWhite={this.props.color}
-                            playerTurnToMoveIsWhite={
-                              this.state.playerTurnToMoveIsWhite
-                            }
-                            whiteKingInCheck={this.state.whiteKingInCheck}
-                            blackKingInCheck={this.state.blackKingInCheck}
-                          />
-                        );
-                      }
-                      return;
-                    })}
-                  </React.Fragment>
-                );
-              })}
-            </Layer>
+          <Stage width={720} height={720}>
+            {
+              <Layer>
+                {
+                  //Rendering the models}
+                  this.state.gameState.getBoard().map((row) => {
+                    return (
+                      <React.Fragment>
+                        {row.map((square) => {
+                          if (square.isOccupied()) {
+                            return (
+                              <Piece
+                                x={square.getCanvasCoord()[0]}
+                                y={square.getCanvasCoord()[1]}
+                                imgurls={piecemap[square.getPiece().name]}
+                                isWhite={square.getPiece().color === "white"}
+                                draggedPieceTargetId={
+                                  this.state.draggedPieceTargetId
+                                }
+                                onDragStart={this.startDragging}
+                                onDragEnd={this.endDragging}
+                                id={square.getPieceIdOnThisSquare()}
+                                thisPlayersColorIsWhite={this.props.color}
+                                playerTurnToMoveIsWhite={
+                                  this.state.playerTurnToMoveIsWhite
+                                }
+                                whiteKingInCheck={this.state.whiteKingInCheck}
+                                blackKingInCheck={this.state.blackKingInCheck}
+                              />
+                            );
+                          }
+                          return;
+                        })}
+                      </React.Fragment>
+                    );
+                  })
+                }
+                ;
+              </Layer>
+            }
           </Stage>
         </div>
       </React.Fragment>

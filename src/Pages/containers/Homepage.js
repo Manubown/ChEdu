@@ -489,11 +489,7 @@ export default class Homepage extends React.Component {
                     alignItems: "center",
                   }}
                 >
-<<<<<<< HEAD
-                  <View style={{ flexDirection: "row" }}>{/*Chessboard*/}</View>
-=======
                   <View style={{ flexDirection: "row" }}></View>
->>>>>>> Connection
                 </View>
               </View>
             </Animated.View>
@@ -550,10 +546,7 @@ const styles = StyleSheet.create({
   },
 
   RegisterStyle: {
-<<<<<<< HEAD
     position: "absolute",
-=======
->>>>>>> Connection
     left: windowWidth / 4,
     flexDirection: "row",
   },

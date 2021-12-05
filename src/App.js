@@ -19,14 +19,11 @@ const MyStack = () => {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
-<<<<<<< HEAD
-=======
           name="Home"
           component={HomeScreen}
           options={{ title: "Chedu" }}
         />
         <Stack.Screen
->>>>>>> Connection
           name="Temp"
           component={Temp}
           options={{ title: "ChEdu_Temp" }}
@@ -58,15 +55,6 @@ const MyStack = () => {
           component={ChessBoard}
           options={{ title: "ChEdu_ChessBoard" }}
         />
-<<<<<<< HEAD
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen
-          name="App"
-          component={App}
-          options={{ title: "ChEdu_ChessBoard" }}
-        />
-=======
->>>>>>> Connection
       </Stack.Navigator>
     </NavigationContainer>
   );

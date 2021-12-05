@@ -50,7 +50,7 @@ const Home = ({ navigation }) => {
             Do you want to get updates how we progress? Insert your E-mail down
             below:
           </Text>
-          3
+
           <View
             style={{ flexDirection: "row", justifyContent: "space-between" }}
           >
@@ -145,15 +145,8 @@ const componentDidMount = (emailText) => {
   // Simple POST request with a JSON body using axios
   const postRequest = { Email: emailText };
   axios
-<<<<<<< HEAD
-    .post("https://chedu.at:5000/NewDemoUser", postRequest)
-    .then(function (response) {
-      console.log("Email Sent! \n Post request sent! " + emailText + response);
-    })
-=======
     .post("http://chedu.at:5000/NewDemoUser", postRequest)
     .then(console.log("Email Sent! \n Post request sent! " + emailText))
->>>>>>> Connection
     .catch(function (error) {
       console.log(error);
     });

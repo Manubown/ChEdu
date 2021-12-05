@@ -24,9 +24,6 @@ const x = 100;
 const y = 200;
 
 export default class Register extends React.Component {
-  /*const [username, onChangeUsername] = React.useState(null);
-  const [password, onChangePassword] = React.useState(null)};*/
-
   state = {
     switchValue: false,
     backgroundColor: "white",
@@ -112,21 +109,27 @@ export default class Register extends React.Component {
               <Text style={{ color: this.state.textColor }}>Username</Text>
               <TextInput
                 style={styles.Input}
-                onChangeText={this.setState.Ssername}
+                onChangeText={(Username) => {
+                  this.setState({ Username });
+                }}
                 placeholder="Username"
                 keyboardType="default"
               />
               <Text style={{ color: this.state.textColor }}>Email</Text>
               <TextInput
                 style={styles.Input}
-                onChangeText={this.setState.Email}
+                onChangeText={(Email) => {
+                  this.setState({ Email });
+                }}
                 placeholder="Email"
                 keyboardType="default"
               />
               <Text style={{ color: this.state.textColor }}>Password</Text>
               <TextInput
                 style={styles.Input}
-                onChangeText={this.setState.Password}
+                onChangeText={(Password) => {
+                  this.setState({ Password });
+                }}
                 placeholder="Password"
                 keyboardType="default"
               />
@@ -277,204 +280,3 @@ const styles = StyleSheet.create({
     elevation: 4,
   },
 });
-<<<<<<< HEAD
-
-
-
-
-
-
-
-
-
-
-/*import React from "react";
-import { StyleSheet, Text, View, Button, TextInput } from "react-native";
-
-//WebRequest
-import axios from "axios";
-import bcrypt from "bcryptjs";
-
-import { Dimensions } from "react-native";
-import { Title } from "react-native-paper";
-
-const windowWidth = Dimensions.get("window").width;
-const windowHeight = Dimensions.get("window").height;
-
-const x = 100;
-const y = 200;
-
-const Register = ({ navigation }) => {
-  const [username, onChangeUsername] = React.useState(null);
-  const [password, onChangePassword] = React.useState(null);
-  const [email, onChangeEmail] = React.useState(null);
-
-  return (
-    <View style={{ flexGrow: 1 }}>
-      <View style={{ justifyContent: "center", alignItems: "center" }}>
-        <View style={{ flexDirection: "column" }}>
-          <Title style={styles.Title}>Register</Title>
-          <Text>Username</Text>
-          <TextInput
-            style={styles.Input}
-            value={username}
-            onChangeText={onChangeUsername}
-            placeholder="Username"
-            keyboardType="numeric"
-          />
-          <Text>Email</Text>
-          <TextInput
-            style={styles.Input}
-            value={email}
-            onChangeText={onChangeEmail}
-            placeholder="Email"
-            keyboardType="numeric"
-          />
-          <Text>Password</Text>
-          <TextInput
-            secureTextEntry="true"
-            style={styles.Input}
-            value={password}
-            onChangeText={onChangePassword}
-            placeholder="Password"
-            keyboardType="numeric"
-          />
-          <Button
-            style={styles.Buttons}
-            onPress={() => {
-              RequestLogin(username, password, email);
-              navigation.navigate("Home");
-            }}
-            title="Register"
-          />
-        </View>
-      </View>
-    </View>
-  );
-};
-
-const RequestLogin = (username, password, email) => {
-  console.log(username, email, password);
-  var postRequest = {
-    PlayerName: username,
-    Email: email,
-    HashedPassword: bcrypt.hashSync(password),
-  };
-
-  axios
-    .post("https://chedu.at:5000/register", postRequest)
-    .then(function (response) {
-      console.log("Email Sent! \n Post request sent! " + postRequest);
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
-};
-
-const styles = StyleSheet.create({
-  Input: {
-    margin: 20,
-  },
-  Title: {
-    fontWeight: "bold",
-    fontSize: 60,
-    marginTop: 10,
-    marginBottom: 20,
-  },
-
-  Buttons: {
-    margin: 15,
-    width: 150,
-  },
-
-  buttonView: {
-    flex: 1,
-    flexDirection: "column",
-    alignContent: "center",
-    justifyContent: "center",
-    height: (windowHeight / 10) * 8,
-    margin: 30,
-    padding: 20,
-  },
-  CheduBlue: {
-    color: "#00578a",
-  },
-  PlayLog: {
-    flex: 1,
-    height: (windowHeight / 10) * 8,
-    width: 80,
-    backgroundColor: "white",
-    borderRadius: 20,
-    alignSelf: "center",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.23,
-    shadowRadius: 2.62,
-    elevation: 4,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  CheduDarkBlue: {
-    color: "#0e113f",
-  },
-  ChessBoard: {
-    height: (windowHeight / 10) * 8.5,
-    width: (windowHeight / 10) * 8.5,
-    margin: 20,
-    backgroundColor: "white",
-    borderRadius: 20,
-    alignSelf: "center",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.23,
-    shadowRadius: 2.62,
-    elevation: 4,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-
-  BottonVield: {
-    height: 100,
-    width: 100,
-    marginBottom: 80,
-    backgroundColor: "white",
-    borderRadius: 90,
-    alignSelf: "center",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.23,
-    shadowRadius: 2.62,
-    elevation: 4,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-
-  BaseShadow: {
-    padding: 20,
-    borderRadius: 20,
-    backgroundColor: "white",
-    alignItems: "center",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-
-    shadowOpacity: 0.23,
-    shadowRadius: 2.62,
-    elevation: 4,
-  },
-});
-
-export default Register;*/
-=======
->>>>>>> Connection

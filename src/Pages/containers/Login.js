@@ -109,34 +109,6 @@ export default class Login extends React.Component {
         </View>
 
         {/*Content*/}
-<<<<<<< HEAD
-        <View style={{ justifyContent: "center", alignItems: "center" }}>
-          <View style={{ flexDirection: "column" }}>
-            <Title style={{ color: this.state.textColor }}>Login</Title>
-            <Text style={{ color: this.state.textColor }}>Username</Text>
-            <TextInput
-              style={styles.Input}
-              onChangeText={this.setState.username}
-              placeholder="Username"
-              keyboardType="numeric"
-            />
-            <Text style={{ color: this.state.textColor }}>Password</Text>
-            <TextInput
-              secureTextEntry="true"
-              style={styles.Input}
-              onChangeText={this.setState.password}
-              placeholder="Password"
-              keyboardType="numeric"
-            />
-            <Button
-              style={styles.Buttons}
-              onPress={() => {
-                RequestLogin(this.setState.username, this.setState.password);
-                this.props.navigation.navigate("Home");
-              }}
-              title="Login"
-            />
-=======
         <View style={{ flexGrow: 1 }}>
           <View style={{ justifyContent: "center", alignItems: "center" }}>
             <View style={{ flexDirection: "column" }}>
@@ -164,35 +136,12 @@ export default class Login extends React.Component {
                 title="Login"
               />
             </View>
->>>>>>> Connection
           </View>
         </View>
       </View>
     );
   }
 }
-<<<<<<< HEAD
-
-const RequestLogin = (username, password) => {
-  //TODO: API Request
-  console.log(username, password);
-  var postRequest = {
-    PlayerName: username,
-    HashedPassword: bcrypt.hashSync(password),
-  };
-  axios
-    .post("https://chedu.at:5000/VerifyPlayer", postRequest)
-    .then(function (response) {
-      if (response) {
-        console.log("Login request Sent! \n Post request sent! " + postRequest);
-      }
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
-};
-=======
->>>>>>> Connection
 
 const styles = StyleSheet.create({
   Topbar: {
