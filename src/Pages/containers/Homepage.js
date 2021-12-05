@@ -12,9 +12,11 @@ import {
   Switch,
 } from "react-native"; //components
 
+import { UserData } from "../../User/UserData";
+
 import { AppearanceProvider } from "react-native-appearance";
 
-import { Chessboard } from "react-chessboard";
+import Chess from "../ChessBoard/chess/model/chess";
 
 import cheduLogo from "../Pictures/Logo.png";
 import twokings from "../Pictures/two_kings.jpg";
@@ -52,6 +54,7 @@ export default class Homepage extends React.Component {
     SwitchUser: userPictureBlack,
     SunMoon: "☀️",
     ShadowBackgroundColor: "white",
+    StateUserData: UserData,
   };
 
   handleSwitchBackground = () => {
@@ -273,6 +276,7 @@ export default class Homepage extends React.Component {
               >
                 Learn to play chess!
               </Text>
+              <Text>Welcome {this.state.StateUserData.Username}</Text>
             </View>
           </TouchableOpacity>
         </View>
@@ -485,7 +489,11 @@ export default class Homepage extends React.Component {
                     alignItems: "center",
                   }}
                 >
+<<<<<<< HEAD
                   <View style={{ flexDirection: "row" }}>{/*Chessboard*/}</View>
+=======
+                  <View style={{ flexDirection: "row" }}></View>
+>>>>>>> Connection
                 </View>
               </View>
             </Animated.View>
@@ -542,7 +550,10 @@ const styles = StyleSheet.create({
   },
 
   RegisterStyle: {
+<<<<<<< HEAD
     position: "absolute",
+=======
+>>>>>>> Connection
     left: windowWidth / 4,
     flexDirection: "row",
   },

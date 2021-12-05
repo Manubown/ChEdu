@@ -1,36 +1,45 @@
-import React, {useState} from "react";
-import { StyleSheet, Text, View, Button, TextInput, TouchableOpacity, Dimensions, Image, Switch } from "react-native";
+import React, { useState } from "react";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Button,
+  TextInput,
+  TouchableOpacity,
+  Dimensions,
+  Image,
+  Switch,
+} from "react-native";
 
 import { Title } from "react-native-paper";
 
 import cheduLogo from "../Pictures/Logo.png";
 
+//API Communication
+import { RequestRegister } from "../Connection/ApiCommunication";
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
 const x = 100;
 const y = 200;
 
-
-
-
 export default class Register extends React.Component {
   /*const [username, onChangeUsername] = React.useState(null);
   const [password, onChangePassword] = React.useState(null)};*/
-  
+
   state = {
     switchValue: false,
     backgroundColor: "white",
     textColor: "#121212",
     SunMoon: "☀️",
-    username: "",
-    password: "",
-    email: "",
+    Username: "",
+    Password: "",
+    Email: "",
   };
-  
+
   handleSwitchBackground = () => {
     let { switchValue } = this.state;
-    
+
     if (switchValue === true) {
       this.setState({
         switchValue,
@@ -47,14 +56,15 @@ export default class Register extends React.Component {
       });
     }
   };
-  render(){
+  render() {
     return (
-      <View 
-        style={{ 
-          windowWidth, 
-          windowHeight, 
-          backgroundColor: this.state.backgroundColor }}>
-        
+      <View
+        style={{
+          windowWidth,
+          windowHeight,
+          backgroundColor: this.state.backgroundColor,
+        }}
+      >
         {/*Topbar*/}
         <View style={styles.Topbar}>
           <View style={styles.RightSwitch}>
@@ -69,10 +79,12 @@ export default class Register extends React.Component {
             />
           </View>
         </View>
-        
+
         {/*Logo*/}
         <View style={({ flexDirection: "row" }, styles.Column)}>
-          <TouchableOpacity onPress={() => this.props.navigation.navigate("Homepage")}>
+          <TouchableOpacity
+            onPress={() => this.props.navigation.navigate("Homepage")}
+          >
             <View style={styles.BaseShadow}>
               <Text>
                 <Text style={styles.CheduBlue}>Ch</Text>
@@ -91,38 +103,42 @@ export default class Register extends React.Component {
             </View>
           </TouchableOpacity>
         </View>
-        
+
         {/*Content*/}
         <View style={{ flexGrow: 1 }}>
           <View style={{ justifyContent: "center", alignItems: "center" }}>
             <View style={{ flexDirection: "column" }}>
-              <Title style = {{color: this.state.textColor}}>Register</Title>
-              <Text style = {{color: this.state.textColor}}>Username</Text>
+              <Title style={{ color: this.state.textColor }}>Register</Title>
+              <Text style={{ color: this.state.textColor }}>Username</Text>
               <TextInput
                 style={styles.Input}
-                onChangeText={this.setState.username}
+                onChangeText={this.setState.Ssername}
                 placeholder="Username"
-                keyboardType="numeric"
+                keyboardType="default"
               />
-              <Text style = {{color: this.state.textColor}}>Email</Text>
+              <Text style={{ color: this.state.textColor }}>Email</Text>
               <TextInput
                 style={styles.Input}
-                onChangeText={this.setState.email}
+                onChangeText={this.setState.Email}
                 placeholder="Email"
-                keyboardType="numeric"
+                keyboardType="default"
               />
-              <Text style = {{color: this.state.textColor}}>Password</Text>
+              <Text style={{ color: this.state.textColor }}>Password</Text>
               <TextInput
                 style={styles.Input}
-                onChangeText={this.setState.email}
+                onChangeText={this.setState.Password}
                 placeholder="Password"
-                keyboardType="numeric"
+                keyboardType="default"
               />
               <Button
                 style={styles.Buttons}
                 onPress={() => {
-                  RequestRegister(this.setState.username,this.setState.password,this.setState.email);
-                  this.props.navigation.navigate("Home");
+                  RequestRegister(
+                    this.state.Username,
+                    this.state.Password,
+                    this.state.Email
+                  );
+                  this.props.navigation.navigate("Homepage");
                 }}
                 title="Register"
               />
@@ -130,17 +146,11 @@ export default class Register extends React.Component {
           </View>
         </View>
       </View>
-      );
-    };
-  };
-
-const RequestRegister = (username, password, email) => {
-    //TODO: API Request
-    console.log(username, password, email);
-};
+    );
+  }
+}
 
 const styles = StyleSheet.create({
-  
   Topbar: {
     margin: 10,
     flexDirection: "row",
@@ -150,7 +160,7 @@ const styles = StyleSheet.create({
   RightSwitch: {
     position: "absolute",
     right: 0,
-    flexDirection: "row"
+    flexDirection: "row",
   },
   Column: {
     justifyContent: "center",
@@ -267,6 +277,7 @@ const styles = StyleSheet.create({
     elevation: 4,
   },
 });
+<<<<<<< HEAD
 
 
 
@@ -465,3 +476,5 @@ const styles = StyleSheet.create({
 });
 
 export default Register;*/
+=======
+>>>>>>> Connection

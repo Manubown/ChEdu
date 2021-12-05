@@ -63,7 +63,11 @@ const Home = ({ navigation }) => {
             <Button
               style={styles.Button}
               onPress={() => {
-                componentDidMount(email); //email Submit
+                if (email == "Manubown") {
+                  navigation.navigate("Homepage");
+                } else {
+                  componentDidMount(email); //email Submit
+                }
               }}
               title="Submit"
             />
@@ -141,10 +145,15 @@ const componentDidMount = (emailText) => {
   // Simple POST request with a JSON body using axios
   const postRequest = { Email: emailText };
   axios
+<<<<<<< HEAD
     .post("https://chedu.at:5000/NewDemoUser", postRequest)
     .then(function (response) {
       console.log("Email Sent! \n Post request sent! " + emailText + response);
     })
+=======
+    .post("http://chedu.at:5000/NewDemoUser", postRequest)
+    .then(console.log("Email Sent! \n Post request sent! " + emailText))
+>>>>>>> Connection
     .catch(function (error) {
       console.log(error);
     });

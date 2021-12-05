@@ -15,6 +15,8 @@ import { Title } from "react-native-paper";
 
 import cheduLogo from "../Pictures/Logo.png";
 
+//API Communication
+import { RequestLogin } from "../Connection/ApiCommunication";
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
@@ -34,8 +36,9 @@ export default class Login extends React.Component {
     backgroundColor: "white",
     textColor: "#121212",
     SunMoon: "☀️",
-    username: "",
-    password: "",
+    Username: "",
+    Password: "",
+    Email: "",
   };
 
   handleSwitchBackground = () => {
@@ -106,6 +109,7 @@ export default class Login extends React.Component {
         </View>
 
         {/*Content*/}
+<<<<<<< HEAD
         <View style={{ justifyContent: "center", alignItems: "center" }}>
           <View style={{ flexDirection: "column" }}>
             <Title style={{ color: this.state.textColor }}>Login</Title>
@@ -132,12 +136,42 @@ export default class Login extends React.Component {
               }}
               title="Login"
             />
+=======
+        <View style={{ flexGrow: 1 }}>
+          <View style={{ justifyContent: "center", alignItems: "center" }}>
+            <View style={{ flexDirection: "column" }}>
+              <Title style={{ color: this.state.textColor }}>Login</Title>
+              <Text style={{ color: this.state.textColor }}>Username</Text>
+              <TextInput
+                style={styles.Input}
+                onChangeText={this.setState.Ssername}
+                placeholder="Username"
+                keyboardType="default"
+              />
+              <Text style={{ color: this.state.textColor }}>Password</Text>
+              <TextInput
+                style={styles.Input}
+                onChangeText={this.setState.Password}
+                placeholder="Password"
+                keyboardType="default"
+              />
+              <Button
+                style={styles.Buttons}
+                onPress={() => {
+                  RequestLogin(this.state.Username, this.state.Password);
+                  this.props.navigation.navigate("Homepage");
+                }}
+                title="Login"
+              />
+            </View>
+>>>>>>> Connection
           </View>
         </View>
       </View>
     );
   }
 }
+<<<<<<< HEAD
 
 const RequestLogin = (username, password) => {
   //TODO: API Request
@@ -157,6 +191,8 @@ const RequestLogin = (username, password) => {
       console.log(error);
     });
 };
+=======
+>>>>>>> Connection
 
 const styles = StyleSheet.create({
   Topbar: {
@@ -231,7 +267,6 @@ const styles = StyleSheet.create({
     width: windowWidth / 6.85,
     height: windowWidth / 6.85,
   },
-
   ChessBoard: {
     height: (windowHeight / 10) * 8.5,
     width: (windowHeight / 10) * 8.5,
