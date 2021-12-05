@@ -7,7 +7,9 @@ import bcrypt from "bcryptjs";
 export const RequestRegister = (username, password, email) => {
   //TODO: API Request
   console.log("Register POST Request Test: " + username, password, email);
-  console.log(bcrypt.hashSync(password));
+
+  console.log("Password: " + bcrypt.hashSync(password));
+
   var postRequest = {
     PlayerName: username,
     Email: email,
@@ -40,7 +42,7 @@ export const RequestLogin = (username, password) => {
   console.log("Login POST Request Test: " + username, password);
   var postRequest = {
     PlayerName: username,
-    HashedPassword: bcrypt.hashSync(password),
+    HashedPassword: bcrypt.hashSync(password, 66),
   };
   console.log(postRequest.PlayerName + postRequest.HashedPassword);
   try {
