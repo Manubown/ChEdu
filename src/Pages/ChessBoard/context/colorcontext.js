@@ -1,6 +1,6 @@
 import { createContext } from "react";
 
-export default ColorContext = createContext({
+export const ColorContext = createContext({
   didRedirect: false,
   playerDidRedirect: () => {},
   playerDidNotRedirect: () => {},

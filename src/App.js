@@ -24,20 +24,23 @@ const MyStack = () => {
           options={{ title: "Chedu" }}
         />
         <Stack.Screen
+          name="Homepage"
+          component={Homepage}
+          options={{ title: "ChEdu_Home" }}
+        />
+
+        <Stack.Screen
           name="Temp"
           component={Temp}
           options={{ title: "ChEdu_Temp" }}
         />
+
         <Stack.Screen
           name="User"
           component={User}
           options={{ title: "ChEdu_User" }}
         />
-        <Stack.Screen
-          name="Homepage"
-          component={Homepage}
-          options={{ title: "ChEdu_Home" }}
-        />
+
         <Stack.Screen name="Intro" component={IntroScreen} />
         <Stack.Screen name="Setting" component={Settings} />
         <Stack.Screen

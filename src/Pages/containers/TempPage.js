@@ -76,11 +76,11 @@ export default class TempPage extends React.Component {
           <View style={styles.LoginStyle}>
             <TouchableOpacity
               onPress={() => this.props.navigation.navigate("Login")}
-              style={{ width: windowWidth / 15, height: windowWidth / 15 }}
+              style={{ width: windowHeight / 15, height: windowHeight / 15 }}
             >
               <Image
                 source={this.state.SwitchLogin}
-                style={{ width: windowWidth / 15, height: windowWidth / 15 }}
+                style={{ width: windowHeight / 15, height: windowHeight / 15 }}
               />
             </TouchableOpacity>
           </View>
@@ -89,11 +89,11 @@ export default class TempPage extends React.Component {
           <View style={styles.RegisterStyle}>
             <TouchableOpacity
               onPress={() => this.props.navigation.navigate("Register")}
-              style={{ width: windowWidth / 15, height: windowWidth / 15 }}
+              style={{ width: windowHeight / 15, height: windowHeight / 15 }}
             >
               <Image
                 source={this.state.SwitchRegister}
-                style={{ width: windowWidth / 15, height: windowWidth / 15 }}
+                style={{ width: windowHeight / 15, height: windowHeight / 15 }}
               />
             </TouchableOpacity>
           </View>
@@ -102,11 +102,11 @@ export default class TempPage extends React.Component {
           <View style={styles.UserStyle}>
             <TouchableOpacity
               onPress={() => this.props.navigation.navigate("User")}
-              style={{ width: windowWidth / 15, height: windowWidth / 15 }}
+              style={{ width: windowHeight / 15, height: windowHeight / 15 }}
             >
               <Image
                 source={this.state.SwitchUser}
-                style={{ width: windowWidth / 15, height: windowWidth / 15 }}
+                style={{ width: windowWidth / 15, height: windowHeight / 15 }}
               />
             </TouchableOpacity>
           </View>
@@ -158,10 +158,12 @@ export default class TempPage extends React.Component {
 
 const styles = StyleSheet.create({
   Topbar: {
-    margin: 10,
+    marginBottom: 10,
     flexDirection: "row",
     alignContent: "center",
     alignItems: "center",
+    backgroundColor: "grey",
+    height: windowHeight / 14,
   },
 
   //Topbar Styles

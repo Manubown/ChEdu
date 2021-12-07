@@ -8,11 +8,9 @@ import chessMove from "../assets/moveSoundEffect.mp3";
 import Piece from "./piece";
 import piecemap from "./piecemap";
 import { useParams } from "react-router-dom";
-import { ColorContext } from "../../context/colorcontext";
-import VideoChatApp from "../../connection/videochat";
 const socket = require("../../connection/socket").socket;
 
-class ChessGame extends React.Component {
+export class ChessGame extends React.Component {
   state = {
     gameState: new Game(this.props.color), //Gets Color [Black/White]
     draggedPieceTargetId: "", // empty string means no piece is being dragged
@@ -263,7 +261,7 @@ const ChessGameWrapper = (props) => {
 
   // get the gameId from the URL here and pass it to the chessGame component as a prop.
   const domainName = "http://localhost:3000";
-  const color = React.useContext(ColorContext);
+  const color = "Black";
   const { gameid } = useParams();
   const [play] = useSound(chessMove);
   const [opponentSocketId, setOpponentSocketId] = React.useState("");
@@ -340,12 +338,6 @@ const ChessGameWrapper = (props) => {
               playAudio={play}
               gameId={gameid}
               color={color.didRedirect}
-            />
-            <VideoChatApp
-              mySocketId={socket.id}
-              opponentSocketId={opponentSocketId}
-              myUserName={props.myUserName}
-              opponentUserName={opponentUserName}
             />
           </div>
           <h4> You: {props.myUserName} </h4>
