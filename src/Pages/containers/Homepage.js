@@ -98,7 +98,7 @@ export default class Homepage extends React.Component {
       this.setState({
         switchValue,
         backgroundColor: "#121212",
-        CurrentColor: "grey",
+        CurrentColor: "white",
         SwitchLogin: loginPictureWhite,
         SwitchRegister: registerPictureWhite,
         SwitchUser: userPictureWhite,

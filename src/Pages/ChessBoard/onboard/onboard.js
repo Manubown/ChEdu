@@ -1,7 +1,7 @@
 import React from "react";
 import { Navigate, Routes } from "react-router-dom";
 import uuid from "react-native-uuid";
-import { ColorContext } from "../context/Colorcontext";
+import { ColorContext } from "../context/colorcontext";
 const socket = require("../connection/socket").socket;
 
 /**
