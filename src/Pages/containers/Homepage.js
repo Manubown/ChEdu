@@ -66,6 +66,7 @@ export default class Homepage extends React.Component {
     StateUserData: UserData,
     RightArrow: arrowRight,
     ChessBoardImage: ChessBoardImage,
+    TextColor: "black",
 
     //DARKMODE
     DarkAccent: "#123df2",
@@ -73,7 +74,7 @@ export default class Homepage extends React.Component {
 
     CurrentColor: "white",
 
-    /*Chess Board Stats */
+    /*Chess Board Stats*/
     gameState: "",
     draggedPieceTargetId: "", // empty string means no piece is being dragged
     playerTurnToMoveIsWhite: true,
@@ -103,6 +104,7 @@ export default class Homepage extends React.Component {
         SwitchRegister: registerPictureWhite,
         SwitchUser: userPictureWhite,
         SunMoon: "🌙",
+        TextColor: "white",
       });
     } else if (switchValue === false) {
       this.setState({
@@ -113,6 +115,7 @@ export default class Homepage extends React.Component {
         SwitchRegister: registerPictureBlack,
         SwitchUser: userPictureBlack,
         SunMoon: "☀️",
+        TextColor: "black",
       });
     }
   };
@@ -487,61 +490,61 @@ export default class Homepage extends React.Component {
             <Image
                 source={this.state.SwitchLogin}
                 style={{
-                width: (windowWidth / 10) * 0.85,
-                height: (windowWidth / 10) * 0.85,
+                width: (windowWidth / 10) * 0.8,
+                height: (windowWidth / 10) * 0.8,
                 color: "white",
               }}
             />
               
             </View>
-            <Text style = {{textAlign: 'center', fontWeight: 'bold'}}>Login</Text>
+            <Text style = {{textAlign: 'center', fontWeight: 'bold', color: this.state.TextColor}}>Login</Text>
           </TouchableOpacity>
-            <View
-              style={
-                ({ backgroundColor: this.state.CurrentColor },
-                styles.MenuShadow)
-              }
-            >
-              <TouchableOpacity
+
+          <TouchableOpacity
                 onPress={() => this.props.navigation.navigate("Register")}
-                style={{
-                  width: (windowWidth / 10) * 0.85,
-                  height: (windowWidth / 10) * 0.85,
-                }}
+                style={{}}
               >
-                <Image
-                  source={this.state.SwitchRegister}
-                  style={{
-                    width: (windowWidth / 10) * 0.85,
-                    height: (windowWidth / 10) * 0.85,
-                    color: "white",
-                  }}
-                />
-              </TouchableOpacity>
-            </View>
-            <View
-              style={
-                ({ backgroundColor: this.state.CurrentColor },
-                styles.MenuShadow)
-              }
-            >
-              <TouchableOpacity
-                onPress={() => this.props.navigation.navigate("Temp")}
-                style={{
-                  width: (windowWidth / 10) * 0.85,
-                  height: (windowWidth / 10) * 0.85,
-                }}
+              <View
+                style={
+                  ({ backgroundColor: this.state.CurrentColor },
+                  styles.MenuShadow)
+                }
               >
-                <Image
-                  source={this.state.SwitchUser}
-                  style={{
-                    width: (windowWidth / 10) * 0.85,
-                    height: (windowWidth / 10) * 0.85,
-                    color: "white",
-                  }}
-                />
-              </TouchableOpacity>
-            </View>
+              
+              <Image
+                source={this.state.SwitchRegister}
+                style={{
+                  width: (windowWidth / 10) * 0.8,
+                  height: (windowWidth / 10) * 0.8,
+                  color: "white",
+                }}
+              />
+              
+              </View>
+              <Text style = {{textAlign: 'center', fontWeight: 'bold', color: this.state.TextColor}}>Register</Text>
+            </TouchableOpacity>
+            
+            <TouchableOpacity
+                onPress={() => this.props.navigation.navigate("User")}
+                style={{}}
+              >
+              <View
+                style={
+                  ({ backgroundColor: this.state.CurrentColor },
+                  styles.MenuShadow)
+                }
+              >
+              <Image
+                source={this.state.SwitchUser}
+                style={{
+                  width: (windowWidth / 10) * 0.8,
+                  height: (windowWidth / 10) * 0.8,
+                  color: "white",
+                }}
+              />
+              </View>
+              <Text style = {{textAlign: 'center', fontWeight: 'bold', color: this.state.TextColor}}>Userprofil</Text>
+            </TouchableOpacity>
           </View>
         </View>
 
