@@ -28,6 +28,7 @@ const MyStack = () => {
           component={HomeScreen}
           options={{ title: "Chedu" }}
         />
+
         <Stack.Screen
           name="Temp"
           component={Temp}
