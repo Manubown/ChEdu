@@ -471,28 +471,31 @@ export default class Homepage extends React.Component {
             </ImageBackground>
           </View>
 
-          {/*Menue Points */}
+          {/*Menu*/}
           <View>
+            <TouchableOpacity
+                  onPress={() => this.props.navigation.navigate("Login")}
+                  style={{}}
+                >
             <View
               style={
                 ({ backgroundColor: this.state.CurrentColor },
                 styles.MenuShadow)
               }
             >
-              <TouchableOpacity
-                onPress={() => this.props.navigation.navigate("Login")}
-                style={{}}
-              >
-                <Image
-                  source={this.state.SwitchLogin}
-                  style={{
-                    width: (windowWidth / 10) * 0.85,
-                    height: (windowWidth / 10) * 0.85,
-                    color: "white",
-                  }}
-                />
-              </TouchableOpacity>
+              
+            <Image
+                source={this.state.SwitchLogin}
+                style={{
+                width: (windowWidth / 10) * 0.85,
+                height: (windowWidth / 10) * 0.85,
+                color: "white",
+              }}
+            />
+              
             </View>
+            <Text style = {{textAlign: 'center', fontWeight: 'bold'}}>Login</Text>
+          </TouchableOpacity>
             <View
               style={
                 ({ backgroundColor: this.state.CurrentColor },
