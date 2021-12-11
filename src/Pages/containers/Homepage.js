@@ -150,11 +150,11 @@ export default class Homepage extends React.Component {
           toValue: width,
           duration: 100,
         }).start(),
+        Animated.spring(translateXTabFour, {
+          toValue: width * 2,
+          duration: 100,
+        }).start(),
       ]);
-      Animated.spring(translateXTabFour, {
-        toValue: width * 2,
-        duration: 100,
-      }).start();
     } else if (active === 2) {
       Animated.parallel([
         Animated.spring(translateXTabOne, {
@@ -305,7 +305,8 @@ export default class Homepage extends React.Component {
                     textAlign: "center",
                   }}
                 >
-                  The most easiest and intuitive way to work your way up to get better at chess!
+                  The most easiest and intuitive way to work your way up to get
+                  better at chess!
                 </Text>
               </View>
             </TouchableOpacity>
@@ -356,7 +357,7 @@ export default class Homepage extends React.Component {
                     <Text
                       style={{ fontSize: windowWidth / 80, color: "white" }}
                     >
-                      Lost games: {" "}
+                      Lost games:{" "}
                     </Text>
                     <Text
                       style={{ fontSize: windowWidth / 80, color: "white" }}
@@ -751,7 +752,7 @@ export default class Homepage extends React.Component {
               }}
             ></Animated.View>
 
-            {/*Online*/}
+            {/*Analysis*/}
             <Animated.View
               style={{
                 justifyContent: "center",
@@ -771,12 +772,7 @@ export default class Homepage extends React.Component {
               <View style={{ marginTop: 20 }}>
                 <Image
                   source={twokings}
-                  style={{
-                    width: 30,
-                    height: 30,
-                    borderRadius: 15,
-                    color: "white",
-                  }}
+                  style={{ width: 30, height: 30, borderRadius: 15 }}
                 />
               </View>
             </Animated.View>
