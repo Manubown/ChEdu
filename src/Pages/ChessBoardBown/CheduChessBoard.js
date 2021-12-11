@@ -7,7 +7,7 @@ import Chessboard from "chessboardjsx";
 class HumanVsHuman extends Component {
   static propTypes = { children: PropTypes.func };
   state = {
-    fen: "start",
+    fen: "start", //auf Lichess nachschauen
     // square styles for active drop square
     dropSquareStyle: {},
     // custom square styles
@@ -21,7 +21,7 @@ class HumanVsHuman extends Component {
   };
 
   componentDidMount() {
-    this.game = new Chess();
+    this.game = new Chess(); //this.state.fen übergeben für Logik
   }
 
   // keep clicked square style and remove hint squares
@@ -194,7 +194,7 @@ const squareStyling = ({ pieceSquare, history }) => {
     [pieceSquare]: { backgroundColor: "#185a5c" },
     ...(history.length && {
       [sourceSquare]: {
-        backgroundColor: "#185a5c",
+        backgroundColor: "#3c8688",
       },
     }),
     ...(history.length && {
