@@ -283,7 +283,7 @@ export default class Homepage extends React.Component {
                     <Text
                       style={{ color: "#00578a", fontSize: windowWidth / 80 }}
                     >
-                      Lern Chess!
+                      Learn to play chess!
                     </Text>
                   </View>
                   {<Image source={cheduLogo} style={styles.Logo} />}
@@ -305,7 +305,7 @@ export default class Homepage extends React.Component {
                     textAlign: "center",
                   }}
                 >
-                  The most easiest and intuitive way to work your way up to get
+                  The easiest and intuitive way to work your way up to get
                   better at chess!
                 </Text>
               </View>
