@@ -354,7 +354,7 @@ export default class Homepage extends React.Component {
                     <Text
                       style={{ fontSize: windowWidth / 80, color: "white" }}
                     >
-                      Los games:
+                      Lost games:
                     </Text>
                     <Text
                       style={{ fontSize: windowWidth / 80, color: "white" }}
