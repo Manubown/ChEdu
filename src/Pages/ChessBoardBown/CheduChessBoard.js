@@ -166,7 +166,7 @@ export default function CheduChessBoard() {
           <Chessboard
             id="humanVsHuman"
             width={320}
-            position={position}
+            position={position} //position zB. (a6: 'kW') ==> König auf a6
             onDrop={onDrop}
             onMouseOverSquare={onMouseOverSquare}
             onMouseOutSquare={onMouseOutSquare}
