@@ -10,3 +10,7 @@ export const UserData = createContext({
   Multiplayer: 0,
   TimeSpend: 0,
 });
+
+export const ChangeUserName = (Username) => {
+  Username;
+};
