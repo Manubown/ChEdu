@@ -58,12 +58,10 @@ export default class TempPage extends React.Component {
         SunMoon: "☀️",
       });
     }
-  }; 
+  };
 
   render() {
-    let {
-      backgroundColor,
-    } = this.state;
+    let { backgroundColor } = this.state;
     return (
       <View
         style={{
@@ -78,24 +76,24 @@ export default class TempPage extends React.Component {
           <View style={styles.LoginStyle}>
             <TouchableOpacity
               onPress={() => this.props.navigation.navigate("Login")}
-              style={{ width: windowWidth / 15, height: windowWidth / 15 }}
+              style={{ width: windowHeight / 15, height: windowHeight / 15 }}
             >
               <Image
                 source={this.state.SwitchLogin}
-                style={{ width: windowWidth / 15, height: windowWidth / 15 }}
+                style={{ width: windowHeight / 15, height: windowHeight / 15 }}
               />
             </TouchableOpacity>
           </View>
-          
+
           {/*Register*/}
           <View style={styles.RegisterStyle}>
             <TouchableOpacity
               onPress={() => this.props.navigation.navigate("Register")}
-              style={{ width: windowWidth / 15, height: windowWidth / 15 }}
+              style={{ width: windowHeight / 15, height: windowHeight / 15 }}
             >
               <Image
                 source={this.state.SwitchRegister}
-                style={{ width: windowWidth / 15, height: windowWidth / 15 }}
+                style={{ width: windowHeight / 15, height: windowHeight / 15 }}
               />
             </TouchableOpacity>
           </View>
@@ -104,11 +102,11 @@ export default class TempPage extends React.Component {
           <View style={styles.UserStyle}>
             <TouchableOpacity
               onPress={() => this.props.navigation.navigate("User")}
-              style={{ width: windowWidth / 15, height: windowWidth / 15 }}
+              style={{ width: windowHeight / 15, height: windowHeight / 15 }}
             >
               <Image
                 source={this.state.SwitchUser}
-                style={{ width: windowWidth / 15, height: windowWidth / 15 }}
+                style={{ width: windowWidth / 15, height: windowHeight / 15 }}
               />
             </TouchableOpacity>
           </View>
@@ -129,7 +127,9 @@ export default class TempPage extends React.Component {
 
         {/*Logo*/}
         <View style={({ flexDirection: "row" }, styles.Column)}>
-          <TouchableOpacity onPress={() => this.props.navigation.navigate("Homepage")}>
+          <TouchableOpacity
+            onPress={() => this.props.navigation.navigate("Homepage")}
+          >
             <View style={styles.BaseShadow}>
               <Text>
                 <Text style={styles.CheduBlue}>Ch</Text>
@@ -148,11 +148,9 @@ export default class TempPage extends React.Component {
             </View>
           </TouchableOpacity>
         </View>
-        
+
         {/*Content*/}
-        <View stlye={{flex:1}}>
-          
-        </View>
+        <View stlye={{ flex: 1 }}></View>
       </View>
     );
   }
@@ -160,40 +158,38 @@ export default class TempPage extends React.Component {
 
 const styles = StyleSheet.create({
   Topbar: {
-    margin: 10,
+    marginBottom: 10,
     flexDirection: "row",
     alignContent: "center",
     alignItems: "center",
+    backgroundColor: "grey",
+    height: windowHeight / 14,
   },
 
   //Topbar Styles
   RightSwitch: {
     position: "absolute",
     right: 0,
-    flexDirection: "row"
+    flexDirection: "row",
   },
 
   LoginStyle: {
     left: 0,
-    flexDirection: "row"
+    flexDirection: "row",
   },
 
-  RegisterStyle:{
-    left: (windowWidth/4),
-    flexDirection: "row"
-  },
-
-  UserStyle:{
+  RegisterStyle: {
     position: "absolute",
-    right: (windowWidth/4),
-    flexDirection: "row"
+    left: windowWidth / 4,
+    flexDirection: "row",
   },
 
-  RegisterStyle:{
+  UserStyle: {
     position: "absolute",
-    left: (windowWidth/4),
-    flexDirection: "row"
+    right: windowWidth / 4,
+    flexDirection: "row",
   },
+
   //Homepage styles
   Column: {
     justifyContent: "center",

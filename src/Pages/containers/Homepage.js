@@ -10,21 +10,31 @@ import {
   ScrollView,
   Dimensions,
   Switch,
+  ImageBackground,
 } from "react-native"; //components
+
+import { UserData } from "../../User/UserData";
 
 import { AppearanceProvider } from "react-native-appearance";
 
-import { Chessboard } from "react-chessboard";
+import OnBoard from "../ChessBoard/onboard/onboard";
 
+import { Stage, Layer } from "react-konva";
 import cheduLogo from "../Pictures/Logo.png";
 import twokings from "../Pictures/two_kings.jpg";
 import loginPictureBlack from "../Pictures/login.png";
+import arrowRight from "../Pictures/right-arrow.jpeg";
 import loginPictureWhite from "../Pictures/login_white.png";
 import registerPictureBlack from "../Pictures/register.png";
 import registerPictureWhite from "../Pictures/register_white.png";
 import userPictureBlack from "../Pictures/user.png";
 import userPictureWhite from "../Pictures/user_white.png";
+import ChessBoardImage from "../ChessBoard/chess/assets/chessBoard.png";
 
+import { white } from "chalk";
+import { ChessGame } from "../ChessBoard/chess/ui/chessgame";
+
+import { RequestLogin } from "../Connection/ApiCommunication";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -53,6 +63,33 @@ export default class Homepage extends React.Component {
     SwitchUser: userPictureBlack,
     SunMoon: "☀️",
     ShadowBackgroundColor: "white",
+    StateUserData: UserData,
+    RightArrow: arrowRight,
+    ChessBoardImage: ChessBoardImage,
+    TextColor: "black",
+
+    //DARKMODE
+    DarkAccent: "#123df2",
+    DarkGrey: "#f324",
+
+    CurrentColor: "white",
+
+    /*Chess Board Stats*/
+    gameState: "",
+    draggedPieceTargetId: "", // empty string means no piece is being dragged
+    playerTurnToMoveIsWhite: true,
+    whiteKingInCheck: false,
+    blackKingInCheck: false,
+
+    /*User Stats*/
+    Benutzername: "Default",
+    Elo: 666,
+    PlayedGames: 11345,
+    WonGames: 8199,
+    LosGames: 3146,
+    SinglePlayer: 7563,
+    Multiplayer: 3782,
+    TimeSpend: "2 Years",
   };
 
   handleSwitchBackground = () => {
@@ -62,19 +99,23 @@ export default class Homepage extends React.Component {
       this.setState({
         switchValue,
         backgroundColor: "#121212",
+        CurrentColor: "white",
         SwitchLogin: loginPictureWhite,
         SwitchRegister: registerPictureWhite,
         SwitchUser: userPictureWhite,
         SunMoon: "🌙",
+        TextColor: "white",
       });
     } else if (switchValue === false) {
       this.setState({
         switchValue,
         backgroundColor: "white",
+        CurrentColor: "white",
         SwitchLogin: loginPictureBlack,
         SwitchRegister: registerPictureBlack,
         SwitchUser: userPictureBlack,
         SunMoon: "☀️",
+        TextColor: "black",
       });
     }
   };
@@ -174,7 +215,6 @@ export default class Homepage extends React.Component {
       ]);
     }
   };
- 
 
   render() {
     let {
@@ -202,46 +242,6 @@ export default class Homepage extends React.Component {
       >
         {/*Topbar*/}
         <View style={styles.Topbar}>
-          {/*Login*/}
-          <View style={styles.LoginStyle}>
-            <TouchableOpacity
-              onPress={() => this.props.navigation.navigate("Login")}
-              style={{ width: windowWidth / 15, height: windowWidth / 15 }}
-            >
-              <Image
-                source={this.state.SwitchLogin}
-                style={{ width: windowWidth / 15, height: windowWidth / 15 }}
-              />
-            </TouchableOpacity>
-          </View>
-          
-          {/*Register*/}
-          <View style={styles.RegisterStyle}>
-            <TouchableOpacity
-              onPress={() => this.props.navigation.navigate("Register")}
-              style={{ width: windowWidth / 15, height: windowWidth / 15 }}
-            >
-              <Image
-                source={this.state.SwitchRegister}
-                style={{ width: windowWidth / 15, height: windowWidth / 15 }}
-              />
-            </TouchableOpacity>
-          </View>
-
-          {/*User*/}
-          <View style={styles.UserStyle}>
-            <TouchableOpacity
-              onPress={() => this.props.navigation.navigate("User")}
-              style={{ width: windowWidth / 15, height: windowWidth / 15 }}
-            >
-              <Image
-                source={this.state.SwitchUser}
-                style={{ width: windowWidth / 15, height: windowWidth / 15 }}
-              />
-            </TouchableOpacity>
-          </View>
-
-          {/*Darkmode Switch*/}
           <View style={styles.RightSwitch}>
             <Text>{this.state.SunMoon}</Text>
             <Switch
@@ -255,31 +255,301 @@ export default class Homepage extends React.Component {
           </View>
         </View>
 
-        {/*Logo*/}
-        <View style={({ flexDirection: "row" }, styles.Column)}>
-          <TouchableOpacity onPress={() => this.props.navigation.navigate("Homepage")}>
-            <View style={styles.BaseShadow}>
-              <Text>
-                <Text style={styles.CheduBlue}>Ch</Text>
-                <Text style={styles.CheduDarkBlue}>Edu</Text>
-              </Text>
-              {<Image source={cheduLogo} style={styles.Logo} />}
-              <Text
+        {/*Side Bar*/}
+        <View
+          style={{
+            flexDirection: "row",
+            alignContent: "center",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          {/*Logo*/}
+          <View style={({ flexDirection: "row" }, styles.Column)}>
+            <TouchableOpacity
+              onPress={() => this.props.navigation.navigate("Homepage")}
+            >
+              <View style={styles.BaseShadow}>
+                <View style={styles.TopBoxLogo}>
+                  <View style={{}}>
+                    <View
+                      style={{
+                        justifyContent: "center",
+                        flexDirection: "row",
+                      }}
+                    >
+                      <Text style={styles.CheduBlue}>Ch</Text>
+                      <Text style={styles.CheduDarkBlue}>Edu</Text>
+                    </View>
+                    <Text
+                      style={{ color: "#00578a", fontSize: windowWidth / 80 }}
+                    >
+                      Lern Chess!
+                    </Text>
+                  </View>
+                  {<Image source={cheduLogo} style={styles.Logo} />}
+                </View>
+
+                <Text
+                  style={{
+                    fontSize: windowWidth / 30,
+                    color: "white",
+                  }}
+                >
+                  Learn to play Chess!
+                </Text>
+                <Text
+                  style={{
+                    fontSize: windowWidth / 50,
+                    padding: 5,
+                    color: "white",
+                    textAlign: "center",
+                  }}
+                >
+                  The most easiest and intuitive way to work your way up to get better at chess!
+                </Text>
+              </View>
+            </TouchableOpacity>
+          </View>
+
+          {/*Statistic + Start Button*/}
+          <View>
+            {/*Statistics*/}
+            <View style={({ flexDirection: "row" }, styles.Stats)}>
+              <View style={styles.StatsShadow}>
+                <View style={styles.TopBoxStats}>
+                  <Text style={{ fontSize: windowWidth / 30, color: "black" }}>
+                    Statistics
+                  </Text>
+                  <Image />
+                </View>
+                <View
+                  style={{ flexDirection: "row", fontSize: windowWidth / 80 }}
+                >
+                  <View
+                    style={{
+                      flexDirection: "column",
+                      width: windowWidth / 10,
+                      height: windowHeight / 10,
+                      textAlign: "right",
+                    }}
+                  >
+                    <Text
+                      style={{ fontSize: windowWidth / 80, color: "white" }}
+                    >
+                      Benutzername:{" "}
+                    </Text>
+                    <Text
+                      style={{ fontSize: windowWidth / 80, color: "white" }}
+                    >
+                      Elo:{" "}
+                    </Text>
+                    <Text
+                      style={{ fontSize: windowWidth / 80, color: "white" }}
+                    >
+                      Played games:{" "}
+                    </Text>
+                    <Text
+                      style={{ fontSize: windowWidth / 80, color: "white" }}
+                    >
+                      Won games:{" "}
+                    </Text>
+                    <Text
+                      style={{ fontSize: windowWidth / 80, color: "white" }}
+                    >
+                      Lost games: {" "}
+                    </Text>
+                    <Text
+                      style={{ fontSize: windowWidth / 80, color: "white" }}
+                    >
+                      Singleplayer:{" "}
+                    </Text>
+                    <Text
+                      style={{ fontSize: windowWidth / 80, color: "white" }}
+                    >
+                      Multiplayer:{" "}
+                    </Text>
+                    <Text
+                      style={{ fontSize: windowWidth / 80, color: "white" }}
+                    >
+                      Time Spend:{" "}
+                    </Text>
+                  </View>
+                  <View
+                    style={{
+                      flexDirection: "column",
+                      width: windowWidth / 10,
+                      textAlign: "left",
+                    }}
+                  >
+                    <Text
+                      style={{ fontSize: windowWidth / 80, color: "white" }}
+                    >
+                      {this.state.Benutzername}
+                    </Text>
+                    <Text
+                      style={{ fontSize: windowWidth / 80, color: "white" }}
+                    >
+                      {this.state.Elo}
+                    </Text>
+                    <Text
+                      style={{ fontSize: windowWidth / 80, color: "white" }}
+                    >
+                      {this.state.PlayedGames}
+                    </Text>
+                    <Text
+                      style={{ fontSize: windowWidth / 80, color: "white" }}
+                    >
+                      {this.state.WonGames}
+                    </Text>
+                    <Text
+                      style={{ fontSize: windowWidth / 80, color: "white" }}
+                    >
+                      {this.state.LosGames}
+                    </Text>
+                    <Text
+                      style={{ fontSize: windowWidth / 80, color: "white" }}
+                    >
+                      {this.state.SinglePlayer}
+                    </Text>
+                    <Text
+                      style={{ fontSize: windowWidth / 80, color: "white" }}
+                    >
+                      {this.state.Multiplayer}
+                    </Text>
+                    <Text
+                      style={{ fontSize: windowWidth / 80, color: "white" }}
+                    >
+                      {this.state.TimeSpend}
+                    </Text>
+                  </View>
+                </View>
+              </View>
+            </View>
+
+            {/*Start Game Button */}
+
+            <ImageBackground
+              style={styles.StartGameButtonShadow}
+              source={ChessBoardImage}
+              resizeMode="cover"
+            >
+              <TouchableOpacity
+                onPress={() => RequestLogin("Manubown", "Bown12345")}
+              >
+                <View
+                  style={{
+                    backgroundColor: "white",
+                    width: (windowWidth / 10) * 1,
+                    height: (windowWidth / 10) * 1,
+                  }}
+                >
+                  <Image
+                    source={this.state.RightArrow}
+                    style={{
+                      width: (windowWidth / 10) * 1,
+                      height: (windowWidth / 10) * 1,
+                    }}
+                  />
+                </View>
+              </TouchableOpacity>
+              <View
                 style={{
-                  marginTop: windowHeight / 20,
-                  marginBottom: windowHeight / 20,
-                  fontSize: windowWidth / 30,
+                  backgroundColor: "rgba(52, 52, 52, 0.8)",
+                  borderTopRightRadius: 20,
+                  borderBottomRightRadius: 20,
                 }}
               >
-                Learn to play chess!
-              </Text>
+                <Text
+                  style={{
+                    fontSize: windowWidth / 50,
+                    color: "white",
+                    margin: 10,
+                    textAlign: "center",
+                  }}
+                >
+                  Start Game!
+                </Text>
+              </View>
+            </ImageBackground>
+          </View>
+
+          {/*Menu*/}
+          <View>
+            <TouchableOpacity
+                  onPress={() => this.props.navigation.navigate("Login")}
+                  style={{}}
+                >
+            <View
+              style={
+                ({ backgroundColor: this.state.CurrentColor },
+                styles.MenuShadow)
+              }
+            >
+              
+            <Image
+                source={this.state.SwitchLogin}
+                style={{
+                width: (windowWidth / 10) * 0.8,
+                height: (windowWidth / 10) * 0.8,
+                color: "white",
+              }}
+            />
+              
             </View>
+            <Text style = {{textAlign: 'center', fontWeight: 'bold', color: this.state.TextColor}}>Login</Text>
           </TouchableOpacity>
+
+          <TouchableOpacity
+                onPress={() => this.props.navigation.navigate("Register")}
+                style={{}}
+              >
+              <View
+                style={
+                  ({ backgroundColor: this.state.CurrentColor },
+                  styles.MenuShadow)
+                }
+              >
+              
+              <Image
+                source={this.state.SwitchRegister}
+                style={{
+                  width: (windowWidth / 10) * 0.8,
+                  height: (windowWidth / 10) * 0.8,
+                  color: "white",
+                }}
+              />
+              
+              </View>
+              <Text style = {{textAlign: 'center', fontWeight: 'bold', color: this.state.TextColor}}>Register</Text>
+            </TouchableOpacity>
+            
+            <TouchableOpacity
+                onPress={() => this.props.navigation.navigate("User")}
+                style={{}}
+              >
+              <View
+                style={
+                  ({ backgroundColor: this.state.CurrentColor },
+                  styles.MenuShadow)
+                }
+              >
+              <Image
+                source={this.state.SwitchUser}
+                style={{
+                  width: (windowWidth / 10) * 0.8,
+                  height: (windowWidth / 10) * 0.8,
+                  color: "white",
+                }}
+              />
+              </View>
+              <Text style = {{textAlign: 'center', fontWeight: 'bold', color: this.state.TextColor}}>Userprofil</Text>
+            </TouchableOpacity>
+          </View>
         </View>
-        
+
         {/*Content*/}
         <View style={{ flex: 1 }}>
-          
           {/*Scroll Bar*/}
           <View
             style={{
@@ -295,6 +565,7 @@ export default class Homepage extends React.Component {
                 marginBottom: 20,
                 height: 36,
                 position: "relative",
+                backgroundColor: this.state.CurrentColor,
               }}
             >
               <Animated.View
@@ -343,8 +614,9 @@ export default class Homepage extends React.Component {
                   alignItems: "center",
                   borderWidth: 1,
                   borderColor: "#007aff",
-                  borderRadius: 4,
+
                   borderLeftWidth: 0,
+                  borderRightWidth: 0,
                   borderTopLeftRadius: 0,
                   borderBottomLeftRadius: 0,
                 }}
@@ -368,8 +640,9 @@ export default class Homepage extends React.Component {
                   alignItems: "center",
                   borderWidth: 1,
                   borderColor: "#007aff",
-                  borderRadius: 4,
+
                   borderLeftWidth: 0,
+                  borderRightWidth: 0,
                   borderTopLeftRadius: 0,
                   borderBottomLeftRadius: 0,
                 }}
@@ -477,26 +750,11 @@ export default class Homepage extends React.Component {
                   },
                 ],
               }}
-            >
-              <View style={{ flexGrow: 1 }}>
-                <View
-                  style={{
-                    flexGrow: 1,
-                    justifyContent: "center",
-                    alignItems: "center",
-                  }}
-                >
-                  <View style={{ flexDirection: "row" }}>
-                    {/*Chessboard*/}
-                  </View>
-                </View>
-              </View>
-            </Animated.View>
+            ></Animated.View>
 
             {/*Online*/}
             <Animated.View
               style={{
-                
                 justifyContent: "center",
                 alignItems: "center",
                 //Transform TODO
@@ -514,7 +772,12 @@ export default class Homepage extends React.Component {
               <View style={{ marginTop: 20 }}>
                 <Image
                   source={twokings}
-                  style={{ width: 30, height: 30, borderRadius: 15 }}
+                  style={{
+                    width: 30,
+                    height: 30,
+                    borderRadius: 15,
+                    color: "white",
+                  }}
                 />
               </View>
             </Animated.View>
@@ -526,38 +789,60 @@ export default class Homepage extends React.Component {
 }
 
 const styles = StyleSheet.create({
+  TopBoxLogo: {
+    width: (windowWidth / 10) * 3,
+    backgroundColor: "white",
+    flexDirection: "row",
+    padding: 10,
+    justifyContent: "space-around",
+  },
+  TopBoxStats: {
+    width: (windowWidth / 10) * 2.8,
+    backgroundColor: "white",
+    flexDirection: "row",
+    padding: 10,
+    justifyContent: "center",
+  },
+
   Topbar: {
-    margin: 10,
+    marginBottom: 10,
     flexDirection: "row",
     alignContent: "center",
     alignItems: "center",
+    height: windowHeight / 14,
   },
 
-//Topbar Styles
+  //Topbar Styles
   RightSwitch: {
     position: "absolute",
     right: 0,
-    flexDirection: "row"
+    flexDirection: "row",
   },
 
   LoginStyle: {
     left: 0,
-    flexDirection: "row"
+    flexDirection: "row",
   },
 
-  RegisterStyle:{
+  RegisterStyle: {
     position: "absolute",
-    left: (windowWidth/4),
-    flexDirection: "row"
+    left: windowWidth / 4,
+    flexDirection: "row",
   },
 
-  UserStyle:{
+  UserStyle: {
     position: "absolute",
-    right: (windowWidth/4),
-    flexDirection: "row"
+    right: windowWidth / 4,
+    flexDirection: "row",
   },
 
   //Homepage Styles
+
+  Stats: {
+    justifyContent: "center",
+    alignItems: "center",
+  },
+
   Column: {
     justifyContent: "center",
     alignItems: "center",
@@ -568,8 +853,8 @@ const styles = StyleSheet.create({
   },
 
   Logo: {
-    width: windowWidth / 6.85,
-    height: windowWidth / 6.85,
+    width: windowWidth / 8,
+    height: windowWidth / 8,
   },
 
   TwoKings: {
@@ -579,26 +864,90 @@ const styles = StyleSheet.create({
   },
 
   CheduBlue: {
+    margin: 0,
+    padding: 0,
     color: "#00578a",
     fontSize: windowWidth / 20,
     fontWeight: "bold",
   },
   CheduDarkBlue: {
+    padding: 0,
+    margin: 0,
     color: "#0e113f",
     fontSize: windowWidth / 20,
     fontWeight: "bold",
   },
 
   BaseShadow: {
-    width: windowWidth / 2,
-    borderRadius: 100,
+    overflow: "hidden",
+    margin: (windowWidth / 10) * 0.1,
+    width: (windowWidth / 10) * 3,
+    height: (windowWidth / 10) * 3,
+    borderRadius: 20,
     alignItems: "center",
     backgroundColor: "#328da8",
     shadowColor: "#000",
     shadowOffset: {
-      width: 10,
-      height: 20,
+      width: 0,
+      height: 2,
     },
+
+    shadowOpacity: 0.23,
+    shadowRadius: 5,
+    elevation: 4,
+  },
+
+  StatsShadow: {
+    overflow: "hidden",
+    margin: (windowWidth / 10) * 0.1,
+    width: (windowWidth / 10) * 2.8,
+    height: (windowWidth / 10) * 1.8,
+    borderRadius: 20,
+    alignItems: "center",
+    backgroundColor: "#00578a",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+
+    shadowOpacity: 0.23,
+    shadowRadius: 5,
+    elevation: 4,
+  },
+
+  StartGameButtonShadow: {
+    flexDirection: "row",
+    overflow: "hidden",
+    margin: (windowWidth / 10) * 0.1,
+    width: (windowWidth / 10) * 2.8,
+    height: (windowWidth / 10) * 1,
+    borderRadius: 20,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+
+    shadowOpacity: 0.23,
+    shadowRadius: 5,
+    elevation: 4,
+  },
+  MenuShadow: {
+    flexDirection: "row",
+    overflow: "hidden",
+    margin: (windowWidth / 10) * 0.1,
+    width: (windowWidth / 10) * 0.85,
+    height: (windowWidth / 10) * 0.85,
+    borderRadius: 20,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+
     shadowOpacity: 0.23,
     shadowRadius: 5,
     elevation: 4,

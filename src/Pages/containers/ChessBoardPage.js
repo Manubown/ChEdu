@@ -16,6 +16,7 @@ import registerPictureBlack from "../Pictures/register.png";
 import registerPictureWhite from "../Pictures/register_white.png";
 import userPictureBlack from "../Pictures/user.png";
 import userPictureWhite from "../Pictures/user_white.png";
+import chess from "../ChessBoard/chess/model/chess";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -58,12 +59,10 @@ export default class TempPage extends React.Component {
         SunMoon: "☀️",
       });
     }
-  }; 
+  };
 
   render() {
-    let {
-      backgroundColor,
-    } = this.state;
+    let { backgroundColor } = this.state;
     return (
       <View
         style={{
@@ -86,7 +85,7 @@ export default class TempPage extends React.Component {
               />
             </TouchableOpacity>
           </View>
-          
+
           {/*Register*/}
           <View style={styles.RegisterStyle}>
             <TouchableOpacity
@@ -129,7 +128,9 @@ export default class TempPage extends React.Component {
 
         {/*Logo*/}
         <View style={({ flexDirection: "row" }, styles.Column)}>
-          <TouchableOpacity onPress={() => this.props.navigation.navigate("Homepage")}>
+          <TouchableOpacity
+            onPress={() => this.props.navigation.navigate("Homepage")}
+          >
             <View style={styles.BaseShadow}>
               <Text>
                 <Text style={styles.CheduBlue}>Ch</Text>
@@ -148,11 +149,9 @@ export default class TempPage extends React.Component {
             </View>
           </TouchableOpacity>
         </View>
-        
+
         {/*Content*/}
-        <View stlye={{flex:1}}>
-          
-        </View>
+        <View stlye={{ flex: 1 }}>chess.getBoard();</View>
       </View>
     );
   }
@@ -170,29 +169,29 @@ const styles = StyleSheet.create({
   RightSwitch: {
     position: "absolute",
     right: 0,
-    flexDirection: "row"
+    flexDirection: "row",
   },
 
   LoginStyle: {
     left: 0,
-    flexDirection: "row"
+    flexDirection: "row",
   },
 
-  RegisterStyle:{
-    left: (windowWidth/4),
-    flexDirection: "row"
+  RegisterStyle: {
+    left: windowWidth / 4,
+    flexDirection: "row",
   },
 
-  UserStyle:{
+  UserStyle: {
     position: "absolute",
-    right: (windowWidth/4),
-    flexDirection: "row"
+    right: windowWidth / 4,
+    flexDirection: "row",
   },
 
-  RegisterStyle:{
+  RegisterStyle: {
     position: "absolute",
-    left: (windowWidth/4),
-    flexDirection: "row"
+    left: windowWidth / 4,
+    flexDirection: "row",
   },
   //Homepage styles
   Column: {

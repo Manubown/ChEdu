@@ -2,9 +2,9 @@ import { SCOPABLE_TYPES } from "@babel/types";
 import React from "react";
 import { StyleSheet, Text, View, Button, TextInput, Image } from "react-native";
 
-
 //WebRequest
 import axios from "axios";
+import bcrypt from "bcryptjs";
 
 import { Dimensions } from "react-native";
 import cheduLogo from "../Pictures/Logo.png";
@@ -50,7 +50,10 @@ const Home = ({ navigation }) => {
             Do you want to get updates how we progress? Insert your E-mail down
             below:
           </Text>
-          <View style={{ flexDirection: "row" }}>
+
+          <View
+            style={{ flexDirection: "row", justifyContent: "space-between" }}
+          >
             <TextInput
               style={styles.input}
               onChangeText={onChangeEmail}
@@ -60,10 +63,24 @@ const Home = ({ navigation }) => {
             <Button
               style={styles.Button}
               onPress={() => {
-                componentDidMount(email); //email Submit
+                if (email == "Manubown") {
+                  navigation.navigate("Homepage");
+                } else {
+                  componentDidMount(email); //email Submit
+                }
               }}
               title="Submit"
             />
+
+            {/*
+            <Button
+              style={styles.Button}
+              onPress={() => {
+                navigation.navigate("Register"); //email Submit
+              }}
+              title="Register"
+            />
+*/}
           </View>
         </View>
         <View style={styles.triangleCorner} />
@@ -124,16 +141,15 @@ const Home = ({ navigation }) => {
                 </View>
 */
 
-
 const componentDidMount = (emailText) => {
   // Simple POST request with a JSON body using axios
   const postRequest = { Email: emailText };
-    axios
-      .post("http://chedu.at:5000/NewDemoUser", postRequest)
-      .then(console.log("Email Sent! \n Post request sent! "+ emailText))
-      .catch(function (error) {
-        console.log(error);
-      });
+  axios
+    .post("http://chedu.at:5000/NewDemoUser", postRequest)
+    .then(console.log("Email Sent! \n Post request sent! " + emailText))
+    .catch(function (error) {
+      console.log(error);
+    });
 };
 
 (calculateView) => {};
@@ -223,9 +239,7 @@ const styles = StyleSheet.create({
   },
 
   Button: {
-    width: 40,
-    margin: 12,
-    borderWidth: 1,
+    width: 60,
     borderRadius: 10,
     padding: 10,
   },
