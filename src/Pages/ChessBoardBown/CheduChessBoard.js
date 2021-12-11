@@ -40,7 +40,7 @@ class HumanVsHuman extends Component {
           ...{
             [c]: {
               background:
-                "radial-gradient(circle, #fffc00 36%, transparent 40%)",
+                "radial-gradient(circle, #185a5c 36%, transparent 40%)",
               borderRadius: "50%",
             },
           },
@@ -101,7 +101,7 @@ class HumanVsHuman extends Component {
       dropSquareStyle:
         square === "e4" || square === "d4" || square === "e5" || square === "d5"
           ? { backgroundColor: "cornFlowerBlue" }
-          : { boxShadow: "inset 0 0 1px 4px rgb(255, 255, 0)" },
+          : { boxShadow: "inset 0 0 1px 4px #185a5c" },
     });
   };
 
@@ -172,7 +172,7 @@ export default function CheduChessBoard() {
             onMouseOutSquare={onMouseOutSquare}
             boardStyle={{
               borderRadius: "5px",
-              boxShadow: `0 5px 15px rgba(0, 0, 0, 0.5)`,
+              boxShadow: `0 5px 15px #185a5c`,
             }}
             squareStyles={squareStyles}
             dropSquareStyle={dropSquareStyle}
@@ -191,15 +191,15 @@ const squareStyling = ({ pieceSquare, history }) => {
   const targetSquare = history.length && history[history.length - 1].to;
 
   return {
-    [pieceSquare]: { backgroundColor: "rgba(255, 255, 0, 0.4)" },
+    [pieceSquare]: { backgroundColor: "#185a5c" },
     ...(history.length && {
       [sourceSquare]: {
-        backgroundColor: "rgba(255, 255, 0, 0.4)",
+        backgroundColor: "#185a5c",
       },
     }),
     ...(history.length && {
       [targetSquare]: {
-        backgroundColor: "rgba(255, 255, 0, 0.4)",
+        backgroundColor: "#185a5c",
       },
     }),
   };
