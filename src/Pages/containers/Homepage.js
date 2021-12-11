@@ -306,7 +306,7 @@ export default class Homepage extends React.Component {
                     textAlign: "center",
                   }}
                 >
-                  The most easiest and intuitive way to work your way up to get better at chess!
+                  The easiest and intuitive way to work your way up to get better at chess!
                 </Text>
               </View>
             </TouchableOpacity>
