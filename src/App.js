@@ -19,14 +19,14 @@ const MyStack = () => {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
-          name="Home"
-          component={HomeScreen}
-          options={{ title: "Chedu" }}
-        />
-        <Stack.Screen
           name="Homepage"
           component={Homepage}
           options={{ title: "ChEdu_Home" }}
+        />
+        <Stack.Screen
+          name="Home"
+          component={HomeScreen}
+          options={{ title: "Chedu" }}
         />
 
         <Stack.Screen

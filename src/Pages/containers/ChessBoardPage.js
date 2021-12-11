@@ -16,7 +16,8 @@ import registerPictureBlack from "../Pictures/register.png";
 import registerPictureWhite from "../Pictures/register_white.png";
 import userPictureBlack from "../Pictures/user.png";
 import userPictureWhite from "../Pictures/user_white.png";
-import chess from "../ChessBoard/chess/model/chess";
+
+import CheduChessBoard from "../ChessBoardBown/CheduChessBoard";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -151,7 +152,9 @@ export default class TempPage extends React.Component {
         </View>
 
         {/*Content*/}
-        <View stlye={{ flex: 1 }}>chess.getBoard();</View>
+        <View stlye={{ flex: 1 }}>
+          <CheduChessBoard />
+        </View>
       </View>
     );
   }

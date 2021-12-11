@@ -17,7 +17,7 @@ import { UserData } from "../../User/UserData";
 
 import { AppearanceProvider } from "react-native-appearance";
 
-import OnBoard from "../ChessBoard/onboard/onboard";
+import CheduChessBoard from "../ChessBoardBown/CheduChessBoard";
 
 import { Stage, Layer } from "react-konva";
 import cheduLogo from "../Pictures/Logo.png";
@@ -29,10 +29,9 @@ import registerPictureBlack from "../Pictures/register.png";
 import registerPictureWhite from "../Pictures/register_white.png";
 import userPictureBlack from "../Pictures/user.png";
 import userPictureWhite from "../Pictures/user_white.png";
-import ChessBoardImage from "../ChessBoard/chess/assets/chessBoard.png";
+import ChessBoardImage from "../Pictures/chessBoard.png";
 
 import { white } from "chalk";
-import { ChessGame } from "../ChessBoard/chess/ui/chessgame";
 
 import { RequestLogin } from "../Connection/ApiCommunication";
 
@@ -433,7 +432,7 @@ export default class Homepage extends React.Component {
               resizeMode="cover"
             >
               <TouchableOpacity
-                onPress={() => RequestLogin("Manubown", "Bown12345")}
+                onPress={() => this.props.navigation.navigate("ChessBoard")}
               >
                 <View
                   style={{
@@ -651,7 +650,7 @@ export default class Homepage extends React.Component {
                 }
               >
                 <Text style={{ color: active === 2 ? "#fff" : "#007aff" }}>
-                  Chessboard
+                  ChessBoard
                 </Text>
               </TouchableOpacity>
 
