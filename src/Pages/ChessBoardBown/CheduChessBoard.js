@@ -20,7 +20,7 @@ class HumanVsHuman extends Component {
     // currently clicked square
     square: "",
     // array of past game moves
-    history: [],
+    history: [], //pgn
   };
 
   componentDidMount() {
