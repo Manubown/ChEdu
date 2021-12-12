@@ -13,6 +13,7 @@ import {
   ImageBackground,
 } from "react-native"; //components
 
+
 import { UserData } from "../../User/UserData";
 
 import { AppearanceProvider } from "react-native-appearance";
@@ -22,7 +23,7 @@ import CheduChessBoard from "../ChessBoardBown/CheduChessBoard";
 import { Stage, Layer } from "react-konva";
 import cheduLogo from "../Pictures/Logo.png";
 import twokings from "../Pictures/two_kings.jpg";
-import opening_concepts from "../Pictures/opening_conepts.jpg";
+import opening_concepts from "../Pictures/opening_concepts.jpg";
 import loginPictureBlack from "../Pictures/login.png";
 import arrowRight from "../Pictures/right-arrow.jpeg";
 import loginPictureWhite from "../Pictures/login_white.png";
@@ -56,6 +57,8 @@ export default class Homepage extends React.Component {
     translateXTabThree: new Animated.Value(width * 2),
     translateXTabFour: new Animated.Value(width * 3),
     translateY: -1000,
+    translateOnline: -1000,
+    translateChessboard: -1000,
     switchValue: false,
     backgroundColor: "white",
     SwitchLogin: loginPictureBlack,
@@ -91,6 +94,7 @@ export default class Homepage extends React.Component {
     Multiplayer: 3782,
     TimeSpend: "2 Years",
   };
+
 
   handleSwitchBackground = () => {
     let { switchValue } = this.state;
@@ -229,6 +233,8 @@ export default class Homepage extends React.Component {
       translateXTabThree,
       translateXTabFour,
       translateY,
+      translateOnline,
+      translateChessboard,
       backgroundColor,
     } = this.state;
 
@@ -429,7 +435,6 @@ export default class Homepage extends React.Component {
             </View>
 
             {/*Start Game Button */}
-
             <ImageBackground
               style={styles.StartGameButtonShadow}
               source={ChessBoardImage}
@@ -701,12 +706,29 @@ export default class Homepage extends React.Component {
                 this.setState({ translateY: event.nativeEvent.layout.height })
               }
             >       
-              <View style={{ marginTop: 20 }}>
+              <View style={{ marginTop: 20, marginLeft: 0}}>
+                {/*Opening Concepts*/}
                 <ImageBackground
-                  source={opening_concepts}
-                  style={Opening_concepts}
+                  source = {opening_concepts}
+                  style = {styles.Opening_Concepts}
                 >
-                  <Text>Opening Concepts</Text>
+                  <View
+                    style={{
+                      backgroundColor: "rgba(52, 52, 52, 0.8)",
+                      borderRadius: 20,
+                    }}
+                  >
+                    <Text
+                      style={{
+                        fontSize: windowWidth / 50,
+                        color: "white",
+                        margin: 10,
+                        textAlign: "center",
+                      }}
+                    >
+                      Opening Concepts
+                    </Text>
+                  </View>
                 </ImageBackground>
               </View>
             </Animated.View>
@@ -726,8 +748,28 @@ export default class Homepage extends React.Component {
                   },
                 ],
               }}
+              onLayout={(event) =>
+                this.setState({ translateOnline: event.nativeEvent.layout.height })
+              }
             >
               <Text>Tab Two</Text>
+              <Text>Tab Two</Text>
+              <Text>Tab Two</Text>
+              <Text>Tab Two</Text>
+              <Text>Tab Two</Text>
+              <Text>Tab Two</Text>
+              <Text>Tab Two</Text>
+              <Text>Tab Two</Text>
+              <Text>Tab Two</Text>
+              <Text>Tab Two</Text>
+              <Text>Tab Two</Text>
+              <Text>Tab Two</Text>
+              <Text>Tab Two</Text>
+              <Text>Tab Two</Text>
+              <Text>Tab Two</Text>
+              <Text>Tab Two</Text>
+              <Text>Tab Two</Text>
+
               <View style={{ marginTop: 20 }}>
                 <Image
                   source={twokings}
@@ -747,11 +789,16 @@ export default class Homepage extends React.Component {
                     translateX: translateXTabThree,
                   },
                   {
-                    translateY: -translateY,
+                    translateY: -translateY-translateOnline,
                   },
                 ],
               }}
-            ></Animated.View>
+              onLayout={(event) =>
+                this.setState({ translateChessboard: event.nativeEvent.layout.height })
+              }
+            >
+              <Text>ddd</Text>
+            </Animated.View>
 
             {/*Analysis*/}
             <Animated.View
@@ -764,7 +811,7 @@ export default class Homepage extends React.Component {
                     translateX: translateXTabFour,
                   },
                   {
-                    translateY: -translateY,
+                    translateY: -translateY-translateOnline-translateChessboard,
                   },
                 ],
               }}
@@ -950,22 +997,13 @@ const styles = StyleSheet.create({
   },
 
   Opening_Concepts: {
-    flexDirection: "row",
     overflow: "hidden",
     margin: (windowWidth / 10) * 0.1,
     width: (windowWidth / 10) * 2.8,
     height: (windowWidth / 10) * 1,
     borderRadius: 20,
     alignItems: "center",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-
-    shadowOpacity: 0.23,
-    shadowRadius: 5,
-    elevation: 4,
+    justifyContent: 'center',
   },
 
   Buttons: {
