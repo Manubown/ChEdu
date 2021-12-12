@@ -22,6 +22,7 @@ import CheduChessBoard from "../ChessBoardBown/CheduChessBoard";
 import { Stage, Layer } from "react-konva";
 import cheduLogo from "../Pictures/Logo.png";
 import twokings from "../Pictures/two_kings.jpg";
+import opening_concepts from "../Pictures/opening_conepts.jpg";
 import loginPictureBlack from "../Pictures/login.png";
 import arrowRight from "../Pictures/right-arrow.jpeg";
 import loginPictureWhite from "../Pictures/login_white.png";
@@ -699,14 +700,14 @@ export default class Homepage extends React.Component {
               onLayout={(event) =>
                 this.setState({ translateY: event.nativeEvent.layout.height })
               }
-            >
-              <Text>d</Text>
-              <Text>d</Text>
+            >       
               <View style={{ marginTop: 20 }}>
-                <Image
-                  source={twokings}
-                  style={{ width: 30, height: 30, borderRadius: 15 }}
-                />
+                <ImageBackground
+                  source={opening_concepts}
+                  style={Opening_concepts}
+                >
+                  <Text>Opening Concepts</Text>
+                </ImageBackground>
               </View>
             </Animated.View>
 
@@ -935,6 +936,25 @@ const styles = StyleSheet.create({
     margin: (windowWidth / 10) * 0.1,
     width: (windowWidth / 10) * 0.85,
     height: (windowWidth / 10) * 0.85,
+    borderRadius: 20,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+
+    shadowOpacity: 0.23,
+    shadowRadius: 5,
+    elevation: 4,
+  },
+
+  Opening_Concepts: {
+    flexDirection: "row",
+    overflow: "hidden",
+    margin: (windowWidth / 10) * 0.1,
+    width: (windowWidth / 10) * 2.8,
+    height: (windowWidth / 10) * 1,
     borderRadius: 20,
     alignItems: "center",
     shadowColor: "#000",
