@@ -25,7 +25,7 @@ import cheduLogo from "../Pictures/Logo.png";
 import twokings from "../Pictures/two_kings.jpg";
 import opening_concepts from "../Pictures/opening_concepts.jpg";
 import chess_basics from "../Pictures/chess_basics.jpg";
-import strategy_concepts from "../Pictures/chess.jpg";
+import strategy_concepts from "../Pictures/strategy_concepts.jpg";
 import loginPictureBlack from "../Pictures/login.png";
 import arrowRight from "../Pictures/right-arrow.jpeg";
 import loginPictureWhite from "../Pictures/login_white.png";
