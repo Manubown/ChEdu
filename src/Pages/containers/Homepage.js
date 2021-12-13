@@ -24,6 +24,8 @@ import { Stage, Layer } from "react-konva";
 import cheduLogo from "../Pictures/Logo.png";
 import twokings from "../Pictures/two_kings.jpg";
 import opening_concepts from "../Pictures/opening_concepts.jpg";
+import chess_basics from "../Pictures/chess_basics.jpg";
+import strategy_concepts from "../Pictures/chess.jpg";
 import loginPictureBlack from "../Pictures/login.png";
 import arrowRight from "../Pictures/right-arrow.jpeg";
 import loginPictureWhite from "../Pictures/login_white.png";
@@ -707,29 +709,79 @@ export default class Homepage extends React.Component {
               }
             >       
               <View style={{ marginTop: 20, marginLeft: 0}}>
-                {/*Opening Concepts*/}
-                <ImageBackground
-                  source = {opening_concepts}
-                  style = {styles.Opening_Concepts}
-                >
-                  <View
-                    style={{
-                      backgroundColor: "rgba(52, 52, 52, 0.8)",
-                      borderRadius: 20,
-                    }}
+                <View style = {{flexDirection:"row"}}>
+                  {/*Chess Basics*/}
+                  <ImageBackground
+                    source = {chess_basics}
+                    style = {styles.Opening_Concepts}
                   >
-                    <Text
+                    <View
                       style={{
-                        fontSize: windowWidth / 50,
-                        color: "white",
-                        margin: 10,
-                        textAlign: "center",
+                        backgroundColor: "rgba(52, 52, 52, 0.8)",
+                        borderRadius: 20,
                       }}
                     >
-                      Opening Concepts
-                    </Text>
-                  </View>
-                </ImageBackground>
+                      <Text
+                        style={{
+                          fontSize: windowWidth / 50,
+                          color: "white",
+                          margin: 10,
+                          textAlign: "center",
+                        }}
+                      >
+                        Chess basics
+                      </Text>
+                    </View>
+                  </ImageBackground>
+                  
+                  {/*Strategic Conncepts*/}
+                  <ImageBackground
+                    source = {strategy_concepts}
+                    style = {styles.Opening_Concepts}
+                  >
+                    <View
+                      style={{
+                        backgroundColor: "rgba(52, 52, 52, 0.8)",
+                        borderRadius: 20,
+                      }}
+                    >
+                      <Text
+                        style={{
+                          fontSize: windowWidth / 50,
+                          color: "white",
+                          margin: 10,
+                          textAlign: "center",
+                        }}
+                      >
+                        Strategic Concepts
+                      </Text>
+                    </View>
+                  </ImageBackground>
+
+                  {/*Opening Concepts*/}
+                  <ImageBackground
+                    source = {opening_concepts}
+                    style = {styles.Opening_Concepts}
+                  >
+                    <View
+                      style={{
+                        backgroundColor: "rgba(52, 52, 52, 0.8)",
+                        borderRadius: 20,
+                      }}
+                    >
+                      <Text
+                        style={{
+                          fontSize: windowWidth / 50,
+                          color: "white",
+                          margin: 10,
+                          textAlign: "center",
+                        }}
+                      >
+                        Opening Concepts
+                      </Text>
+                    </View>
+                  </ImageBackground>
+                </View>
               </View>
             </Animated.View>
 
