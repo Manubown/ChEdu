@@ -1,8 +1,11 @@
 import React, { Component } from "react";
+import { Dimensions } from "react-native";
 import PropTypes from "prop-types";
 import * as Chess from "chess.js"; // import Chess from  "chess.js"(default) if recieving an error about new Chess() not being a constructor
 
 import Chessboard from "chessboardjsx";
+
+const windowheight = Dimensions.get("window").height;
 
 class HumanVsHuman extends Component {
   static propTypes = { children: PropTypes.func };
@@ -17,7 +20,7 @@ class HumanVsHuman extends Component {
     // currently clicked square
     square: "",
     // array of past game moves
-    history: [],
+    history: [], //pgn
   };
 
   componentDidMount() {
@@ -165,7 +168,7 @@ export default function CheduChessBoard() {
         }) => (
           <Chessboard
             id="humanVsHuman"
-            width={320}
+            width={(windowheight/4)*3}
             position={position} //position zB. (a6: 'kW') ==> König auf a6
             onDrop={onDrop}
             onMouseOverSquare={onMouseOverSquare}

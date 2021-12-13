@@ -72,88 +72,9 @@ export default class TempPage extends React.Component {
           backgroundColor: this.state.backgroundColor,
         }}
       >
-        {/*Topbar*/}
-        <View style={styles.Topbar}>
-          {/*Login*/}
-          <View style={styles.LoginStyle}>
-            <TouchableOpacity
-              onPress={() => this.props.navigation.navigate("Login")}
-              style={{ width: windowWidth / 15, height: windowWidth / 15 }}
-            >
-              <Image
-                source={this.state.SwitchLogin}
-                style={{ width: windowWidth / 15, height: windowWidth / 15 }}
-              />
-            </TouchableOpacity>
-          </View>
-
-          {/*Register*/}
-          <View style={styles.RegisterStyle}>
-            <TouchableOpacity
-              onPress={() => this.props.navigation.navigate("Register")}
-              style={{ width: windowWidth / 15, height: windowWidth / 15 }}
-            >
-              <Image
-                source={this.state.SwitchRegister}
-                style={{ width: windowWidth / 15, height: windowWidth / 15 }}
-              />
-            </TouchableOpacity>
-          </View>
-
-          {/*User*/}
-          <View style={styles.UserStyle}>
-            <TouchableOpacity
-              onPress={() => this.props.navigation.navigate("User")}
-              style={{ width: windowWidth / 15, height: windowWidth / 15 }}
-            >
-              <Image
-                source={this.state.SwitchUser}
-                style={{ width: windowWidth / 15, height: windowWidth / 15 }}
-              />
-            </TouchableOpacity>
-          </View>
-
-          {/*Darkmode Switch*/}
-          <View style={styles.RightSwitch}>
-            <Text>{this.state.SunMoon}</Text>
-            <Switch
-              value={this.state.switchValue}
-              onValueChange={(switchValue) =>
-                this.setState({ switchValue }, () =>
-                  this.handleSwitchBackground()
-                )
-              }
-            />
-          </View>
-        </View>
-
-        {/*Logo*/}
-        <View style={({ flexDirection: "row" }, styles.Column)}>
-          <TouchableOpacity
-            onPress={() => this.props.navigation.navigate("Homepage")}
-          >
-            <View style={styles.BaseShadow}>
-              <Text>
-                <Text style={styles.CheduBlue}>Ch</Text>
-                <Text style={styles.CheduDarkBlue}>Edu</Text>
-              </Text>
-              {<Image source={cheduLogo} style={styles.Logo} />}
-              <Text
-                style={{
-                  marginTop: windowHeight / 20,
-                  marginBottom: windowHeight / 20,
-                  fontSize: windowWidth / 30,
-                }}
-              >
-                Learn to play chess!
-              </Text>
-            </View>
-          </TouchableOpacity>
-        </View>
-
         {/*Content*/}
-        <View stlye={{ flex: 1 }}>
-          <CheduChessBoard />
+        <View stlye={{ flex: 1, justifyContent: "center", alignContent: "center"}}>
+          <CheduChessBoard/>
         </View>
       </View>
     );
