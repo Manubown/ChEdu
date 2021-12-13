@@ -41,11 +41,6 @@ import { RequestLogin } from "../Connection/ApiCommunication";
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
-Dimensions.addEventListener("change", {
-  windowHeight: Dimensions.get("window").height,
-  windowWidth: Dimensions.get("window").width,
-});
-
 const { width } = Dimensions.get("window");
 
 const x = 100;
@@ -83,6 +78,10 @@ export default class Homepage extends React.Component {
 
     CurrentColor: "white",
 
+    //WINDOW
+    windowWidth: windowWidth,
+    windowHeight: windowHeight,
+
     /*Chess Board Stats*/
     gameState: "",
     draggedPieceTargetId: "", // empty string means no piece is being dragged
@@ -108,19 +107,11 @@ export default class Homepage extends React.Component {
     );
   }
 
-  onWindowChange() {
-    windowWidth = Dimensions.get("window").width;
-    windowHeight = Dimensions.get("window").height;
-  }
-
-  constructor() {
-    super();
-    this.forceUpdateHandler = this.forceUpdateHandler.bind(this);
-  }
-
-  forceUpdateHandler() {
-    this.forceUpdate();
-  }
+  onWindowChange = ({ windowHeight, windowWidth }) => {
+    this.setState(windowHeight);
+    this.setState(windowWidth);
+    console.log("Test");
+  };
 
   handleSwitchBackground = () => {
     let { switchValue } = this.state;
@@ -262,6 +253,8 @@ export default class Homepage extends React.Component {
       translateOnline,
       translateChessboard,
       backgroundColor,
+      windowHeight,
+      windowWidth,
     } = this.state;
 
     return (
@@ -274,6 +267,10 @@ export default class Homepage extends React.Component {
       >
         {/*Topbar*/}
         <View style={styles.Topbar}>
+          <Text>
+            Window Width: {this.state.windowWidth}, Window Height:{" "}
+            {this.state.windowHeight}
+          </Text>
           <View style={styles.RightSwitch}>
             <Text>{this.state.SunMoon}</Text>
             <Switch
