@@ -16,6 +16,11 @@ import registerPictureBlack from "../Pictures/register.png";
 import registerPictureWhite from "../Pictures/register_white.png";
 import userPictureBlack from "../Pictures/user.png";
 import userPictureWhite from "../Pictures/user_white.png";
+import {
+  RightCircleTwoTone,
+  LeftCircleTwoTone,
+} from '@ant-design/icons';
+
 
 import CheduChessBoard from "../ChessBoardBown/CheduChessBoard";
 
@@ -72,9 +77,32 @@ export default class TempPage extends React.Component {
           backgroundColor: this.state.backgroundColor,
         }}
       >
-        {/*Content*/}
-        <View stlye={{ flex: 1, justifyContent: "center", alignContent: "center"}}>
-          <CheduChessBoard/>
+        {/*Topbar*/}
+        <View style={styles.Topbar}>
+          <View style={styles.RightSwitch}>
+            <Text>{this.state.SunMoon}</Text>
+            <Switch
+              value={this.state.switchValue}
+              onValueChange={(switchValue) =>
+                this.setState({ switchValue }, () =>
+                  this.handleSwitchBackground()
+                )
+              }
+            />
+          </View>
+        </View>
+
+        {/*ChessboardEnvironment*/}
+        <View style = {{alignItems:"center"}}>
+          <View style={{flexDirection: "row"}}>
+              <CheduChessBoard/>
+          </View>
+
+        {/*Tools*/}
+          <View style = {{flexDirection: "row"}}>
+            <LeftCircleTwoTone twoToneColor={"#185a5c"}/>
+            <RightCircleTwoTone twoToneColor={"#185a5c"}/>
+          </View>
         </View>
       </View>
     );

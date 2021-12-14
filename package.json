@@ -13,6 +13,7 @@
     "build": "react-scripts build"
   },
   "dependencies": {
+    "@ant-design/icons": "^4.7.0",
     "@chrisoakman/chessboardjs": "^1.0.0",
     "@react-native-community/async-storage": "^1.12.1",
     "@react-native-community/masked-view": "^0.1.11",
