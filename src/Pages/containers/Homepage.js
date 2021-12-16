@@ -78,10 +78,6 @@ export default class Homepage extends React.Component {
 
     CurrentColor: "white",
 
-    //WINDOW
-    windowWidth: windowWidth,
-    windowHeight: windowHeight,
-
     /*Chess Board Stats*/
     gameState: "",
     draggedPieceTargetId: "", // empty string means no piece is being dragged
@@ -98,19 +94,6 @@ export default class Homepage extends React.Component {
     SinglePlayer: 7563,
     Multiplayer: 3782,
     TimeSpend: "2 Years",
-  };
-
-  componentDidMount() {
-    this.dimensionsSubscription = Dimensions.addEventListener(
-      "change",
-      this.onWindowChange
-    );
-  }
-
-  onWindowChange = ({ windowHeight, windowWidth }) => {
-    this.setState(windowHeight);
-    this.setState(windowWidth);
-    console.log("Test");
   };
 
   handleSwitchBackground = () => {
@@ -253,8 +236,6 @@ export default class Homepage extends React.Component {
       translateOnline,
       translateChessboard,
       backgroundColor,
-      windowHeight,
-      windowWidth,
     } = this.state;
 
     return (
@@ -267,10 +248,6 @@ export default class Homepage extends React.Component {
       >
         {/*Topbar*/}
         <View style={styles.Topbar}>
-          <Text>
-            Window Width: {this.state.windowWidth}, Window Height:{" "}
-            {this.state.windowHeight}
-          </Text>
           <View style={styles.RightSwitch}>
             <Text>{this.state.SunMoon}</Text>
             <Switch
@@ -335,8 +312,7 @@ export default class Homepage extends React.Component {
                     textAlign: "center",
                   }}
                 >
-                  The easiest and intuitive way to work your way up to get
-                  better at chess!
+                  The easiest way to work your way up to get better at chess!
                 </Text>
               </View>
             </TouchableOpacity>
@@ -402,7 +378,7 @@ export default class Homepage extends React.Component {
                     <Text
                       style={{ fontSize: windowWidth / 80, color: "white" }}
                     >
-                      Time Spend:{" "}
+                      Time Spent:{" "}
                     </Text>
                   </View>
                   <View
