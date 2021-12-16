@@ -13,7 +13,6 @@ import {
   ImageBackground,
 } from "react-native"; //components
 
-
 import { UserData } from "../../User/UserData";
 
 import { AppearanceProvider } from "react-native-appearance";
@@ -96,7 +95,6 @@ export default class Homepage extends React.Component {
     Multiplayer: 3782,
     TimeSpend: "2 Years",
   };
-
 
   handleSwitchBackground = () => {
     let { switchValue } = this.state;
@@ -314,8 +312,7 @@ export default class Homepage extends React.Component {
                     textAlign: "center",
                   }}
                 >
-                  The easiest and intuitive way to work your way up to get
-                  better at chess!
+                  The easiest way to work your way up to get better at chess!
                 </Text>
               </View>
             </TouchableOpacity>
@@ -381,7 +378,7 @@ export default class Homepage extends React.Component {
                     <Text
                       style={{ fontSize: windowWidth / 80, color: "white" }}
                     >
-                      Time Spend:{" "}
+                      Time Spent:{" "}
                     </Text>
                   </View>
                   <View
@@ -485,73 +482,93 @@ export default class Homepage extends React.Component {
           {/*Menu*/}
           <View>
             <TouchableOpacity
-                  onPress={() => this.props.navigation.navigate("Login")}
-                  style={{}}
-                >
-            <View
-              style={
-                ({ backgroundColor: this.state.CurrentColor },
-                styles.MenuShadow)
-              }
+              onPress={() => this.props.navigation.navigate("Login")}
+              style={{}}
             >
-              
-            <Image
-                source={this.state.SwitchLogin}
-                style={{
-                width: (windowWidth / 10) * 0.8,
-                height: (windowWidth / 10) * 0.8,
-                color: "white",
-              }}
-            />
-              
-            </View>
-            <Text style = {{textAlign: 'center', fontWeight: 'bold', color: this.state.TextColor}}>Login</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity
-                onPress={() => this.props.navigation.navigate("Register")}
-                style={{}}
-              >
               <View
                 style={
                   ({ backgroundColor: this.state.CurrentColor },
                   styles.MenuShadow)
                 }
               >
-              
-              <Image
-                source={this.state.SwitchRegister}
-                style={{
-                  width: (windowWidth / 10) * 0.8,
-                  height: (windowWidth / 10) * 0.8,
-                  color: "white",
-                }}
-              />
-              
+                <Image
+                  source={this.state.SwitchLogin}
+                  style={{
+                    width: (windowWidth / 10) * 0.8,
+                    height: (windowWidth / 10) * 0.8,
+                    color: "white",
+                  }}
+                />
               </View>
-              <Text style = {{textAlign: 'center', fontWeight: 'bold', color: this.state.TextColor}}>Register</Text>
+              <Text
+                style={{
+                  textAlign: "center",
+                  fontWeight: "bold",
+                  color: this.state.TextColor,
+                }}
+              >
+                Login
+              </Text>
             </TouchableOpacity>
-            
+
             <TouchableOpacity
-                onPress={() => this.props.navigation.navigate("User")}
-                style={{}}
-              >
+              onPress={() => this.props.navigation.navigate("Register")}
+              style={{}}
+            >
               <View
                 style={
                   ({ backgroundColor: this.state.CurrentColor },
                   styles.MenuShadow)
                 }
               >
-              <Image
-                source={this.state.SwitchUser}
-                style={{
-                  width: (windowWidth / 10) * 0.8,
-                  height: (windowWidth / 10) * 0.8,
-                  color: "white",
-                }}
-              />
+                <Image
+                  source={this.state.SwitchRegister}
+                  style={{
+                    width: (windowWidth / 10) * 0.8,
+                    height: (windowWidth / 10) * 0.8,
+                    color: "white",
+                  }}
+                />
               </View>
-              <Text style = {{textAlign: 'center', fontWeight: 'bold', color: this.state.TextColor}}>Userprofil</Text>
+              <Text
+                style={{
+                  textAlign: "center",
+                  fontWeight: "bold",
+                  color: this.state.TextColor,
+                }}
+              >
+                Register
+              </Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              onPress={() => this.props.navigation.navigate("User")}
+              style={{}}
+            >
+              <View
+                style={
+                  ({ backgroundColor: this.state.CurrentColor },
+                  styles.MenuShadow)
+                }
+              >
+                <Image
+                  source={this.state.SwitchUser}
+                  style={{
+                    width: (windowWidth / 10) * 0.8,
+                    height: (windowWidth / 10) * 0.8,
+                    color: "white",
+                  }}
+                />
+              </View>
+              <Text
+                style={{
+                  textAlign: "center",
+                  fontWeight: "bold",
+                  color: this.state.TextColor,
+                }}
+              >
+                Userprofil
+              </Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -707,13 +724,13 @@ export default class Homepage extends React.Component {
               onLayout={(event) =>
                 this.setState({ translateY: event.nativeEvent.layout.height })
               }
-            >       
-              <View style={{ marginTop: 20, marginLeft: 0}}>
-                <View style = {{flexDirection:"row"}}>
+            >
+              <View style={{ marginTop: 20, marginLeft: 0 }}>
+                <View style={{ flexDirection: "row" }}>
                   {/*Chess Basics*/}
                   <ImageBackground
-                    source = {chess_basics}
-                    style = {styles.Opening_Concepts}
+                    source={chess_basics}
+                    style={styles.Opening_Concepts}
                   >
                     <View
                       style={{
@@ -733,11 +750,11 @@ export default class Homepage extends React.Component {
                       </Text>
                     </View>
                   </ImageBackground>
-                  
+
                   {/*Strategic Conncepts*/}
                   <ImageBackground
-                    source = {strategy_concepts}
-                    style = {styles.Opening_Concepts}
+                    source={strategy_concepts}
+                    style={styles.Opening_Concepts}
                   >
                     <View
                       style={{
@@ -760,8 +777,8 @@ export default class Homepage extends React.Component {
 
                   {/*Opening Concepts*/}
                   <ImageBackground
-                    source = {opening_concepts}
-                    style = {styles.Opening_Concepts}
+                    source={opening_concepts}
+                    style={styles.Opening_Concepts}
                   >
                     <View
                       style={{
@@ -801,7 +818,9 @@ export default class Homepage extends React.Component {
                 ],
               }}
               onLayout={(event) =>
-                this.setState({ translateOnline: event.nativeEvent.layout.height })
+                this.setState({
+                  translateOnline: event.nativeEvent.layout.height,
+                })
               }
             >
               <Text>Tab Two</Text>
@@ -841,12 +860,14 @@ export default class Homepage extends React.Component {
                     translateX: translateXTabThree,
                   },
                   {
-                    translateY: -translateY-translateOnline,
+                    translateY: -translateY - translateOnline,
                   },
                 ],
               }}
               onLayout={(event) =>
-                this.setState({ translateChessboard: event.nativeEvent.layout.height })
+                this.setState({
+                  translateChessboard: event.nativeEvent.layout.height,
+                })
               }
             >
               <Text>ddd</Text>
@@ -863,7 +884,8 @@ export default class Homepage extends React.Component {
                     translateX: translateXTabFour,
                   },
                   {
-                    translateY: -translateY-translateOnline-translateChessboard,
+                    translateY:
+                      -translateY - translateOnline - translateChessboard,
                   },
                 ],
               }}
@@ -1055,7 +1077,7 @@ const styles = StyleSheet.create({
     height: (windowWidth / 10) * 1,
     borderRadius: 20,
     alignItems: "center",
-    justifyContent: 'center',
+    justifyContent: "center",
   },
 
   Buttons: {
