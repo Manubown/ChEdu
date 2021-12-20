@@ -1,13 +1,11 @@
-import React, { Component } from 'react';
-import { WebView } from 'react-native-webview';
+import React from "react";
+import { WebView } from "react-native-webview";
 
-class MyWeb extends Component {
+class WebViewMobile extends React.Component {
   render() {
     return (
-      <WebView
-        source={{ uri: 'https://ChEdu.at/' }}
-        style={{ marginTop: 20 }}
-      />
+      <WebView source={{ uri: "https://Chedu.at/" }} style={{ flexGrow: 1 }} />
     );
   }
 }
+export default WebViewMobile;
