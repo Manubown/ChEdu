@@ -15,6 +15,7 @@
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
     "@chrisoakman/chessboardjs": "^1.0.0",
+    "@react-native-async-storage/async-storage": "^1.15.14",
     "@react-native-community/async-storage": "^1.12.1",
     "@react-native-community/masked-view": "^0.1.11",
     "@react-navigation/native": "^6.0.2",
