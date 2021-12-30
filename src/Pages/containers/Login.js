@@ -16,7 +16,7 @@ import { Title } from "react-native-paper";
 import cheduLogo from "../Pictures/Logo.png";
 
 //API Communication
-import { RequestLogin } from "../Connection/ApiCommunication";
+import { RequestLogin, SaveDataTest } from "../Connection/ApiCommunication";
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 

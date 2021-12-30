@@ -53,11 +53,6 @@ const MyStack = () => {
           options={{ title: "ChEdu_Register" }}
         />
         <Stack.Screen
-          name="Login"
-          component={Login}
-          options={{ title: "ChEdu_Login" }}
-        />
-        <Stack.Screen
           name="ChessBoard"
           component={ChessBoard}
           options={{ title: "ChEdu_ChessBoard" }}
