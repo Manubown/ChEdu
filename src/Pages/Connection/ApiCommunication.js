@@ -16,7 +16,6 @@ export const RequestRegister = (username, password, email) => {
     Emaiil: email,
     HashedPassword: bcrypt.hashSync(password),
   };
-<<<<<<< Updated upstream
   axios
     .post("https://chedu.at:5000/register", postRequest)
     .then(function (response) {
@@ -29,43 +28,13 @@ export const RequestRegister = (username, password, email) => {
     });
 };
 
-export const RequestLogin = (username, password) => {
-=======
-  console.log(
-    postRequest.PlayerName + postRequest.Email + postRequest.HashedPassword
-  );
-  try {
-    const response = axios
-      .post("https://chedu.at:5000/register", postRequest)
-      .then(function (response) {
-        if (response) {
-          console.log(
-            "Register request Sent! \n Post request sent! " +
-              postRequest.username +
-              postRequest.email
-          );
-          storeData(DemoUserData);
-
-          this.props.navigation.navigate("Homepage");
-        }
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  } catch (error) {
-    console.log(error);
-  }
-};
-
 //////// REQUEST LOGIN ////////
 export const RequestLogin = async (username, password) => {
->>>>>>> Stashed changes
   console.log("Login POST Request Test: " + username, password);
   var postRequest = {
     PlayerName: username,
     HashedPassword: bcrypt.hashSync(password),
   };
-<<<<<<< Updated upstream
   axios
     .post("https://chedu.at:5000/VerifyPlayer", postRequest)
     .then(function (response) {
@@ -79,7 +48,6 @@ export const RequestLogin = async (username, password) => {
     .catch(function (error) {
       console.log(error);
     });
-=======
   console.log(postRequest.PlayerName + postRequest.HashedPassword);
   try {
     const response = await axios
@@ -99,7 +67,6 @@ export const RequestLogin = async (username, password) => {
   } catch (error) {
     console.log(error);
   }
->>>>>>> Stashed changes
 };
 
 //////// TEST SAVE DATA ////////

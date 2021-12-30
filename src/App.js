@@ -18,8 +18,6 @@ const MyStack = () => {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
-<<<<<<< Updated upstream
-=======
           name="Homepage"
           component={Homepage}
           options={{ title: "ChEdu_Home" }}
@@ -30,7 +28,6 @@ const MyStack = () => {
           options={{ title: "ChEdu_Login" }}
         />
         <Stack.Screen
->>>>>>> Stashed changes
           name="Home"
           component={HomeScreen}
           options={{ title: "Chedu" }}
@@ -44,11 +41,6 @@ const MyStack = () => {
           name="User"
           component={User}
           options={{ title: "ChEdu_User" }}
-        />
-        <Stack.Screen
-          name="Homepage"
-          component={Homepage}
-          options={{ title: "ChEdu_Home" }}
         />
         <Stack.Screen name="Intro" component={IntroScreen} />
         <Stack.Screen name="Setting" component={Settings} />
