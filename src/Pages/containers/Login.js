@@ -16,7 +16,7 @@ import { Title } from "react-native-paper";
 import cheduLogo from "../Pictures/Logo.png";
 
 //API Communication
-import { RequestLogin } from "../Connection/ApiCommunication";
+import { RequestLogin, SaveDataTest } from "../Connection/ApiCommunication";
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
@@ -126,8 +126,14 @@ export default class Login extends React.Component {
               <Button
                 style={styles.Buttons}
                 onPress={() => {
-                  RequestLogin(this.state.Username, this.state.Password);
+                  if (RequestLogin(this.state.Username, this.state.Password)) {
+                    this.props.navigation.navigate("Homepage");
+                  }
+
+                  /*
+                  SaveDataTest();
                   this.props.navigation.navigate("Homepage");
+                  */
                 }}
                 title="Login"
               />

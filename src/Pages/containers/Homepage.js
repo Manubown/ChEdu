@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import {
   StyleSheet,
   Text,
@@ -12,7 +12,11 @@ import {
   Switch,
 } from "react-native"; //components
 
+import { useFocusEffect } from "@react-navigation/native";
+
 import { UserData } from "../../User/UserData";
+
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import { AppearanceProvider } from "react-native-appearance";
 
@@ -26,6 +30,18 @@ import registerPictureBlack from "../Pictures/register.png";
 import registerPictureWhite from "../Pictures/register_white.png";
 import userPictureBlack from "../Pictures/user.png";
 import userPictureWhite from "../Pictures/user_white.png";
+<<<<<<< Updated upstream
+=======
+import ChessBoardImage from "../Pictures/chessBoard.png";
+
+import { white } from "chalk";
+
+import { getData, storeData } from "../../Scripts/SaveData";
+
+import { RequestLogin } from "../Connection/ApiCommunication";
+>>>>>>> Stashed changes
+
+import { ScreenPopUp } from "../ActiveComponents/ScreenRatio";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -55,6 +71,82 @@ export default class Homepage extends React.Component {
     SunMoon: "☀️",
     ShadowBackgroundColor: "white",
     StateUserData: UserData,
+<<<<<<< Updated upstream
+=======
+    RightArrow: arrowRight,
+    ChessBoardImage: ChessBoardImage,
+    TextColor: "black",
+
+    //DARKMODE
+    DarkAccent: "#123df2",
+    DarkGrey: "#f324",
+
+    CurrentColor: "white",
+
+    /*Chess Board Stats*/
+    gameState: "",
+    draggedPieceTargetId: "", // empty string means no piece is being dragged
+    playerTurnToMoveIsWhite: true,
+    whiteKingInCheck: false,
+    blackKingInCheck: false,
+
+    /*User Stats*/
+    //Benutzername,Elo,PlayedGames, WonGames, LosGames, SinglePlayer, Multiplayer, TimeSpend
+
+    isLoggedIn: false,
+    Benutzername: "Default",
+    Elo: 666,
+    PlayedGames: 11345,
+    WonGames: 8199,
+    LostGames: 3146,
+    SinglePlayer: 7563,
+    Multiplayer: 3782,
+    TimeSpend: "2 Years",
+
+    wrongRatio: false,
+  };
+
+  componentDidMount() {
+    this.props.navigation.addListener("focus", () => {
+      this.updateValuesStats();
+      if (windowWidth < windowHeight) {
+        this.state.wrongRatio = true;
+      }
+    });
+  }
+  componentWillUnmount() {
+    this.updateValuesStats();
+  }
+
+  updateValuesStats = async () => {
+    var data = await getData();
+    console.log("Data: " + data);
+    if (data != null) {
+      console.log("Is Logged In");
+      this.setState({
+        Benutzername: data.Benutzername,
+        Elo: data.Elo,
+        PlayedGames: data.PlayedGames,
+        WonGames: data.WonGames,
+        LostGames: data.LostGames,
+        SinglePlayer: data.SinglePlayer,
+        Multiplayer: data.Multiplayer,
+        TimeSpend: data.TimeSpend,
+      });
+    } else {
+      console.log("Is not Logged In");
+      this.setState({
+        Benutzername: null,
+        Elo: null,
+        PlayedGames: null,
+        WonGames: null,
+        LostGames: null,
+        SinglePlayer: null,
+        Multiplayer: null,
+        TimeSpend: null,
+      });
+    }
+>>>>>>> Stashed changes
   };
 
   handleSwitchBackground = () => {
@@ -191,6 +283,7 @@ export default class Homepage extends React.Component {
       translateXTabFour,
       translateY,
       backgroundColor,
+      wrongRatio,
     } = this.state;
 
     return (
@@ -201,6 +294,7 @@ export default class Homepage extends React.Component {
           backgroundColor: this.state.backgroundColor,
         }}
       >
+        {wrongRatio ? <ScreenPopUp /> : null}
         {/*Topbar*/}
         <View style={styles.Topbar}>
           {/*Login*/}
@@ -256,6 +350,7 @@ export default class Homepage extends React.Component {
           </View>
         </View>
 
+<<<<<<< Updated upstream
         {/*Logo*/}
         <View style={({ flexDirection: "row" }, styles.Column)}>
           <TouchableOpacity
@@ -265,6 +360,256 @@ export default class Homepage extends React.Component {
               <Text>
                 <Text style={styles.CheduBlue}>Ch</Text>
                 <Text style={styles.CheduDarkBlue}>Edu</Text>
+=======
+        {/*Side Bar*/}
+        <View
+          style={{
+            flexDirection: "row",
+            alignContent: "center",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          {/*Logo*/}
+          <View style={({ flexDirection: "row" }, styles.Column)}>
+            <TouchableOpacity
+              onPress={() => this.props.navigation.navigate("Homepage")}
+            >
+              <View style={styles.BaseShadow}>
+                <View style={styles.TopBoxLogo}>
+                  <View style={{}}>
+                    <View
+                      style={{
+                        justifyContent: "center",
+                        flexDirection: "row",
+                      }}
+                    >
+                      <Text style={styles.CheduBlue}>Ch</Text>
+                      <Text style={styles.CheduDarkBlue}>Edu</Text>
+                    </View>
+                    <Text
+                      style={{ color: "#00578a", fontSize: windowWidth / 80 }}
+                    >
+                      Learn to play chess!
+                    </Text>
+                  </View>
+                  {<Image source={cheduLogo} style={styles.Logo} />}
+                </View>
+
+                <Text
+                  style={{
+                    fontSize: windowWidth / 30,
+                    color: "white",
+                  }}
+                >
+                  Learn to play Chess!
+                </Text>
+                <Text
+                  style={{
+                    fontSize: windowWidth / 50,
+                    padding: 5,
+                    color: "white",
+                    textAlign: "center",
+                  }}
+                >
+                  The easiest way to work your way up to get better at chess!
+                </Text>
+              </View>
+            </TouchableOpacity>
+          </View>
+
+          {/*Statistic + Start Button*/}
+          <View>
+            {/*Statistics*/}
+            <View style={({ flexDirection: "row" }, styles.Stats)}>
+              <View style={styles.StatsShadow}>
+                <View style={styles.TopBoxStats}>
+                  <Text style={{ fontSize: windowWidth / 30, color: "black" }}>
+                    Statistics
+                  </Text>
+                  <Image />
+                </View>
+                <View
+                  style={{ flexDirection: "row", fontSize: windowWidth / 80 }}
+                >
+                  <View
+                    style={{
+                      flexDirection: "column",
+                      width: windowWidth / 10,
+                      height: windowHeight / 10,
+                      textAlign: "right",
+                      marginRight: 8,
+                    }}
+                  >
+                    <Text
+                      style={{ fontSize: windowWidth / 80, color: "white" }}
+                    >
+                      Benutzername:{" "}
+                    </Text>
+                    <Text
+                      style={{ fontSize: windowWidth / 80, color: "white" }}
+                    >
+                      Elo:{" "}
+                    </Text>
+                    <Text
+                      style={{ fontSize: windowWidth / 80, color: "white" }}
+                    >
+                      Played games:{" "}
+                    </Text>
+                    <Text
+                      style={{ fontSize: windowWidth / 80, color: "white" }}
+                    >
+                      Won games:{" "}
+                    </Text>
+                    <Text
+                      style={{ fontSize: windowWidth / 80, color: "white" }}
+                    >
+                      Lost games:{" "}
+                    </Text>
+                    <Text
+                      style={{ fontSize: windowWidth / 80, color: "white" }}
+                    >
+                      Singleplayer:{" "}
+                    </Text>
+                    <Text
+                      style={{ fontSize: windowWidth / 80, color: "white" }}
+                    >
+                      Multiplayer:{" "}
+                    </Text>
+                    <Text
+                      style={{ fontSize: windowWidth / 80, color: "white" }}
+                    >
+                      Time Spent:{" "}
+                    </Text>
+                  </View>
+                  <View
+                    style={{
+                      flexDirection: "column",
+                      width: windowWidth / 10,
+                      textAlign: "left",
+                    }}
+                  >
+                    <Text
+                      style={{ fontSize: windowWidth / 80, color: "white" }}
+                    >
+                      {this.state.Benutzername}
+                    </Text>
+                    <Text
+                      style={{ fontSize: windowWidth / 80, color: "white" }}
+                    >
+                      {this.state.Elo}
+                    </Text>
+                    <Text
+                      style={{ fontSize: windowWidth / 80, color: "white" }}
+                    >
+                      {this.state.PlayedGames}
+                    </Text>
+                    <Text
+                      style={{ fontSize: windowWidth / 80, color: "white" }}
+                    >
+                      {this.state.WonGames}
+                    </Text>
+                    <Text
+                      style={{ fontSize: windowWidth / 80, color: "white" }}
+                    >
+                      {this.state.LostGames}
+                    </Text>
+                    <Text
+                      style={{ fontSize: windowWidth / 80, color: "white" }}
+                    >
+                      {this.state.SinglePlayer}
+                    </Text>
+                    <Text
+                      style={{ fontSize: windowWidth / 80, color: "white" }}
+                    >
+                      {this.state.Multiplayer}
+                    </Text>
+                    <Text
+                      style={{ fontSize: windowWidth / 80, color: "white" }}
+                    >
+                      {this.state.TimeSpend}
+                    </Text>
+                  </View>
+                </View>
+              </View>
+            </View>
+
+            {/*Start Game Button */}
+            <ImageBackground
+              style={styles.StartGameButtonShadow}
+              source={ChessBoardImage}
+              resizeMode="cover"
+            >
+              <TouchableOpacity
+                onPress={() => this.props.navigation.navigate("ChessBoard")}
+              >
+                <View
+                  style={{
+                    backgroundColor: "white",
+                    width: (windowWidth / 10) * 1,
+                    height: (windowWidth / 10) * 1,
+                  }}
+                >
+                  <Image
+                    source={this.state.RightArrow}
+                    style={{
+                      width: (windowWidth / 10) * 1,
+                      height: (windowWidth / 10) * 1,
+                    }}
+                  />
+                </View>
+              </TouchableOpacity>
+              <View
+                style={{
+                  backgroundColor: "rgba(52, 52, 52, 0.8)",
+                  borderTopRightRadius: 20,
+                  borderBottomRightRadius: 20,
+                }}
+              >
+                <Text
+                  style={{
+                    fontSize: windowWidth / 50,
+                    color: "white",
+                    margin: 10,
+                    textAlign: "center",
+                  }}
+                >
+                  Start Game!
+                </Text>
+              </View>
+            </ImageBackground>
+          </View>
+
+          {/*Menu*/}
+          <View>
+            <TouchableOpacity
+              onPress={() => this.props.navigation.navigate("Login")}
+              style={{}}
+            >
+              <View
+                style={
+                  ({ backgroundColor: this.state.CurrentColor },
+                  styles.MenuShadow)
+                }
+              >
+                <Image
+                  source={this.state.SwitchLogin}
+                  style={{
+                    width: (windowWidth / 10) * 0.8,
+                    height: (windowWidth / 10) * 0.8,
+                    color: "white",
+                  }}
+                />
+              </View>
+              <Text
+                style={{
+                  textAlign: "center",
+                  fontWeight: "bold",
+                  color: this.state.TextColor,
+                }}
+              >
+                Login
+>>>>>>> Stashed changes
               </Text>
               {<Image source={cheduLogo} style={styles.Logo} />}
               <Text
