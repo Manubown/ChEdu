@@ -24,6 +24,11 @@ const MyStack = () => {
           options={{ title: "ChEdu_Home" }}
         />
         <Stack.Screen
+          name="Login"
+          component={Login}
+          options={{ title: "ChEdu_Login" }}
+        />
+        <Stack.Screen
           name="Home"
           component={HomeScreen}
           options={{ title: "Chedu" }}
@@ -40,7 +45,6 @@ const MyStack = () => {
           component={User}
           options={{ title: "ChEdu_User" }}
         />
-
         <Stack.Screen name="Intro" component={IntroScreen} />
         <Stack.Screen name="Setting" component={Settings} />
         <Stack.Screen

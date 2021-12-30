@@ -56,3 +56,22 @@ export const RequestLogin = async (username, password) => {
     console.log(error);
   }
 };
+
+//////// TEST SAVE DATA ////////
+export const SaveDataTest = () => {
+  deleteData(DemoUserData);
+  //storeData(DemoUserData);
+};
+
+//////// DEMO USER ////////
+const DemoUserData = {
+  Benutzername: "Manubown",
+  Elo: 66,
+  PlayedGames: 12903,
+  WonGames: 12000,
+  LostGames: 9,
+  SinglePlayer: 2800,
+  Multiplayer: 10000,
+  TimeSpend: 387575,
+  isLoggedIn: true,
+};

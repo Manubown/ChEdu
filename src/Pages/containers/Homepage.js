@@ -17,9 +17,6 @@ import { UserData } from "../../User/UserData";
 
 import { AppearanceProvider } from "react-native-appearance";
 
-import CheduChessBoard from "../ChessBoardBown/CheduChessBoard";
-
-import { Stage, Layer } from "react-konva";
 import cheduLogo from "../Pictures/Logo.png";
 import twokings from "../Pictures/two_kings.jpg";
 import opening_concepts from "../Pictures/opening_concepts.jpg";
@@ -37,6 +34,8 @@ import ChessBoardImage from "../Pictures/chessBoard.png";
 import { white } from "chalk";
 
 import { RequestLogin } from "../Connection/ApiCommunication";
+
+import { ScreenPopUp } from "../ActiveComponents/ScreenRatio";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -94,6 +93,50 @@ export default class Homepage extends React.Component {
     SinglePlayer: 7563,
     Multiplayer: 3782,
     TimeSpend: "2 Years",
+
+    wrongRatio: false,
+  };
+
+  componentDidMount() {
+    this.props.navigation.addListener("focus", () => {
+      this.updateValuesStats();
+      if (windowWidth < windowHeight) {
+        this.state.wrongRatio = true;
+      }
+    });
+  }
+  componentWillUnmount() {
+    this.updateValuesStats();
+  }
+
+  updateValuesStats = async () => {
+    var data = await getData();
+    console.log("Data: " + data);
+    if (data != null) {
+      console.log("Is Logged In");
+      this.setState({
+        Benutzername: data.Benutzername,
+        Elo: data.Elo,
+        PlayedGames: data.PlayedGames,
+        WonGames: data.WonGames,
+        LostGames: data.LostGames,
+        SinglePlayer: data.SinglePlayer,
+        Multiplayer: data.Multiplayer,
+        TimeSpend: data.TimeSpend,
+      });
+    } else {
+      console.log("Is not Logged In");
+      this.setState({
+        Benutzername: null,
+        Elo: null,
+        PlayedGames: null,
+        WonGames: null,
+        LostGames: null,
+        SinglePlayer: null,
+        Multiplayer: null,
+        TimeSpend: null,
+      });
+    }
   };
 
   handleSwitchBackground = () => {
