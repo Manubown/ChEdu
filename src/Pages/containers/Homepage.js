@@ -13,6 +13,7 @@ import {
   ImageBackground,
 } from "react-native"; //components
 
+
 import { UserData } from "../../User/UserData";
 
 import { AppearanceProvider } from "react-native-appearance";
@@ -25,6 +26,9 @@ import twokings from "../Pictures/two_kings.jpg";
 import opening_concepts from "../Pictures/opening_concepts.jpg";
 import chess_basics from "../Pictures/chess_basics.jpg";
 import strategy_concepts from "../Pictures/strategy_concepts.jpg";
+import expert_modus from "../Pictures/expert_modus.jpg";
+import textbook_checkmates from "../Pictures/textbook_checkmates.jpg";
+import coming_soon from "../Pictures/coming_soon.jpg";
 import loginPictureBlack from "../Pictures/login.png";
 import arrowRight from "../Pictures/right-arrow.jpeg";
 import loginPictureWhite from "../Pictures/login_white.png";
@@ -33,6 +37,12 @@ import registerPictureWhite from "../Pictures/register_white.png";
 import userPictureBlack from "../Pictures/user.png";
 import userPictureWhite from "../Pictures/user_white.png";
 import ChessBoardImage from "../Pictures/chessBoard.png";
+import Poster_Schachbrett from "../Pictures/Poster_Schachbrett.png";
+import white_separator from "../Pictures/white_separator.png";
+import black_separator from "../Pictures/black_separator.png";
+
+//import Video from 'react-native-video';
+
 
 import { white } from "chalk";
 
@@ -71,6 +81,7 @@ export default class Homepage extends React.Component {
     RightArrow: arrowRight,
     ChessBoardImage: ChessBoardImage,
     TextColor: "black",
+    separator: black_separator,
 
     //DARKMODE
     DarkAccent: "#123df2",
@@ -109,6 +120,7 @@ export default class Homepage extends React.Component {
         SwitchUser: userPictureWhite,
         SunMoon: "🌙",
         TextColor: "white",
+        separator: white_separator,
       });
     } else if (switchValue === false) {
       this.setState({
@@ -120,6 +132,7 @@ export default class Homepage extends React.Component {
         SwitchUser: userPictureBlack,
         SunMoon: "☀️",
         TextColor: "black",
+        separator: black_separator,
       });
     }
   };
@@ -433,7 +446,7 @@ export default class Homepage extends React.Component {
               </View>
             </View>
 
-            {/*Start Game Button */}
+            {/*Start Game Button*/}
             <ImageBackground
               style={styles.StartGameButtonShadow}
               source={ChessBoardImage}
@@ -571,6 +584,14 @@ export default class Homepage extends React.Component {
               </Text>
             </TouchableOpacity>
           </View>
+        </View>
+        
+        {/*Video*/}
+        <View style= {{
+            alignItems: "center",
+          }}
+        >
+          Video
         </View>
 
         {/*Content*/}
@@ -726,6 +747,29 @@ export default class Homepage extends React.Component {
               }
             >
               <View style={{ marginTop: 20, marginLeft: 0 }}>
+                <ImageBackground
+                    source={Poster_Schachbrett}
+                    style={styles.Poster_Schachbrett}
+                  >
+                  <View style={{ alignItems: 'center' }}>
+                    <Text style={{fontSize: windowWidth/25, fontWeight: "bold", textAlign: "center"}}>You want to learn chess, get better and beyond?</Text>
+                    <Text style={{fontSize: windowWidth/20, fontWeight: "bold", textAlign: "center"}}>THIS IS YOUR PLACE TO START!</Text>
+                    <TouchableOpacity
+                      onPress={() => this.props.navigation.navigate("ChessBoard")}
+                    >
+                      <Text style={{fontSize: windowWidth/40, fontWeight: "bold", textAlign: "center", color: "#007aff"}}>Start here!</Text>
+                    </TouchableOpacity>
+                  </View>
+                </ImageBackground>
+
+                {/*Separator*/}
+                <Image
+                  source={this.state.separator}
+                  style={{
+                    height: (windowWidth / 10),
+                  }}
+                />
+
                 <View style={{ flexDirection: "row" }}>
                   {/*Chess Basics*/}
                   <ImageBackground
@@ -796,6 +840,79 @@ export default class Homepage extends React.Component {
                       >
                         Opening Concepts
                       </Text>
+                    </View>
+                  </ImageBackground>
+                </View>
+                
+                {/*Separator*/}
+                <Image
+                  source={this.state.separator}
+                  style={{
+                    height: (windowWidth / 10),
+                  }}
+                />
+
+                <View style={{ flexDirection: "row" }}>
+                  {/*Expert Modus*/}
+                  <ImageBackground
+                    source={expert_modus}
+                    style={styles.Opening_Concepts}
+                  >
+                    <View
+                      style={{
+                        backgroundColor: "rgba(52, 52, 52, 0.8)",
+                        borderRadius: 20,
+                      }}
+                    >
+                      <Text
+                        style={{
+                          fontSize: windowWidth / 50,
+                          color: "white",
+                          margin: 10,
+                          textAlign: "center",
+                        }}
+                      >
+                        Expert Modus
+                      </Text>
+                    </View>
+                  </ImageBackground>
+
+                  {/*Textbook Checkmate*/}
+                  <ImageBackground
+                    source={textbook_checkmates}
+                    style={styles.Opening_Concepts}
+                  >
+                    <View
+                      style={{
+                        backgroundColor: "rgba(52, 52, 52, 0.8)",
+                        borderRadius: 20,
+                      }}
+                    >
+                      <Text
+                        style={{
+                          fontSize: windowWidth / 50,
+                          color: "white",
+                          margin: 10,
+                          textAlign: "center",
+                        }}
+                      >
+                        Textbook Checkmates
+                      </Text>
+                    </View>
+                  </ImageBackground>
+
+                  {/*Platzhalter*/}
+                  <ImageBackground
+                    source={coming_soon}
+                    style={styles.Opening_Concepts}
+                  >
+                    <View
+                      style={{
+                        backgroundColor: "rgba(52, 52, 52, 0.8)",
+                        borderRadius: 20,
+                      }}
+                    >
+                      
                     </View>
                   </ImageBackground>
                 </View>
@@ -1080,6 +1197,14 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
 
+  Poster_Schachbrett: {
+    overflow: "hidden",
+    alignSelf: "center",
+    margin: (windowWidth / 5) * 0.1,
+    width: (windowWidth / 5) * 2.8,
+    borderRadius: 20,
+  },
+
   Buttons: {
     margin: 15,
     width: 150,
@@ -1156,4 +1281,13 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
+
+  backgroundVideo: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0,
+  },
+
 });
