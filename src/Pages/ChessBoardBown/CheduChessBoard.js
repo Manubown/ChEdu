@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import * as Chess from "chess.js"; // import Chess from  "chess.js"(default) if recieving an error about new Chess() not being a constructor
 
 import Chessboard from "chessboardjsx";
+//import Resource from "./Resource";
 
 const windowheight = Dimensions.get("window").height;
 
@@ -22,6 +23,24 @@ class HumanVsHuman extends Component {
     // array of past game moves
     history: [], //pgn
   };
+  /*constructor() {
+
+    Resource.screen1 = this;
+    
+    Resource.screen1.setState({
+      fen: "start", //auf Lichess nachschauen
+      // square styles for active drop square
+      dropSquareStyle: {},
+      // custom square styles
+      squareStyles: {},
+      // square with the currently clicked piece
+      pieceSquare: "",
+      // currently clicked square
+      square: "",
+      // array of past game moves
+      history: [], //pgn
+    });
+  } */
 
   componentDidMount() {
     this.game = new Chess(); //this.state.fen übergeben für Logik
