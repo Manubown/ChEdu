@@ -6,7 +6,7 @@ import * as Chess from "chess.js"; // import Chess from  "chess.js"(default) if 
 import Chessboard from "chessboardjsx";
 //import Resource from "./Resource";
 
-const windowheight = Dimensions.get("window").height;
+const windowHeight = Dimensions.get("window").height;
 
 class HumanVsHuman extends Component {
   static propTypes = { children: PropTypes.func };
@@ -187,7 +187,7 @@ export default function CheduChessBoard() {
         }) => (
           <Chessboard
             id="humanVsHuman"
-            width={(windowheight/4)*3}
+            width={(windowHeight/4)*3}
             position={position} //position zB. (a6: 'kW') ==> König auf a6
             onDrop={onDrop}
             onMouseOverSquare={onMouseOverSquare}

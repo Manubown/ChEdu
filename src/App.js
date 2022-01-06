@@ -11,6 +11,7 @@ import Homepage from "./Pages/containers/Homepage";
 import Register from "./Pages/containers/Register";
 import AboutUs from "./Pages/containers/AboutUs";
 import User from "./Pages/containers/User";
+import LearnToPlay from "./Pages/containers/LearnToPlay"
 
 const Stack = createNativeStackNavigator();
 
@@ -27,6 +28,12 @@ const MyStack = () => {
           name="Home"
           component={HomeScreen}
           options={{ title: "Chedu" }}
+        />
+
+        <Stack.Screen
+          name="LearnToPlay"
+          component={LearnToPlay}
+          options={{title: "Learn_to_Play"}}
         />
 
         <Stack.Screen

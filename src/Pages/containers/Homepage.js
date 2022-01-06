@@ -755,7 +755,7 @@ export default class Homepage extends React.Component {
                     <Text style={{fontSize: windowWidth/25, fontWeight: "bold", textAlign: "center"}}>You want to learn chess, get better and beyond?</Text>
                     <Text style={{fontSize: windowWidth/20, fontWeight: "bold", textAlign: "center"}}>THIS IS YOUR PLACE TO START!</Text>
                     <TouchableOpacity
-                      onPress={() => this.props.navigation.navigate("ChessBoard")}
+                      onPress={() => this.props.navigation.navigate("LearnToPlay")}
                     >
                       <Text style={{fontSize: windowWidth/40, fontWeight: "bold", textAlign: "center", color: "#007aff"}}>Start here!</Text>
                     </TouchableOpacity>
