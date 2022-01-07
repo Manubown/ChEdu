@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import {
   StyleSheet,
   Text,
@@ -11,11 +11,15 @@ import {
   Dimensions,
   Switch,
   ImageBackground,
+  Modal,
+  Pressable,
 } from "react-native"; //components
 
 import { UserData } from "../../User/UserData";
 
 import { AppearanceProvider } from "react-native-appearance";
+
+import { getData, storeData, deleteData } from "../../Scripts/SaveData";
 
 import cheduLogo from "../Pictures/Logo.png";
 import twokings from "../Pictures/two_kings.jpg";
@@ -36,6 +40,10 @@ import { white } from "chalk";
 import { RequestLogin } from "../Connection/ApiCommunication";
 
 import { ScreenPopUp } from "../ActiveComponents/ScreenRatio";
+
+import { EntryDeny } from "../ActiveComponents/EntryDeny";
+
+import { PopUpVield } from "../ActiveComponents/BetaPopUp";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -87,14 +95,14 @@ export default class Homepage extends React.Component {
     /*User Stats*/
     Benutzername: "Default",
     Elo: 666,
-    PlayedGames: 11345,
     WonGames: 8199,
-    LosGames: 3146,
-    SinglePlayer: 7563,
-    Multiplayer: 3782,
-    TimeSpend: "2 Years",
+    LostGames: 3146,
+    PlayedGames: 11345,
+    LoggedIn: false,
 
     wrongRatio: false,
+    BetaPopUp: true,
+    EntryDeny: false,
   };
 
   componentDidMount() {
@@ -115,26 +123,22 @@ export default class Homepage extends React.Component {
     if (data != null) {
       console.log("Is Logged In");
       this.setState({
+        LoggedIn: true,
         Benutzername: data.Benutzername,
         Elo: data.Elo,
-        PlayedGames: data.PlayedGames,
         WonGames: data.WonGames,
         LostGames: data.LostGames,
-        SinglePlayer: data.SinglePlayer,
-        Multiplayer: data.Multiplayer,
-        TimeSpend: data.TimeSpend,
+        PlayedGames: data.PlayedGames,
       });
     } else {
       console.log("Is not Logged In");
       this.setState({
+        LoggedIn: false,
         Benutzername: null,
         Elo: null,
-        PlayedGames: null,
         WonGames: null,
         LostGames: null,
-        SinglePlayer: null,
-        Multiplayer: null,
-        TimeSpend: null,
+        PlayedGames: null,
       });
     }
   };
@@ -289,6 +293,12 @@ export default class Homepage extends React.Component {
           backgroundColor: this.state.backgroundColor,
         }}
       >
+        {this.state.wrongRatio ? <ScreenPopUp /> : null}
+
+        {this.state.BetaPopUp ? <PopUpVield state={this.state} /> : null}
+
+        {/*<EntryDeny PopUpVisible={true} />*/}
+
         {/*Topbar*/}
         <View style={styles.Topbar}>
           <View style={styles.RightSwitch}>
@@ -303,7 +313,6 @@ export default class Homepage extends React.Component {
             />
           </View>
         </View>
-
         {/*Side Bar*/}
         <View
           style={{
@@ -372,107 +381,12 @@ export default class Homepage extends React.Component {
                   </Text>
                   <Image />
                 </View>
-                <View
-                  style={{ flexDirection: "row", fontSize: windowWidth / 80 }}
-                >
-                  <View
-                    style={{
-                      flexDirection: "column",
-                      width: windowWidth / 10,
-                      height: windowHeight / 10,
-                      textAlign: "right",
-                    }}
-                  >
-                    <Text
-                      style={{ fontSize: windowWidth / 80, color: "white" }}
-                    >
-                      Benutzername:{" "}
-                    </Text>
-                    <Text
-                      style={{ fontSize: windowWidth / 80, color: "white" }}
-                    >
-                      Elo:{" "}
-                    </Text>
-                    <Text
-                      style={{ fontSize: windowWidth / 80, color: "white" }}
-                    >
-                      Played games:{" "}
-                    </Text>
-                    <Text
-                      style={{ fontSize: windowWidth / 80, color: "white" }}
-                    >
-                      Won games:{" "}
-                    </Text>
-                    <Text
-                      style={{ fontSize: windowWidth / 80, color: "white" }}
-                    >
-                      Lost games:{" "}
-                    </Text>
-                    <Text
-                      style={{ fontSize: windowWidth / 80, color: "white" }}
-                    >
-                      Singleplayer:{" "}
-                    </Text>
-                    <Text
-                      style={{ fontSize: windowWidth / 80, color: "white" }}
-                    >
-                      Multiplayer:{" "}
-                    </Text>
-                    <Text
-                      style={{ fontSize: windowWidth / 80, color: "white" }}
-                    >
-                      Time Spent:{" "}
-                    </Text>
-                  </View>
-                  <View
-                    style={{
-                      flexDirection: "column",
-                      width: windowWidth / 10,
-                      textAlign: "left",
-                    }}
-                  >
-                    <Text
-                      style={{ fontSize: windowWidth / 80, color: "white" }}
-                    >
-                      {this.state.Benutzername}
-                    </Text>
-                    <Text
-                      style={{ fontSize: windowWidth / 80, color: "white" }}
-                    >
-                      {this.state.Elo}
-                    </Text>
-                    <Text
-                      style={{ fontSize: windowWidth / 80, color: "white" }}
-                    >
-                      {this.state.PlayedGames}
-                    </Text>
-                    <Text
-                      style={{ fontSize: windowWidth / 80, color: "white" }}
-                    >
-                      {this.state.WonGames}
-                    </Text>
-                    <Text
-                      style={{ fontSize: windowWidth / 80, color: "white" }}
-                    >
-                      {this.state.LosGames}
-                    </Text>
-                    <Text
-                      style={{ fontSize: windowWidth / 80, color: "white" }}
-                    >
-                      {this.state.SinglePlayer}
-                    </Text>
-                    <Text
-                      style={{ fontSize: windowWidth / 80, color: "white" }}
-                    >
-                      {this.state.Multiplayer}
-                    </Text>
-                    <Text
-                      style={{ fontSize: windowWidth / 80, color: "white" }}
-                    >
-                      {this.state.TimeSpend}
-                    </Text>
-                  </View>
-                </View>
+                {/*Stats */}
+                {this.state.LoggedIn ? (
+                  <StatsVield data={this.state} />
+                ) : (
+                  <NotLoggedIn />
+                )}
               </View>
             </View>
 
@@ -525,7 +439,10 @@ export default class Homepage extends React.Component {
           {/*Menu*/}
           <View>
             <TouchableOpacity
-              onPress={() => this.props.navigation.navigate("Login")}
+              onPress={
+                () => this.props.navigation.navigate("Login")
+                /*EntryDenyChild.current.PopUpVisible()*/
+              }
               style={{}}
             >
               <View
@@ -555,7 +472,10 @@ export default class Homepage extends React.Component {
             </TouchableOpacity>
 
             <TouchableOpacity
-              onPress={() => this.props.navigation.navigate("Register")}
+              onPress={
+                () => this.props.navigation.navigate("Register")
+                /*EntryDenyChild.current.PopUpVisible() */
+              }
               style={{}}
             >
               <View
@@ -585,7 +505,10 @@ export default class Homepage extends React.Component {
             </TouchableOpacity>
 
             <TouchableOpacity
-              onPress={() => this.props.navigation.navigate("User")}
+              onPress={
+                () => this.props.navigation.navigate("User")
+                /*EntryDenyChild.current.PopUpVisible() */
+              }
               style={{}}
             >
               <View
@@ -615,7 +538,6 @@ export default class Homepage extends React.Component {
             </TouchableOpacity>
           </View>
         </View>
-
         {/*Content*/}
         <View style={{ flex: 1 }}>
           {/*Scroll Bar*/}
@@ -947,6 +869,93 @@ export default class Homepage extends React.Component {
     );
   }
 }
+
+export const NotLoggedIn = () => {
+  return (
+    <View style={{ padding: 20 }}>
+      <Text
+        style={{
+          textAlign: "center",
+          fontSize: windowWidth / 60,
+          color: "white",
+        }}
+      >
+        You are not logged in.
+      </Text>
+      <Text
+        style={{
+          textAlign: "center",
+          fontSize: windowWidth / 60,
+          color: "white",
+        }}
+      >
+        To save your data and see your stats: Create an account or login
+      </Text>
+    </View>
+  );
+};
+
+/*
+LoggedIn: false,
+        Benutzername: null,
+        Elo: null,
+        WonGames: null,
+        LostGames: null,
+        PlayedGames: null,
+*/
+export const StatsVield = (props) => {
+  return (
+    <View style={{ flexDirection: "row", fontSize: windowWidth / 80 }}>
+      <View
+        style={{
+          flexDirection: "column",
+          width: windowWidth / 10,
+          height: windowHeight / 10,
+          textAlign: "right",
+        }}
+      >
+        <Text style={{ fontSize: windowWidth / 80, color: "white" }}>
+          Benutzername:{" "}
+        </Text>
+        <Text style={{ fontSize: windowWidth / 80, color: "white" }}>
+          Elo:{" "}
+        </Text>
+        <Text style={{ fontSize: windowWidth / 80, color: "white" }}>
+          Won games:{" "}
+        </Text>
+        <Text style={{ fontSize: windowWidth / 80, color: "white" }}>
+          Lost games:{" "}
+        </Text>
+        <Text style={{ fontSize: windowWidth / 80, color: "white" }}>
+          Played games:{" "}
+        </Text>
+      </View>
+      <View
+        style={{
+          flexDirection: "column",
+          width: windowWidth / 10,
+          textAlign: "left",
+        }}
+      >
+        <Text style={{ fontSize: windowWidth / 80, color: "white" }}>
+          {props.data.Benutzername}
+        </Text>
+        <Text style={{ fontSize: windowWidth / 80, color: "white" }}>
+          {props.data.Elo}
+        </Text>
+        <Text style={{ fontSize: windowWidth / 80, color: "white" }}>
+          {props.data.WonGames}
+        </Text>
+        <Text style={{ fontSize: windowWidth / 80, color: "white" }}>
+          {props.data.LostGames}
+        </Text>
+        <Text style={{ fontSize: windowWidth / 80, color: "white" }}>
+          {props.data.PlayedGames}
+        </Text>
+      </View>
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
   TopBoxLogo: {

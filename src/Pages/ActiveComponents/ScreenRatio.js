@@ -16,6 +16,10 @@ export const ScreenPopUp = () => {
   );
 };
 
+const getIndex = () => {
+  return 1;
+};
+
 const styles = StyleSheet.create({
   MainBlock: {
     position: "absolute",

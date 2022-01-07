@@ -4,6 +4,9 @@ import { UserData } from "../../User/UserData";
 import axios from "axios";
 import bcrypt from "bcryptjs";
 
+import { deleteData, getData, storeData } from "../../Scripts/SaveData";
+
+//////// REQUEST REGISTER ////////
 export const RequestRegister = (username, password, email) => {
   console.log("Register POST Request Test: " + username, password, email);
 
@@ -35,11 +38,52 @@ export const RequestRegister = (username, password, email) => {
   }
 };
 
+/* 
+{
+  "Offline":
+  {
+    "_OfflineID":4,
+    "OverallPoints":1000,
+    "WonWhite":0,
+    "WonBlack":0,
+    "LostWhite":0,
+    "LostBlack":0,
+    "Games":"
+  "},
+  "Online":
+  {
+    "_OnlineID":4,
+    "OverallPoints":1000,
+    "WonWhite":0,
+    "WonBlack":0,
+    "LostWhite":0,
+    "LostBlack":0,
+    "Games":" "
+  }
+} */
+
+const LoginUser = (Userdata) => {
+  /*
+  console.log(
+    "Login use: " + UserData.Online.WonWhite + "," + UserData.Online.LosWhite
+  );
+  var WonGames =
+    parseInt(Userdata.Online.WonWhite) + parseInt(UserData.Online.WonBlack);
+  var LosGames =
+    parseInt(UserData.Online.LosWhite) + parseInt(UserData.Online.LosBlack);
+    */
+  console.log("Login User: " + Userdata);
+  return (
+    ",Elo:" + 100 + ",WonGames:" + 20 + ",LosGames:" + 2 + ", PlayedGames:" + 22
+  );
+};
+
+//////// REQUEST LOGIN ////////
 export const RequestLogin = async (username, password) => {
   console.log("Login POST Request Test: " + username, password);
 
   var postRequest = {
-    PlayerName: username,
+    Email: username,
     HashedPassword: password,
   };
   console.log(postRequest.PlayerName + postRequest.HashedPassword);
@@ -47,7 +91,14 @@ export const RequestLogin = async (username, password) => {
     const response = await axios
       .post("https://chedu.at:5000/VerifyPlayer", postRequest)
       .then(function (response) {
-        console.log(response.data);
+        response = response.data;
+        //Benutzername,Elo,PlayedGames, WonGames, LosGames, SinglePlayer, Multiplayer, TimeSpend
+        //setUserData
+        console.log("Login request user Data: " + response);
+
+        storeData("Benutzername:" + username + LoginUser(response));
+
+        return true;
       })
       .catch(function (error) {
         console.log("Error: " + error);
@@ -59,19 +110,6 @@ export const RequestLogin = async (username, password) => {
 
 //////// TEST SAVE DATA ////////
 export const SaveDataTest = () => {
-  deleteData(DemoUserData);
-  //storeData(DemoUserData);
-};
-
-//////// DEMO USER ////////
-const DemoUserData = {
-  Benutzername: "Manubown",
-  Elo: 66,
-  PlayedGames: 12903,
-  WonGames: 12000,
-  LostGames: 9,
-  SinglePlayer: 2800,
-  Multiplayer: 10000,
-  TimeSpend: 387575,
-  isLoggedIn: true,
+  deleteData();
+  //storeData();
 };

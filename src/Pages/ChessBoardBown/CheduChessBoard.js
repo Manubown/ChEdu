@@ -24,7 +24,8 @@ class HumanVsHuman extends Component {
   };
 
   componentDidMount() {
-    this.game = new Chess(); //this.state.fen übergeben für Logik
+    this.game = new Chess();
+    //this.state.fen übergeben für Logik
   }
 
   // keep clicked square style and remove hint squares
@@ -168,7 +169,7 @@ export default function CheduChessBoard() {
         }) => (
           <Chessboard
             id="humanVsHuman"
-            width={(windowheight/4)*3}
+            width={(windowheight / 4) * 3}
             position={position} //position zB. (a6: 'kW') ==> König auf a6
             onDrop={onDrop}
             onMouseOverSquare={onMouseOverSquare}

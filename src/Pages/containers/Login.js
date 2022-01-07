@@ -24,6 +24,8 @@ const windowHeight = Dimensions.get("window").height;
 import axios from "axios";
 import bcrypt from "bcryptjs";
 
+import { deleteData } from "../../Scripts/SaveData";
+
 const x = 100;
 const y = 200;
 
@@ -113,7 +115,7 @@ export default class Login extends React.Component {
           <View style={{ justifyContent: "center", alignItems: "center" }}>
             <View style={{ flexDirection: "column" }}>
               <Title style={{ color: this.state.textColor }}>Login</Title>
-              <Text style={{ color: this.state.textColor }}>Username</Text>
+              <Text style={{ color: this.state.textColor }}>Email</Text>
               <TextInput
                 style={styles.Input}
                 onChangeText={(Username) => {
@@ -134,10 +136,23 @@ export default class Login extends React.Component {
               <Button
                 style={styles.Buttons}
                 onPress={() => {
-                  RequestLogin(this.state.Username, this.state.Password);
+                  if (RequestLogin(this.state.Username, this.state.Password)) {
+                    this.props.navigation.navigate("Homepage");
+                  }
+                  /*
+                  SaveDataTest();
                   this.props.navigation.navigate("Homepage");
+                  */
                 }}
                 title="Login"
+              />
+              <Button
+                style={styles.Buttons}
+                onPress={() => {
+                  deleteData();
+                  this.props.navigation.navigate("Homepage");
+                }}
+                title="Logoff"
               />
             </View>
           </View>
