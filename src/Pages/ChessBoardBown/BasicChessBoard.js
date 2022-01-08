@@ -1,17 +1,16 @@
 import React, { Component } from "react";
-import { Dimensions } from "react-native";
+import { Dimensions, Button, StyleSheet } from "react-native";
 import PropTypes from "prop-types";
-import * as Chess from "chess.js"; // import Chess from  "chess.js"(default) if recieving an error about new Chess() not being a constructor
+import * as Chess from "chess.js";
 
 import Chessboard from "chessboardjsx";
-//import Resource from "./Resource";
 
 const windowHeight = Dimensions.get("window").height;
 
-class HumanVsHuman extends Component {
+class BasicChessBoardLogic extends Component {
   static propTypes = { children: PropTypes.func };
   state = {
-    fen: "start", //auf Lichess nachschauen
+    fen: "rnbqkbnr/pp1ppppp/8/2p5/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2", //auf Lichess nachschauen
     // square styles for active drop square
     dropSquareStyle: {},
     // custom square styles
@@ -22,29 +21,65 @@ class HumanVsHuman extends Component {
     square: "",
     // array of past game moves
     history: [], //pgn
+
+    //FenListe
+
+    startingPositions: {
+      Openings: {
+        SicilianDefence:
+          "rnbqkbnr/pp1ppppp/8/2p5/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2",
+
+        QueensGambit:
+          "rnbqkbnr/ppp1pppp/8/3p4/2PP4/8/PP2PPPP/RNBQKBNR b KQkq - 0 2",
+      },
+    },
   };
 
-  /*constructor() {
+  changeFen = (customFen) => {
+    switch (customFen) {
+      case "SicilianDefence":
+        this.setState({
+          fen: this.state.startingPositions.Openings.SicilianDefence,
+          dropSquareStyle: {},
+          // custom square styles
+          squareStyles: {},
+          // square with the currently clicked piece
+          pieceSquare: "",
+          // currently clicked square
+          square: "",
+          // array of past game moves
+          history: [], //pgn
 
-    Resource.screen1 = this;
-    
-    Resource.screen1.setState({
-      fen: "start", //auf Lichess nachschauen
-      // square styles for active drop square
-      dropSquareStyle: {},
-      // custom square styles
-      squareStyles: {},
-      // square with the currently clicked piece
-      pieceSquare: "",
-      // currently clicked square
-      square: "",
-      // array of past game moves
-      history: [], //pgn
-    });
-  } */
+          //FenListe
+
+          startingPositions: {
+            Openings: {
+              SicilianDefence:
+                "rnbqkbnr/pp1ppppp/8/2p5/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2",
+
+              QueensGambit:
+                "rnbqkbnr/ppp1pppp/8/3p4/2PP4/8/PP2PPPP/RNBQKBNR b KQkq - 0 2",
+            },
+          },
+        });
+
+        this.game = new Chess(this.state.fen);
+        this.game.position = this.state.fen;
+
+        break;
+      case "QueensGambit":
+        this.setState({
+          fen: this.state.startingPositions.Openings.QueensGambit,
+        });
+        this.game = new Chess(this.state.fen);
+        this.game.position = this.state.fen;
+        break;
+    }
+  };
 
   componentDidMount() {
-    this.game = new Chess(); //this.state.fen übergeben für Logik
+    //this.state.fen übergeben für Logik
+    this.game = new Chess(this.state.fen);
   }
 
   // keep clicked square style and remove hint squares
@@ -96,6 +131,15 @@ class HumanVsHuman extends Component {
       history: this.game.history({ verbose: true }),
       squareStyles: squareStyling({ pieceSquare, history }),
     }));
+    //Game Over
+    let possibleMoves = this.game.moves();
+    if (
+      this.game.game_over() === true ||
+      this.game.in_draw() === true ||
+      possibleMoves.length === 0
+    ) {
+      console.log("Game OVER!");
+    }
   };
 
   onMouseOverSquare = (square) => {
@@ -168,13 +212,15 @@ class HumanVsHuman extends Component {
       onDragOverSquare: this.onDragOverSquare,
       onSquareClick: this.onSquareClick,
       onSquareRightClick: this.onSquareRightClick,
+      changeFen: this.changeFen,
     });
   }
 }
-export default function CheduChessBoard() {
+
+export default function BasicChessBoard() {
   return (
     <div>
-      <HumanVsHuman>
+      <BasicChessBoardLogic>
         {({
           position,
           onDrop,
@@ -185,29 +231,46 @@ export default function CheduChessBoard() {
           onDragOverSquare,
           onSquareClick,
           onSquareRightClick,
+          changeFen,
         }) => (
-          <Chessboard
-            id="humanVsHuman"
-            width={(windowHeight / 4) * 3}
-            position={position} //position zB. (a6: 'kW') ==> König auf a6
-            onDrop={onDrop}
-            onMouseOverSquare={onMouseOverSquare}
-            onMouseOutSquare={onMouseOutSquare}
-            boardStyle={{
-              borderRadius: "5px",
-              boxShadow: `0 5px 15px #185a5c`,
-            }}
-            squareStyles={squareStyles}
-            dropSquareStyle={dropSquareStyle}
-            onDragOverSquare={onDragOverSquare}
-            onSquareClick={onSquareClick}
-            onSquareRightClick={onSquareRightClick}
-          />
+          <div>
+            <Chessboard
+              id="BasicChessBoard"
+              width={(windowHeight / 4) * 3}
+              position={position} //position zB. (a6: 'kW') ==> König auf a6
+              onDrop={onDrop}
+              onMouseOverSquare={onMouseOverSquare}
+              onMouseOutSquare={onMouseOutSquare}
+              boardStyle={{
+                borderRadius: "5px",
+                boxShadow: `0 5px 15px #185a5c`,
+              }}
+              squareStyles={squareStyles}
+              dropSquareStyle={dropSquareStyle}
+              onDragOverSquare={onDragOverSquare}
+              onSquareClick={onSquareClick}
+              onSquareRightClick={onSquareRightClick}
+            />
+            <Button
+              style={styles.Buttons}
+              onPress={() => {
+                changeFen("QueensGambit");
+              }}
+              title="Change"
+            />
+          </div>
         )}
-      </HumanVsHuman>
+      </BasicChessBoardLogic>
     </div>
   );
 }
+
+const styles = StyleSheet.create({
+  Buttons: {
+    margin: 15,
+    width: 150,
+  },
+});
 
 const squareStyling = ({ pieceSquare, history }) => {
   const sourceSquare = history.length && history[history.length - 1].from;

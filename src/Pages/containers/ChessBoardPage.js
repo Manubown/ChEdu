@@ -17,13 +17,10 @@ import registerPictureBlack from "../Pictures/register.png";
 import registerPictureWhite from "../Pictures/register_white.png";
 import userPictureBlack from "../Pictures/user.png";
 import userPictureWhite from "../Pictures/user_white.png";
-import {
-  RightCircleTwoTone,
-  LeftCircleTwoTone,
-} from '@ant-design/icons';
-
+import { RightCircleTwoTone, LeftCircleTwoTone } from "@ant-design/icons";
 
 import CheduChessBoard from "../ChessBoardBown/CheduChessBoard";
+import BasicChessBoard from "../ChessBoardBown/BasicChessBoard";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -70,7 +67,7 @@ export default class TempPage extends React.Component {
 
   render() {
     let { backgroundColor } = this.state;
-    
+
     /*Resource.screen1.setState({
       fen: "start", //auf Lichess nachschauen
       // square styles for active drop square
@@ -85,7 +82,7 @@ export default class TempPage extends React.Component {
       history: [], //pgn
     });
     Resource.screen1.state.fen*/
-    
+
     return (
       <View
         style={{
@@ -110,15 +107,15 @@ export default class TempPage extends React.Component {
         </View>
 
         {/*ChessboardEnvironment*/}
-        <View style = {{alignItems:"center"}}>
-          <View style={{flexDirection: "row"}}>
-              <CheduChessBoard/>
+        <View style={{ alignItems: "center" }}>
+          <View style={{ flexDirection: "row" }}>
+            <BasicChessBoard />
           </View>
 
-        {/*Tools*/}
-          <View style = {{flexDirection: "row"}}>
-            <LeftCircleTwoTone twoToneColor={"#185a5c"}/>
-            <RightCircleTwoTone twoToneColor={"#185a5c"}/>
+          {/*Tools*/}
+          <View style={{ flexDirection: "row" }}>
+            <LeftCircleTwoTone twoToneColor={"#185a5c"} />
+            <RightCircleTwoTone twoToneColor={"#185a5c"} />
           </View>
         </View>
       </View>

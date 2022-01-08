@@ -13,7 +13,6 @@ import {
   ImageBackground,
 } from "react-native"; //components
 
-
 import { UserData } from "../../User/UserData";
 
 import { AppearanceProvider } from "react-native-appearance";
@@ -42,7 +41,6 @@ import white_separator from "../Pictures/white_separator.png";
 import black_separator from "../Pictures/black_separator.png";
 
 //import Video from 'react-native-video';
-
 
 import { white } from "chalk";
 
@@ -585,13 +583,14 @@ export default class Homepage extends React.Component {
             </TouchableOpacity>
           </View>
         </View>
-        
+
         {/*Video*/}
-        <View style= {{
+        <View
+          style={{
             alignItems: "center",
           }}
         >
-          Video
+          <Text>Video</Text>
         </View>
 
         {/*Content*/}
@@ -748,16 +747,43 @@ export default class Homepage extends React.Component {
             >
               <View style={{ marginTop: 20, marginLeft: 0 }}>
                 <ImageBackground
-                    source={Poster_Schachbrett}
-                    style={styles.Poster_Schachbrett}
-                  >
-                  <View style={{ alignItems: 'center' }}>
-                    <Text style={{fontSize: windowWidth/25, fontWeight: "bold", textAlign: "center"}}>You want to learn chess, get better and beyond?</Text>
-                    <Text style={{fontSize: windowWidth/20, fontWeight: "bold", textAlign: "center"}}>THIS IS YOUR PLACE TO START!</Text>
-                    <TouchableOpacity
-                      onPress={() => this.props.navigation.navigate("LearnToPlay")}
+                  source={Poster_Schachbrett}
+                  style={styles.Poster_Schachbrett}
+                >
+                  <View style={{ alignItems: "center" }}>
+                    <Text
+                      style={{
+                        fontSize: windowWidth / 25,
+                        fontWeight: "bold",
+                        textAlign: "center",
+                      }}
                     >
-                      <Text style={{fontSize: windowWidth/40, fontWeight: "bold", textAlign: "center", color: "#007aff"}}>Start here!</Text>
+                      You want to learn chess, get better and beyond?
+                    </Text>
+                    <Text
+                      style={{
+                        fontSize: windowWidth / 20,
+                        fontWeight: "bold",
+                        textAlign: "center",
+                      }}
+                    >
+                      THIS IS YOUR PLACE TO START!
+                    </Text>
+                    <TouchableOpacity
+                      onPress={() =>
+                        this.props.navigation.navigate("LearnToPlay")
+                      }
+                    >
+                      <Text
+                        style={{
+                          fontSize: windowWidth / 40,
+                          fontWeight: "bold",
+                          textAlign: "center",
+                          color: "#007aff",
+                        }}
+                      >
+                        Start here!
+                      </Text>
                     </TouchableOpacity>
                   </View>
                 </ImageBackground>
@@ -766,7 +792,7 @@ export default class Homepage extends React.Component {
                 <Image
                   source={this.state.separator}
                   style={{
-                    height: (windowWidth / 10),
+                    height: windowWidth / 10,
                   }}
                 />
 
@@ -843,12 +869,12 @@ export default class Homepage extends React.Component {
                     </View>
                   </ImageBackground>
                 </View>
-                
+
                 {/*Separator*/}
                 <Image
                   source={this.state.separator}
                   style={{
-                    height: (windowWidth / 10),
+                    height: windowWidth / 10,
                   }}
                 />
 
@@ -911,9 +937,7 @@ export default class Homepage extends React.Component {
                         backgroundColor: "rgba(52, 52, 52, 0.8)",
                         borderRadius: 20,
                       }}
-                    >
-                      
-                    </View>
+                    ></View>
                   </ImageBackground>
                 </View>
               </View>
@@ -1283,11 +1307,10 @@ const styles = StyleSheet.create({
   },
 
   backgroundVideo: {
-    position: 'absolute',
+    position: "absolute",
     top: 0,
     left: 0,
     bottom: 0,
     right: 0,
   },
-
 });
