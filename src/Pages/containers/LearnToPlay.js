@@ -16,10 +16,7 @@ import registerPictureBlack from "../Pictures/register.png";
 import registerPictureWhite from "../Pictures/register_white.png";
 import userPictureBlack from "../Pictures/user.png";
 import userPictureWhite from "../Pictures/user_white.png";
-import {
-  RightCircleTwoTone,
-  LeftCircleTwoTone,
-} from '@ant-design/icons';
+
 
 import PropTypes from "prop-types";
 import Chessboard from "chessboardjsx";
@@ -99,12 +96,6 @@ export default class TempPage extends React.Component {
         <View style = {{alignItems:"center"}}>
           <View style={{flexDirection: "row"}}>
             <BasicChessBoard/>
-          </View>
-
-        {/*Tools*/}
-          <View style = {{flexDirection: "row"}}>
-            <LeftCircleTwoTone twoToneColor={"#185a5c"}/>
-            <RightCircleTwoTone twoToneColor={"#185a5c"}/>
           </View>
         </View>
       </View>

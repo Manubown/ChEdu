@@ -1,7 +1,11 @@
 import React, { Component } from "react";
-import { Dimensions, Button, StyleSheet } from "react-native";
+import { Dimensions, Button, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import PropTypes from "prop-types";
 import * as Chess from "chess.js";
+import {
+  RightCircleTwoTone,
+  LeftCircleTwoTone,
+} from '@ant-design/icons';
 
 import Chessboard from "chessboardjsx";
 
@@ -23,23 +27,72 @@ class BasicChessBoardLogic extends Component {
     history: [], //pgn
 
     //FenListe
-
     startingPositions: {
       Openings: {
         SicilianDefence:
           "rnbqkbnr/pp1ppppp/8/2p5/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2",
 
+        FrenchDefense:
+          "rnbqkbnr/pppp1ppp/4p3/8/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2",
+        
+        RuyLopez:
+          "r1bqkbnr/pppp1ppp/2n5/1B2p3/4P3/5N2/PPPP1PPP/RNBQK2R b KQkq - 3 3",
+        
+        CaroKann:
+          "rnbqkbnr/pp1ppppp/2p5/8/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2",
+
+        ItalianGame:      
+          "r1bqkbnr/pppp1ppp/2n5/4p3/2B1P3/5N2/PPPP1PPP/RNBQK2R b KQkq - 3 3",
+        
+        ScandinavianDefense:
+          "rnbqkbnr/ppp1pppp/8/3p4/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2",
+        
+        PircDefense:
+          "rnbqkb1r/ppp1pp1p/3p1np1/8/3PP3/2N5/PPP2PPP/R1BQKBNR w KQkq - 0 4",
+        
+        ScotchGame:
+          "r1bqkbnr/pppp1ppp/2n5/4p3/3PP3/5N2/PPP2PPP/RNBQKB1R b KQkq - 0 3",
+
+        ViennaGame:
+          "rnbqkbnr/pppp1ppp/8/4p3/4P3/2N5/PPPP1PPP/R1BQKBNR w KQkq - 0 1",
+        
         QueensGambit:
           "rnbqkbnr/ppp1pppp/8/3p4/2PP4/8/PP2PPPP/RNBQKBNR b KQkq - 0 2",
+        
+        SlavDefense:
+          "rnbqkbnr/pp2pppp/2p5/3p4/2PP4/8/PP2PPPP/RNBQKBNR w KQkq - 0 3",
+        
+        IndianDefense:
+          "rnbqkb1r/pppppppp/5n2/8/3P4/8/PPP1PPPP/RNBQKBNR w KQkq - 1 2",
+        
+        DutchDefense:
+          "rnbqkbnr/ppppp1pp/8/5p2/3P4/8/PPP1PPPP/RNBQKBNR w KQkq - 0 2",
+        
+        EnglishOpening:
+          "rnbqkbnr/pppppppp/8/8/2P5/8/PP1PPPPP/RNBQKBNR b KQkq - 0 1",
+        
+        CatalanOpening:
+          "rnbqkb1r/pppp1ppp/4pn2/8/2PP4/6P1/PP2PP1P/RNBQKBNR b KQkq - 0 3",
+        
+        RetiOpening:
+          "rnbqkbnr/ppp1pppp/8/3p4/2P5/5N2/PP1PPPPP/RNBQKB1R b KQkq - 1 2"
+      },
+      MiddleGame:{
+
+      },
+      EndGame:{
+
+      },
+      BasicRules:{
+
       },
     },
   };
 
   changeFen = (customFen) => {
-    switch (customFen) {
-      case "SicilianDefence":
+    
         this.setState({
-          fen: this.state.startingPositions.Openings.SicilianDefence,
+          fen: "start",
           dropSquareStyle: {},
           // custom square styles
           squareStyles: {},
@@ -49,30 +102,138 @@ class BasicChessBoardLogic extends Component {
           square: "",
           // array of past game moves
           history: [], //pgn
-
-          //FenListe
-
-          startingPositions: {
-            Openings: {
-              SicilianDefence:
-                "rnbqkbnr/pp1ppppp/8/2p5/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2",
-
-              QueensGambit:
-                "rnbqkbnr/ppp1pppp/8/3p4/2PP4/8/PP2PPPP/RNBQKBNR b KQkq - 0 2",
-            },
-          },
         });
 
         this.game = new Chess(this.state.fen);
         this.game.position = this.state.fen;
 
+      switch (customFen) {
+        case "SicilianDefence":
+          this.setState({
+            fen: this.state.startingPositions.Openings.SicilianDefence,
+          });
+          this.game = new Chess(this.state.fen);
+          this.game.position = this.state.fen;
         break;
-      case "QueensGambit":
-        this.setState({
-          fen: this.state.startingPositions.Openings.QueensGambit,
-        });
-        this.game = new Chess(this.state.fen);
-        this.game.position = this.state.fen;
+
+        case "FrenchDefense":
+          this.setState({
+            fen: this.state.startingPositions.Openings.FrenchDefense,
+          });
+          this.game = new Chess(this.state.fen);
+          this.game.position = this.state.fen;
+        break;
+
+        case "RuyLopez":
+          this.setState({
+            fen: this.state.startingPositions.Openings.RuyLopez,
+          });
+          this.game = new Chess(this.state.fen);
+          this.game.position = this.state.fen;
+        break;
+
+        case "CaroKann":
+          this.setState({
+            fen: this.state.startingPositions.Openings.CaroKann,
+          });
+          this.game = new Chess(this.state.fen);
+          this.game.position = this.state.fen;
+        break;
+
+        case "ItalianGame":
+          this.setState({
+            fen: this.state.startingPositions.Openings.ItalianGame,
+          });
+          this.game = new Chess(this.state.fen);
+          this.game.position = this.state.fen;
+        break;
+
+        case "ScandinavianDefense":
+          this.setState({
+            fen: this.state.startingPositions.Openings.ScandinavianDefense,
+          });
+          this.game = new Chess(this.state.fen);
+          this.game.position = this.state.fen;
+        break;
+
+        case "PircDefense":
+          this.setState({
+            fen: this.state.startingPositions.Openings.PircDefense,
+          });
+          this.game = new Chess(this.state.fen);
+          this.game.position = this.state.fen;
+        break;
+
+        case "ScotchGame":
+          this.setState({
+            fen: this.state.startingPositions.Openings.ScotchGame,
+          });
+          this.game = new Chess(this.state.fen);
+          this.game.position = this.state.fen;
+        break;
+
+        case "ViennaGame":
+          this.setState({
+            fen: this.state.startingPositions.Openings.ViennaGame,
+          });
+          this.game = new Chess(this.state.fen);
+          this.game.position = this.state.fen;
+        break;
+
+        case "QueensGambit":
+          this.setState({
+            fen: this.state.startingPositions.Openings.QueensGambit,
+          });
+          this.game = new Chess(this.state.fen);
+          this.game.position = this.state.fen;
+        break;
+
+        case "SlavDefense":
+          this.setState({
+            fen: this.state.startingPositions.Openings.SlavDefense,
+          });
+          this.game = new Chess(this.state.fen);
+          this.game.position = this.state.fen;
+        break;
+
+        case "IndianDefense":
+          this.setState({
+            fen: this.state.startingPositions.Openings.IndianDefense,
+          });
+          this.game = new Chess(this.state.fen);
+          this.game.position = this.state.fen;
+        break;
+
+        case "DutchDefense":
+          this.setState({
+            fen: this.state.startingPositions.Openings.DutchDefense,
+          });
+          this.game = new Chess(this.state.fen);
+          this.game.position = this.state.fen;
+        break;
+
+        case "EnglishOpening":
+          this.setState({
+            fen: this.state.startingPositions.Openings.EnglishOpening,
+          });
+          this.game = new Chess(this.state.fen);
+          this.game.position = this.state.fen;
+        break;
+
+        case "CatalanOpening":
+          this.setState({
+            fen: this.state.startingPositions.Openings.CatalanOpening,
+          });
+          this.game = new Chess(this.state.fen);
+          this.game.position = this.state.fen;
+        break;
+
+        case "RetiOpening":
+          this.setState({
+            fen: this.state.startingPositions.Openings.RetiOpening,
+          });
+          this.game = new Chess(this.state.fen);
+          this.game.position = this.state.fen;
         break;
     }
   };
@@ -251,17 +412,147 @@ export default function BasicChessBoard() {
               onSquareClick={onSquareClick}
               onSquareRightClick={onSquareRightClick}
             />
-            <Button
-              style={styles.Buttons}
-              onPress={() => {
-                changeFen("QueensGambit");
-              }}
-              title="Change"
-            />
+            
+            <View style = {{flexDirection: "row"}}>
+              <TouchableOpacity 
+                onPress={() => {
+                  changeFen("SicilianDefence");
+                }}
+              >
+                <Text>Sicilian Defense  </Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity 
+                onPress={() => {
+                  changeFen("FrenchDefense");
+                }}
+              >
+                <Text>French Defense  </Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity 
+                onPress={() => {
+                  changeFen("RuyLopez");
+                }}
+              >
+                <Text>Ruy López  </Text>
+              </TouchableOpacity>
+              
+              <TouchableOpacity 
+                onPress={() => {
+                  changeFen("CaroKann");
+                }}
+              >
+                <Text>Caro-Kann Defense  </Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity 
+                onPress={() => {
+                  changeFen("ItalianGame");
+                }}
+              >
+                <Text>Italian Game  </Text>
+              </TouchableOpacity>
+              
+              <TouchableOpacity 
+                onPress={() => {
+                  changeFen("ScandinavianDefense");
+                }}
+              >
+                <Text>Scandinavian Defense  </Text>
+              </TouchableOpacity>
+              
+              <TouchableOpacity 
+                onPress={() => {
+                  changeFen("PircDefense");
+                }}
+              >
+                <Text>Pirc Defense  </Text>
+              </TouchableOpacity>
+              
+              <TouchableOpacity 
+                onPress={() => {
+                  changeFen("ScotchGame");
+                }}
+              >
+                <Text>Scotch Game  </Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity 
+                onPress={() => {
+                  changeFen("ViennaGame");
+                }}
+              >
+                <Text>Vienna Game  </Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity 
+                onPress={() => {
+                  changeFen("QueensGambit");
+                }}
+              >
+                <Text>Queen's Gambit </Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity 
+                onPress={() => {
+                  changeFen("SlavDefense");
+                }}
+              >
+                <Text>Slav Defense  </Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity 
+                onPress={() => {
+                  changeFen("IndianDefense");
+                }}
+              >
+                <Text>Indian Defense  </Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity 
+                onPress={() => {
+                  changeFen("DutchDefense");
+                }}
+              >
+                <Text>DutchDefense  </Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity 
+                onPress={() => {
+                  changeFen("EnglishOpening");
+                }}
+              >
+                <Text>English Opening  </Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity 
+                onPress={() => {
+                  changeFen("CatalanOpening");
+                }}
+              >
+                <Text>Catalan Opening  </Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity 
+                onPress={() => {
+                  changeFen("RetiOpening");
+                }}
+              >
+                <Text>Réti Opening  </Text>
+              </TouchableOpacity>
+            </View>
+            {/*Tools*/}
+            <View style = {{flexDirection: "row"}}>
+              <LeftCircleTwoTone twoToneColor={"#185a5c"}/>
+              <RightCircleTwoTone twoToneColor={"#185a5c"}/>
+            </View>
           </div>
         )}
       </BasicChessBoardLogic>
+      
     </div>
+    
   );
 }
 
