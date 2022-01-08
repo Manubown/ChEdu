@@ -63,7 +63,7 @@ const MyStack = () => {
         <Stack.Screen
           name="ChessBoard"
           component={ChessBoard}
-          options={{ title: "ChEdu_ChessBoard" }}
+          options={{ title: "ChessBoard" }}
         />
       </Stack.Navigator>
     </NavigationContainer>

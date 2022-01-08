@@ -10,7 +10,7 @@ const windowHeight = Dimensions.get("window").height;
 class BasicChessBoardLogic extends Component {
   static propTypes = { children: PropTypes.func };
   state = {
-    fen: "rnbqkbnr/pp1ppppp/8/2p5/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2", //auf Lichess nachschauen
+    fen: "start", //auf Lichess nachschauen
     // square styles for active drop square
     dropSquareStyle: {},
     // custom square styles
