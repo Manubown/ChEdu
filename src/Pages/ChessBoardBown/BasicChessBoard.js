@@ -130,7 +130,7 @@ class BasicChessBoardLogic extends Component {
       translateXTextbookCheckmates,
     } = this.state;
     Animated.spring(translateMode, {
-      toValue: type,
+      toValue: 3000,
       duration: 100,
     }).start();
     if (activeMode === 1) {
@@ -691,10 +691,14 @@ export default function BasicChessBoard() {
               <RightCircleTwoTone twoToneColor={"#185a5c"} />
             </View>
 
-            {/*All Modes + Every Tab*/}
+            {/*All Modes*/}
             <View>
+<<<<<<< HEAD
               {/*All Modes*/}
               <View style={{ flexDirection: "row", alignSelf: "center" }}>
+=======
+              <View style={{flexDirection: "row", alignSelf:"center"}}>
+>>>>>>> parent of 7d473231 (Adjusted ChEduChessboard)
                 {/*Chess Basics*/}
                 <TouchableOpacity
                   onLayout={(event) =>

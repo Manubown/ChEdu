@@ -1,8 +1,11 @@
 import React, { Component } from "react";
-import { Dimensions, View, Text } from "react-native";
+import { Dimensions } from "react-native";
 import PropTypes from "prop-types";
 import * as Chess from "chess.js"; // import Chess from  "chess.js"(default) if recieving an error about new Chess() not being a constructor
+<<<<<<< HEAD
 import { RightCircleTwoTone, LeftCircleTwoTone } from "@ant-design/icons";
+=======
+>>>>>>> parent of 7d473231 (Adjusted ChEduChessboard)
 
 import Chessboard from "chessboardjsx";
 //import Resource from "./Resource";
@@ -174,7 +177,7 @@ class HumanVsHuman extends Component {
 }
 export default function CheduChessBoard() {
   return (
-    <View>
+    <div>
       <HumanVsHuman>
         {({
           position,
@@ -187,6 +190,7 @@ export default function CheduChessBoard() {
           onSquareClick,
           onSquareRightClick,
         }) => (
+<<<<<<< HEAD
           <View>
             {/*Chessboard*/}
             <View style={{ flexDirection: "row", alignSelf: "center" }}>
@@ -220,9 +224,28 @@ export default function CheduChessBoard() {
               <Text>Content</Text>
             </View>
           </View>
+=======
+          <Chessboard
+            id="humanVsHuman"
+            width={(windowHeight / 4) * 3}
+            position={position} //position zB. (a6: 'kW') ==> König auf a6
+            onDrop={onDrop}
+            onMouseOverSquare={onMouseOverSquare}
+            onMouseOutSquare={onMouseOutSquare}
+            boardStyle={{
+              borderRadius: "5px",
+              boxShadow: `0 5px 15px #185a5c`,
+            }}
+            squareStyles={squareStyles}
+            dropSquareStyle={dropSquareStyle}
+            onDragOverSquare={onDragOverSquare}
+            onSquareClick={onSquareClick}
+            onSquareRightClick={onSquareRightClick}
+          />
+>>>>>>> parent of 7d473231 (Adjusted ChEduChessboard)
         )}
       </HumanVsHuman>
-    </View>
+    </div>
   );
 }
 

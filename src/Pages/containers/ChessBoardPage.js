@@ -110,7 +110,17 @@ export default class TempPage extends React.Component {
         </View>
 
         {/*ChessboardEnvironment*/}
-        <CheduChessBoard/>
+        <View style = {{alignItems:"center"}}>
+          <View style={{flexDirection: "row"}}>
+              <CheduChessBoard/>
+          </View>
+
+        {/*Tools*/}
+          <View style = {{flexDirection: "row"}}>
+            <LeftCircleTwoTone twoToneColor={"#185a5c"}/>
+            <RightCircleTwoTone twoToneColor={"#185a5c"}/>
+          </View>
+        </View>
       </View>
     );
   }
