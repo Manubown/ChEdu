@@ -264,7 +264,7 @@ export default class Homepage extends React.Component {
               value={this.state.switchValue}
               onValueChange={(switchValue) =>
                 this.setState({ switchValue }, () =>
-                  this.handleSwitchBackground()
+                  console.log("Michaels Dreck: " + global.MichaelsDreck)
                 )
               }
             />

@@ -7,3 +7,4 @@ global.SwitchUser;
 global.SunMoon;
 global.TextColor;
 global.separator;
+global.MichaelsDreck = "Filip";
