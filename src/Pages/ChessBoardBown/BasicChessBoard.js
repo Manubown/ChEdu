@@ -693,15 +693,8 @@ export default function BasicChessBoard() {
 
             {/*All Modes*/}
             <View>
-<<<<<<< HEAD
-<<<<<<< HEAD
               {/*All Modes*/}
               <View style={{ flexDirection: "row", alignSelf: "center" }}>
-=======
-=======
->>>>>>> parent of 7d473231 (Adjusted ChEduChessboard)
-              <View style={{flexDirection: "row", alignSelf:"center"}}>
->>>>>>> parent of 7d473231 (Adjusted ChEduChessboard)
                 {/*Chess Basics*/}
                 <TouchableOpacity
                   onLayout={(event) =>

@@ -2,13 +2,7 @@ import React, { Component } from "react";
 import { Dimensions } from "react-native";
 import PropTypes from "prop-types";
 import * as Chess from "chess.js"; // import Chess from  "chess.js"(default) if recieving an error about new Chess() not being a constructor
-<<<<<<< HEAD
-<<<<<<< HEAD
 import { RightCircleTwoTone, LeftCircleTwoTone } from "@ant-design/icons";
-=======
->>>>>>> parent of 7d473231 (Adjusted ChEduChessboard)
-=======
->>>>>>> parent of 7d473231 (Adjusted ChEduChessboard)
 
 import Chessboard from "chessboardjsx";
 //import Resource from "./Resource";
@@ -193,44 +187,6 @@ export default function CheduChessBoard() {
           onSquareClick,
           onSquareRightClick,
         }) => (
-<<<<<<< HEAD
-<<<<<<< HEAD
-          <View>
-            {/*Chessboard*/}
-            <View style={{ flexDirection: "row", alignSelf: "center" }}>
-              <Chessboard
-                id="humanVsHuman"
-                width={(windowHeight / 4) * 3}
-                position={position} //position zB. (a6: 'kW') ==> König auf a6
-                onDrop={onDrop}
-                onMouseOverSquare={onMouseOverSquare}
-                onMouseOutSquare={onMouseOutSquare}
-                boardStyle={{
-                  borderRadius: "5px",
-                  boxShadow: `0 5px 15px #185a5c`,
-                }}
-                squareStyles={squareStyles}
-                dropSquareStyle={dropSquareStyle}
-                onDragOverSquare={onDragOverSquare}
-                onSquareClick={onSquareClick}
-                onSquareRightClick={onSquareRightClick}
-              />
-            </View>
-
-            {/*Tools*/}
-            <View style={{ flexDirection: "row", alignSelf: "center" }}>
-              <LeftCircleTwoTone twoToneColor={"#185a5c"} />
-              <RightCircleTwoTone twoToneColor={"#185a5c"} />
-            </View>
-
-            {/*Contnet*/}
-            <View style={{ flexDirection: "row", alignSelf: "center" }}>
-              <Text>Content</Text>
-            </View>
-          </View>
-=======
-=======
->>>>>>> parent of 7d473231 (Adjusted ChEduChessboard)
           <Chessboard
             id="humanVsHuman"
             width={(windowHeight / 4) * 3}
@@ -248,10 +204,7 @@ export default function CheduChessBoard() {
             onSquareClick={onSquareClick}
             onSquareRightClick={onSquareRightClick}
           />
-<<<<<<< HEAD
->>>>>>> parent of 7d473231 (Adjusted ChEduChessboard)
-=======
->>>>>>> parent of 7d473231 (Adjusted ChEduChessboard)
+
         )}
       </HumanVsHuman>
     </div>
