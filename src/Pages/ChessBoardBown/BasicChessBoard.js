@@ -848,6 +848,7 @@ export default function BasicChessBoard() {
                 }}
               />
               
+              {/*All Modes + Every Tab*/}
               <ScrollView>
                 <View style = {{
                         flexDirection: "row"
