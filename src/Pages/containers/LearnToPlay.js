@@ -93,11 +93,7 @@ export default class TempPage extends React.Component {
         </View>
 
         {/*ChessboardEnvironment*/}
-        <View style = {{alignItems:"center"}}>
-          <View style={{flexDirection: "row"}}>
-            <BasicChessBoard/>
-          </View>
-        </View>
+        <BasicChessBoard/>
       </View>
     );
   }

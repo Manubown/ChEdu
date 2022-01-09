@@ -20,6 +20,8 @@ import { AppearanceProvider } from "react-native-appearance";
 import CheduChessBoard from "../ChessBoardBown/CheduChessBoard";
 
 import { Stage, Layer } from "react-konva";
+
+//Picture Imports
 import cheduLogo from "../Pictures/Logo.png";
 import twokings from "../Pictures/two_kings.jpg";
 import opening_concepts from "../Pictures/opening_concepts.jpg";
@@ -136,12 +138,9 @@ export default class Homepage extends React.Component {
   };
 
   handleSlide = (type) => {
+    console.log(type);
     let {
       active,
-      xTabOne,
-      xTabTwo,
-      xTabThree,
-      xTabFour,
       translateX,
       translateXTabOne,
       translateXTabTwo,
@@ -879,7 +878,7 @@ export default class Homepage extends React.Component {
                 />
 
                 <View style={{ flexDirection: "row" }}>
-                  {/*Expert Modus*/}
+                  {/*Expert Mode*/}
                   <ImageBackground
                     source={expert_modus}
                     style={styles.Opening_Concepts}
@@ -898,7 +897,7 @@ export default class Homepage extends React.Component {
                           textAlign: "center",
                         }}
                       >
-                        Expert Modus
+                        Expert Mode
                       </Text>
                     </View>
                   </ImageBackground>

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Dimensions, Button, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Dimensions, StyleSheet, Text, TouchableOpacity, View, ImageBackground, Animated, ScrollView } from "react-native";
 import PropTypes from "prop-types";
 import * as Chess from "chess.js";
 import {
@@ -9,7 +9,18 @@ import {
 
 import Chessboard from "chessboardjsx";
 
+//Picture Imports
+import opening_concepts from "../Pictures/opening_concepts.jpg";
+import chess_basics from "../Pictures/chess_basics.jpg";
+import strategy_concepts from "../Pictures/strategy_concepts.jpg";
+import expert_modus from "../Pictures/expert_modus.jpg";
+import textbook_checkmates from "../Pictures/textbook_checkmates.jpg";
+
+
 const windowHeight = Dimensions.get("window").height;
+const windowWidth = Dimensions.get("window").width;
+const { width } = Dimensions.get("window");
+
 
 class BasicChessBoardLogic extends Component {
   static propTypes = { children: PropTypes.func };
@@ -25,6 +36,23 @@ class BasicChessBoardLogic extends Component {
     square: "",
     // array of past game moves
     history: [], //pgn
+
+    //GameMode
+    gameMode: 0,
+    activeMode: 0,
+    xTabNone: 0,
+    xTabChessBasics: 0,
+    xTabStrategicConcepts: 0,
+    xTabOpeningConcepts: 0,
+    xTabExpertMode: 0,
+    xTabTextbookCheckmates: 0,
+    translateMode: new Animated.Value(0),
+    translateXNone: new Animated.Value(0),
+    translateXChessBasics: new Animated.Value(width),
+    translateXStrategicConcepts: new Animated.Value(width * 2),
+    translateXOpeningConcepts: new Animated.Value(width * 3),
+    translateXExpertMode: new Animated.Value(width * 4),
+    translateXTextbookCheckmates: new Animated.Value(width * 5),
 
     //FenListe
     startingPositions: {
@@ -84,13 +112,198 @@ class BasicChessBoardLogic extends Component {
 
       },
       BasicRules:{
-
+        Start:
+          "start"
       },
     },
   };
 
+  handleSlide = (type) => {
+    console.log(type);
+    let {
+      activeMode,
+      translateMode,
+      translateXNone,
+      translateXChessBasics,
+      translateXStrategicConcepts,
+      translateXOpeningConcepts,
+      translateXExpertMode,
+      translateXTextbookCheckmates,
+    } = this.state;
+    Animated.spring(translateMode, {
+      toValue: 3000,
+      duration: 100,
+    }).start();
+    if (activeMode === 1) {
+      Animated.parallel([
+        Animated.spring(translateXChessBasics, {
+          toValue: -width,
+          duration: 100,
+        }).start(),
+        Animated.spring(translateXStrategicConcepts, {
+          toValue: 0,
+          duration: 100,
+        }).start(),
+        Animated.spring(translateXOpeningConcepts, {
+          toValue: width,
+          duration: 100,
+        }).start(),
+        Animated.spring(translateXExpertMode, {
+          toValue: width * 2,
+          duration: 100,
+        }).start(),
+      ]);
+    } else if (activeMode === 2) {
+      Animated.parallel([
+        Animated.spring(translateXChessBasics, {
+          toValue: -width * 2,
+          duration: 100,
+        }).start(),
+        Animated.spring(translateXStrategicConcepts, {
+          toValue: -width,
+          duration: 100,
+        }).start(),
+        Animated.spring(translateXOpeningConcepts, {
+          toValue: 0,
+          duration: 100,
+        }).start(),
+        Animated.spring(translateXExpertMode, {
+          toValue: width,
+          duration: 100,
+        }).start(),
+      ]);
+    } else if (activeMode === 3) {
+      Animated.parallel([
+        Animated.spring(translateXChessBasics, {
+          toValue: -width * 3,
+          duration: 100,
+        }).start(),
+        Animated.spring(translateXStrategicConcepts, {
+          toValue: -width * 2,
+          duration: 100,
+        }).start(),
+        Animated.spring(translateXOpeningConcepts, {
+          toValue: -width,
+          duration: 100,
+        }).start(),
+        Animated.spring(translateXExpertMode, {
+          toValue: 0,
+          duration: 100,
+        }).start(),
+      ]);
+    } else if (activeMode === 4) {
+      Animated.parallel([
+        Animated.spring(translateXChessBasics, {
+          toValue: -width * 3,
+          duration: 100,
+        }).start(),
+        Animated.spring(translateXStrategicConcepts, {
+          toValue: -width * 2,
+          duration: 100,
+        }).start(),
+        Animated.spring(translateXOpeningConcepts, {
+          toValue: -width,
+          duration: 100,
+        }).start(),
+        Animated.spring(translateXExpertMode, {
+          toValue: 0,
+          duration: 100,
+        }).start(),
+      ]);
+    } else if (activeMode === 5) {
+      Animated.parallel([
+        Animated.spring(translateXChessBasics, {
+          toValue: -width * 3,
+          duration: 100,
+        }).start(),
+        Animated.spring(translateXStrategicConcepts, {
+          toValue: -width * 2,
+          duration: 100,
+        }).start(),
+        Animated.spring(translateXOpeningConcepts, {
+          toValue: -width,
+          duration: 100,
+        }).start(),
+        Animated.spring(translateXExpertMode, {
+          toValue: 0,
+          duration: 100,
+        }).start(),
+      ]); 
+    } else {
+      Animated.parallel([
+        Animated.spring(translateXChessBasics, {
+          toValue: 0,
+          duration: 100,
+        }).start(),
+        Animated.spring(translateXStrategicConcepts, {
+          toValue: width,
+          duration: 100,
+        }).start(),
+        Animated.spring(translateXOpeningConcepts, {
+          toValue: width * 2,
+          duration: 100,
+        }).start(),
+        Animated.spring(translateXExpertMode, {
+          toValue: width * 3,
+          duration: 100,
+        }).start(),
+      ]);
+    }
+  };
+
+  changeGameMode = (currentMode, currentTab) =>{
+    switch(currentMode){
+      case 0:
+        this.setState({
+          activeMode: 0,
+          gameMode: 0,
+        }),
+        this.handleSlide(currentTab);
+      break;
+
+      case 1:
+        this.setState({
+          activeMode: 1,
+          gameMode: 1,
+        }),
+        this.handleSlide(currentTab);
+      break;
+
+      case 2:
+        this.setState({
+          activeMode: 2,
+          gameMode: 2,
+        }),
+        this.handleSlide(currentTab);
+      break;
+
+      case 3:
+        this.setState({
+          activeMode: 3,
+          gameMode: 3,
+        }),
+        this.handleSlide(currentTab);
+      break;
+
+      case 4:
+        this.setState({
+          activeMode: 4,
+          gameMode: 4,
+        }),
+        this.handleSlide(currentTab);
+      break;
+
+      case 5:
+        this.setState({
+          activeMode: 5,
+          gameMode: 5,
+        }),
+        this.handleSlide(currentTab);
+      break;
+    }
+  }
+
   changeFen = (customFen) => {
-    
         this.setState({
           fen: "start",
           dropSquareStyle: {},
@@ -104,6 +317,7 @@ class BasicChessBoardLogic extends Component {
           history: [], //pgn
         });
 
+        //funktioniert nicht
         this.game = new Chess(this.state.fen);
         this.game.position = this.state.fen;
 
@@ -235,6 +449,14 @@ class BasicChessBoardLogic extends Component {
           this.game = new Chess(this.state.fen);
           this.game.position = this.state.fen;
         break;
+
+        case "Start":
+          this.setState({
+            fen: this.state.startingPositions.BasicRules.Start,
+          });
+          this.game = new Chess(this.state.fen);
+          this.game.position = this.state.fen;
+        break;
     }
   };
 
@@ -361,7 +583,12 @@ class BasicChessBoardLogic extends Component {
     });
 
   render() {
-    const { fen, dropSquareStyle, squareStyles } = this.state;
+    const { 
+      fen, dropSquareStyle, squareStyles, 
+      xTabNone, xTabChessBasics, xTabStrategicConcepts, xTabOpeningConcepts, xTabExpertMode, xTabTextbookCheckmates,
+      translateMode, translateXNone, translateXChessBasics, translateXStrategicConcepts, 
+      translateXOpeningConcepts, translateXExpertMode, translateXTextbookCheckmates
+    } = this.state;
 
     return this.props.children({
       squareStyles,
@@ -374,185 +601,475 @@ class BasicChessBoardLogic extends Component {
       onSquareClick: this.onSquareClick,
       onSquareRightClick: this.onSquareRightClick,
       changeFen: this.changeFen,
+      changeGameMode: this.changeGameMode,
+      xTabNone: xTabNone,
+      xTabChessBasics: xTabChessBasics,
+      xTabStrategicConcepts: xTabStrategicConcepts,
+      xTabOpeningConcepts: xTabOpeningConcepts,
+      xTabExpertMode: xTabExpertMode,
+      xTabTextbookCheckmates: xTabTextbookCheckmates,
+      translateMode: translateMode,
+      translateXNone: translateXNone,
+      translateXChessBasics: translateXChessBasics,
+      translateXStrategicConcepts: translateXStrategicConcepts,
+      translateXOpeningConcepts: translateXOpeningConcepts,
+      translateXExpertMode: translateXExpertMode,
+      translateXTextbookCheckmates: translateXTextbookCheckmates,      
     });
   }
 }
 
+/*This is viewable in LearnToPlay.js*/
 export default function BasicChessBoard() {
   return (
-    <div>
+    <View>
       <BasicChessBoardLogic>
-        {({
-          position,
-          onDrop,
-          onMouseOverSquare,
-          onMouseOutSquare,
-          squareStyles,
-          dropSquareStyle,
-          onDragOverSquare,
-          onSquareClick,
-          onSquareRightClick,
-          changeFen,
-        }) => (
-          <div>
-            <Chessboard
-              id="BasicChessBoard"
-              width={(windowHeight / 4) * 3}
-              position={position} //position zB. (a6: 'kW') ==> König auf a6
-              onDrop={onDrop}
-              onMouseOverSquare={onMouseOverSquare}
-              onMouseOutSquare={onMouseOutSquare}
-              boardStyle={{
-                borderRadius: "5px",
-                boxShadow: `0 5px 15px #185a5c`,
-              }}
-              squareStyles={squareStyles}
-              dropSquareStyle={dropSquareStyle}
-              onDragOverSquare={onDragOverSquare}
-              onSquareClick={onSquareClick}
-              onSquareRightClick={onSquareRightClick}
-            />
-            
-            <View style = {{flexDirection: "row"}}>
-              <TouchableOpacity 
-                onPress={() => {
-                  changeFen("SicilianDefence");
+          {({
+            position,
+            onDrop,
+            onMouseOverSquare,
+            onMouseOutSquare,
+            squareStyles,
+            dropSquareStyle,
+            onDragOverSquare,
+            onSquareClick,
+            onSquareRightClick,
+            changeFen,
+            changeGameMode,
+            xTabNone,
+            xTabChessBasics,
+            xTabStrategicConcepts,
+            xTabOpeningConcepts,
+            xTabExpertMode,
+            xTabTextbookCheckmates,
+            translateMode,
+            translateXNone,
+            translateXChessBasics,
+            translateXStrategicConcepts,
+            translateXOpeningConcepts,
+            translateXExpertMode,
+            translateXTextbookCheckmates,
+          }) => (
+          <View>
+            {/*Chessboard*/}
+            <View style = {{flexDirection: "row", alignSelf:"center"}}>
+              <Chessboard
+                id="BasicChessBoard"
+                width={(windowHeight / 4) * 3}
+                position={position} //position zB. (a6: 'kW') ==> König auf a6
+                onDrop={onDrop}
+                onMouseOverSquare={onMouseOverSquare}
+                onMouseOutSquare={onMouseOutSquare}
+                boardStyle={{
+                  borderRadius: "5px",
+                  boxShadow: `0 5px 15px #185a5c`,
                 }}
-              >
-                <Text>Sicilian Defense  </Text>
-              </TouchableOpacity>
-
-              <TouchableOpacity 
-                onPress={() => {
-                  changeFen("FrenchDefense");
-                }}
-              >
-                <Text>French Defense  </Text>
-              </TouchableOpacity>
-
-              <TouchableOpacity 
-                onPress={() => {
-                  changeFen("RuyLopez");
-                }}
-              >
-                <Text>Ruy López  </Text>
-              </TouchableOpacity>
-              
-              <TouchableOpacity 
-                onPress={() => {
-                  changeFen("CaroKann");
-                }}
-              >
-                <Text>Caro-Kann Defense  </Text>
-              </TouchableOpacity>
-
-              <TouchableOpacity 
-                onPress={() => {
-                  changeFen("ItalianGame");
-                }}
-              >
-                <Text>Italian Game  </Text>
-              </TouchableOpacity>
-              
-              <TouchableOpacity 
-                onPress={() => {
-                  changeFen("ScandinavianDefense");
-                }}
-              >
-                <Text>Scandinavian Defense  </Text>
-              </TouchableOpacity>
-              
-              <TouchableOpacity 
-                onPress={() => {
-                  changeFen("PircDefense");
-                }}
-              >
-                <Text>Pirc Defense  </Text>
-              </TouchableOpacity>
-              
-              <TouchableOpacity 
-                onPress={() => {
-                  changeFen("ScotchGame");
-                }}
-              >
-                <Text>Scotch Game  </Text>
-              </TouchableOpacity>
-
-              <TouchableOpacity 
-                onPress={() => {
-                  changeFen("ViennaGame");
-                }}
-              >
-                <Text>Vienna Game  </Text>
-              </TouchableOpacity>
-
-              <TouchableOpacity 
-                onPress={() => {
-                  changeFen("QueensGambit");
-                }}
-              >
-                <Text>Queen's Gambit </Text>
-              </TouchableOpacity>
-
-              <TouchableOpacity 
-                onPress={() => {
-                  changeFen("SlavDefense");
-                }}
-              >
-                <Text>Slav Defense  </Text>
-              </TouchableOpacity>
-
-              <TouchableOpacity 
-                onPress={() => {
-                  changeFen("IndianDefense");
-                }}
-              >
-                <Text>Indian Defense  </Text>
-              </TouchableOpacity>
-
-              <TouchableOpacity 
-                onPress={() => {
-                  changeFen("DutchDefense");
-                }}
-              >
-                <Text>DutchDefense  </Text>
-              </TouchableOpacity>
-
-              <TouchableOpacity 
-                onPress={() => {
-                  changeFen("EnglishOpening");
-                }}
-              >
-                <Text>English Opening  </Text>
-              </TouchableOpacity>
-
-              <TouchableOpacity 
-                onPress={() => {
-                  changeFen("CatalanOpening");
-                }}
-              >
-                <Text>Catalan Opening  </Text>
-              </TouchableOpacity>
-
-              <TouchableOpacity 
-                onPress={() => {
-                  changeFen("RetiOpening");
-                }}
-              >
-                <Text>Réti Opening  </Text>
-              </TouchableOpacity>
+                squareStyles={squareStyles}
+                dropSquareStyle={dropSquareStyle}
+                onDragOverSquare={onDragOverSquare}
+                onSquareClick={onSquareClick}
+                onSquareRightClick={onSquareRightClick}
+              />
             </View>
+
             {/*Tools*/}
-            <View style = {{flexDirection: "row"}}>
+            <View style = {{flexDirection: "row", alignSelf:"center"}}>
               <LeftCircleTwoTone twoToneColor={"#185a5c"}/>
               <RightCircleTwoTone twoToneColor={"#185a5c"}/>
             </View>
-          </div>
+
+            {/*All Modes*/}
+            <View>
+              <View style={{flexDirection: "row", alignSelf:"center"}}>
+                {/*Chess Basics*/}
+                <TouchableOpacity
+                    /*onLayout={(event) =>
+                      this.setState({ xTabChessBasics: event.nativeEvent.layout.x })
+                    }*/
+                    onPress={() => {
+                      changeGameMode(1, 1);
+                    }}
+                >
+                  <ImageBackground
+                    source={chess_basics}
+                    style={styles.Opening_Concepts}
+                  >
+                    <View
+                      style={{
+                        backgroundColor: "rgba(52, 52, 52, 0.8)",
+                        borderRadius: 20,
+                      }}
+                    >
+                      <Text
+                        style={{
+                          fontSize: windowWidth / 50,
+                          color: "white",
+                          margin: 10,
+                          textAlign: "center",
+                        }}
+                      >
+                        Chess Basics
+                      </Text>
+                    </View>
+                  </ImageBackground>
+                </TouchableOpacity>
+                
+                {/*Strategic Concepts*/}
+                <TouchableOpacity
+                    onPress={() => {
+                      changeGameMode(2, 2);
+                    }}
+                >
+                  <ImageBackground
+                    source={strategy_concepts}
+                    style={styles.Opening_Concepts}
+                  >
+                    <View
+                      style={{
+                        backgroundColor: "rgba(52, 52, 52, 0.8)",
+                        borderRadius: 20,
+                      }}
+                    >
+                      <Text
+                        style={{
+                          fontSize: windowWidth / 50,
+                          color: "white",
+                          margin: 10,
+                          textAlign: "center",
+                        }}
+                      >
+                        Strategic Concepts
+                      </Text>
+                    </View>
+                  </ImageBackground>
+                </TouchableOpacity>
+
+                {/*Opening Concepts*/}
+                <TouchableOpacity
+                    onPress={() => {
+                      changeGameMode(3, 3);
+                    }}
+                >
+                  <ImageBackground
+                    source={opening_concepts}
+                    style={styles.Opening_Concepts}
+                  >
+                    <View
+                      style={{
+                        backgroundColor: "rgba(52, 52, 52, 0.8)",
+                        borderRadius: 20,
+                      }}
+                    >
+                      <Text
+                        style={{
+                          fontSize: windowWidth / 50,
+                          color: "white",
+                          margin: 10,
+                          textAlign: "center",
+                        }}
+                      >
+                        Opening Concepts
+                      </Text>
+                    </View>
+                  </ImageBackground>
+                </TouchableOpacity>
+                
+                {/*Expert Mode*/}
+                <TouchableOpacity
+                    onPress={() => {
+                      changeGameMode(4, 4);
+                    }}
+                >
+                  <ImageBackground
+                    source={expert_modus}
+                    style={styles.Opening_Concepts}
+                  >
+                    <View
+                      style={{
+                        backgroundColor: "rgba(52, 52, 52, 0.8)",
+                        borderRadius: 20,
+                      }}
+                    >
+                      <Text
+                        style={{
+                          fontSize: windowWidth / 50,
+                          color: "white",
+                          margin: 10,
+                          textAlign: "center",
+                        }}
+                      >
+                        Expert Modus
+                      </Text>
+                    </View>
+                  </ImageBackground>
+                </TouchableOpacity>
+                
+                {/*Textbook Checkmates*/}
+                <TouchableOpacity
+                    onPress={() => {
+                      changeGameMode(5, 5);
+                    }}
+                >
+                  <ImageBackground
+                    source={textbook_checkmates}
+                    style={styles.Opening_Concepts}
+                  >
+                    <View
+                      style={{
+                        backgroundColor: "rgba(52, 52, 52, 0.8)",
+                        borderRadius: 20,
+                      }}
+                    >
+                      <Text
+                        style={{
+                          fontSize: windowWidth / 50,
+                          color: "white",
+                          margin: 10,
+                          textAlign: "center",
+                        }}
+                      >
+                        Textbook Checkmates
+                      </Text>
+                    </View>
+                  </ImageBackground>
+                </TouchableOpacity>
+              </View>
+
+              <Animated.View
+                style={{
+                  position: "absolute",
+                  width: "100%",
+                  height: "5%",
+                  top: 0,
+                  left: 0,
+                  borderRadius: 4,
+                  transform: [{ translateMode }],
+                }}
+              />
+              
+              <ScrollView>
+                <View style = {{
+                        flexDirection: "row"
+                      }}
+                >
+                  {/*None*/}
+                  <Animated.View
+                    style = {{
+                      transform: [{ translateX: translateXNone }]
+                    }}
+                  >
+                    <Text>None</Text>
+                  </Animated.View>
+
+                  {/*Chess Basics*/}
+                  <Animated.View
+                    style = {{
+                      transform: 
+                        [
+                          {
+                            translateX: translateXChessBasics
+                          }
+                        ]
+                    }}
+                  >
+                    <Text>Chess Basics</Text>
+                  </Animated.View>
+
+                  {/*Strategic Concepts*/}
+                  <Animated.View
+                    style = {{
+                      transform: [
+                        {
+                          translateX: translateXStrategicConcepts
+                        },
+                      ]
+                    }}
+                  >
+                    <Text>Strategic Concepts</Text>
+                  </Animated.View>
+
+                  {/*Opening Concepts*/}
+                  <Animated.View
+                    style = {{
+                      transform: [
+                        {
+                          translateX: translateXOpeningConcepts
+                        },
+                      ]
+                    }}
+                  >
+                    <View>
+                      <TouchableOpacity 
+                        onPress={() => {
+                          changeFen("SicilianDefence");
+                        }}
+                      >
+                        <Text>Sicilian Defense  </Text>
+                      </TouchableOpacity>
+
+                      <TouchableOpacity 
+                        onPress={() => {
+                          changeFen("FrenchDefense");
+                        }}
+                      >
+                        <Text>French Defense  </Text>
+                      </TouchableOpacity>
+
+                      <TouchableOpacity 
+                        onPress={() => {
+                          changeFen("RuyLopez");
+                        }}
+                      >
+                        <Text>Ruy López  </Text>
+                      </TouchableOpacity>
+                                
+                      <TouchableOpacity 
+                        onPress={() => {
+                          changeFen("CaroKann");
+                        }}
+                      >
+                        <Text>Caro-Kann Defense  </Text>
+                      </TouchableOpacity>
+
+                      <TouchableOpacity 
+                        onPress={() => {
+                          changeFen("ItalianGame");
+                        }}
+                      >
+                        <Text>Italian Game  </Text>
+                      </TouchableOpacity>
+                                
+                      <TouchableOpacity 
+                        onPress={() => {
+                          changeFen("ScandinavianDefense");
+                        }}
+                      >
+                        <Text>Scandinavian Defense  </Text>
+                      </TouchableOpacity>
+                                
+                      <TouchableOpacity 
+                        onPress={() => {
+                          changeFen("PircDefense");
+                        }}
+                      >
+                        <Text>Pirc Defense  </Text>
+                      </TouchableOpacity>
+                                
+                      <TouchableOpacity 
+                        onPress={() => {
+                          changeFen("ScotchGame");
+                        }}
+                      >
+                        <Text>Scotch Game  </Text>
+                      </TouchableOpacity>
+
+                      <TouchableOpacity 
+                        onPress={() => {
+                          changeFen("ViennaGame");
+                        }}
+                      >
+                        <Text>Vienna Game  </Text>
+                      </TouchableOpacity>
+
+                      <TouchableOpacity 
+                        onPress={() => {
+                          changeFen("QueensGambit");
+                        }}
+                      >
+                        <Text>Queen's Gambit </Text>
+                      </TouchableOpacity>
+
+                      <TouchableOpacity 
+                        onPress={() => {
+                          changeFen("SlavDefense");
+                        }}
+                      >
+                        <Text>Slav Defense  </Text>
+                      </TouchableOpacity>
+
+                      <TouchableOpacity 
+                        onPress={() => {
+                          changeFen("IndianDefense");
+                        }}
+                      >
+                        <Text>Indian Defense  </Text>
+                      </TouchableOpacity>
+
+                      <TouchableOpacity 
+                        onPress={() => {
+                          changeFen("DutchDefense");
+                        }}
+                      >
+                        <Text>DutchDefense  </Text>
+                      </TouchableOpacity>
+
+                      <TouchableOpacity 
+                        onPress={() => {
+                          changeFen("EnglishOpening");
+                        }}
+                      >
+                        <Text>English Opening  </Text>
+                      </TouchableOpacity>
+
+                      <TouchableOpacity 
+                        onPress={() => {
+                          changeFen("CatalanOpening");
+                        }}
+                      >
+                        <Text>Catalan Opening  </Text>
+                      </TouchableOpacity>
+
+                      <TouchableOpacity 
+                        onPress={() => {
+                          changeFen("RetiOpening");
+                        }}
+                      >
+                        <Text>Réti Opening  </Text>
+                      </TouchableOpacity>
+
+                      <TouchableOpacity 
+                        onPress={() => {
+                          changeFen("Start");
+                        }}
+                      >
+                        <Text>Reset  </Text>
+                      </TouchableOpacity>
+                    </View>
+                  </Animated.View>
+                  
+                  {/*Expert Mode*/}
+                  <Animated.View
+                    style = {{
+                      transform: [
+                        {
+                          translateX: translateXExpertMode
+                        },
+                      ]
+                    }}
+                  >
+                    <Text>Expert Mode</Text>
+                  </Animated.View>
+
+                  {/*Textbook Checkmates*/}
+                  <Animated.View
+                    style = {{
+                      transform: [
+                        {
+                          translateX: translateXTextbookCheckmates
+                        },
+                      ]
+                    }}
+                  >
+                    <Text>Textbook Checkmates</Text>
+                  </Animated.View>
+                </View>
+              </ScrollView>
+            </View>
+          </View>
         )}
-      </BasicChessBoardLogic>
+      </BasicChessBoardLogic>    
       
-    </div>
-    
+    </View>
   );
 }
 
@@ -560,6 +1077,16 @@ const styles = StyleSheet.create({
   Buttons: {
     margin: 15,
     width: 150,
+  },
+
+  Opening_Concepts: {
+    overflow: "hidden",
+    margin: (windowWidth / 20) * 0.1,
+    width: (windowWidth / 15) * 2.8,
+    height: (windowWidth / 12) * 1,
+    borderRadius: 20,
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
 
