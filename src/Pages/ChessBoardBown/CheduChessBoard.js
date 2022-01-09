@@ -3,7 +3,10 @@ import { Dimensions } from "react-native";
 import PropTypes from "prop-types";
 import * as Chess from "chess.js"; // import Chess from  "chess.js"(default) if recieving an error about new Chess() not being a constructor
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { RightCircleTwoTone, LeftCircleTwoTone } from "@ant-design/icons";
+=======
+>>>>>>> parent of 7d473231 (Adjusted ChEduChessboard)
 =======
 >>>>>>> parent of 7d473231 (Adjusted ChEduChessboard)
 
@@ -191,6 +194,7 @@ export default function CheduChessBoard() {
           onSquareRightClick,
         }) => (
 <<<<<<< HEAD
+<<<<<<< HEAD
           <View>
             {/*Chessboard*/}
             <View style={{ flexDirection: "row", alignSelf: "center" }}>
@@ -225,6 +229,8 @@ export default function CheduChessBoard() {
             </View>
           </View>
 =======
+=======
+>>>>>>> parent of 7d473231 (Adjusted ChEduChessboard)
           <Chessboard
             id="humanVsHuman"
             width={(windowHeight / 4) * 3}
@@ -242,6 +248,9 @@ export default function CheduChessBoard() {
             onSquareClick={onSquareClick}
             onSquareRightClick={onSquareRightClick}
           />
+<<<<<<< HEAD
+>>>>>>> parent of 7d473231 (Adjusted ChEduChessboard)
+=======
 >>>>>>> parent of 7d473231 (Adjusted ChEduChessboard)
         )}
       </HumanVsHuman>
