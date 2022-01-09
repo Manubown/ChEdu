@@ -2,10 +2,7 @@ import React, { Component } from "react";
 import { Dimensions, View, Text } from "react-native";
 import PropTypes from "prop-types";
 import * as Chess from "chess.js"; // import Chess from  "chess.js"(default) if recieving an error about new Chess() not being a constructor
-import {
-  RightCircleTwoTone,
-  LeftCircleTwoTone,
-} from '@ant-design/icons';
+import { RightCircleTwoTone, LeftCircleTwoTone } from "@ant-design/icons";
 
 import Chessboard from "chessboardjsx";
 //import Resource from "./Resource";
@@ -192,7 +189,7 @@ export default function CheduChessBoard() {
         }) => (
           <View>
             {/*Chessboard*/}
-            <View style = {{flexDirection: "row", alignSelf:"center"}}>
+            <View style={{ flexDirection: "row", alignSelf: "center" }}>
               <Chessboard
                 id="humanVsHuman"
                 width={(windowHeight / 4) * 3}
@@ -211,18 +208,17 @@ export default function CheduChessBoard() {
                 onSquareRightClick={onSquareRightClick}
               />
             </View>
-            
+
             {/*Tools*/}
-            <View style = {{flexDirection: "row", alignSelf:"center"}}>
-              <LeftCircleTwoTone twoToneColor={"#185a5c"}/>
-              <RightCircleTwoTone twoToneColor={"#185a5c"}/>
+            <View style={{ flexDirection: "row", alignSelf: "center" }}>
+              <LeftCircleTwoTone twoToneColor={"#185a5c"} />
+              <RightCircleTwoTone twoToneColor={"#185a5c"} />
             </View>
 
             {/*Contnet*/}
-            <View style = {{flexDirection: "row", alignSelf:"center"}}>
+            <View style={{ flexDirection: "row", alignSelf: "center" }}>
               <Text>Content</Text>
             </View>
-
           </View>
         )}
       </HumanVsHuman>

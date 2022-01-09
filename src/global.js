@@ -1,0 +1,9 @@
+global.switchValue;
+global.backgroundColor;
+global.CurrentColor;
+global.SwitchLogin;
+global.SwitchRegister;
+global.SwitchUser;
+global.SunMoon;
+global.TextColor;
+global.separator;
