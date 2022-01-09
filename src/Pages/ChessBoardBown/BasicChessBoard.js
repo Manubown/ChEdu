@@ -137,7 +137,7 @@ class BasicChessBoardLogic extends Component {
     if (activeMode === 1) {
       Animated.parallel([
         Animated.spring(translateXChessBasics, {
-          toValue: -width,
+          toValue: -width*10,
           duration: 100,
         }).start(),
         Animated.spring(translateXStrategicConcepts, {
@@ -251,14 +251,14 @@ class BasicChessBoardLogic extends Component {
     }
   };
 
-  changeGameMode = (currentMode, currentTab) =>{
+  changeGameMode = (currentMode, event) =>{
     switch(currentMode){
       case 0:
         this.setState({
           activeMode: 0,
           gameMode: 0,
         }),
-        this.handleSlide(currentTab);
+        this.handleSlide(event);
       break;
 
       case 1:
@@ -266,7 +266,7 @@ class BasicChessBoardLogic extends Component {
           activeMode: 1,
           gameMode: 1,
         }),
-        this.handleSlide(currentTab);
+        this.handleSlide(event);
       break;
 
       case 2:
@@ -274,7 +274,7 @@ class BasicChessBoardLogic extends Component {
           activeMode: 2,
           gameMode: 2,
         }),
-        this.handleSlide(currentTab);
+        this.handleSlide(event);
       break;
 
       case 3:
@@ -282,7 +282,7 @@ class BasicChessBoardLogic extends Component {
           activeMode: 3,
           gameMode: 3,
         }),
-        this.handleSlide(currentTab);
+        this.handleSlide(event);
       break;
 
       case 4:
@@ -290,7 +290,7 @@ class BasicChessBoardLogic extends Component {
           activeMode: 4,
           gameMode: 4,
         }),
-        this.handleSlide(currentTab);
+        this.handleSlide(event);
       break;
 
       case 5:
@@ -298,7 +298,7 @@ class BasicChessBoardLogic extends Component {
           activeMode: 5,
           gameMode: 5,
         }),
-        this.handleSlide(currentTab);
+        this.handleSlide(event);
       break;
     }
   }
@@ -614,7 +614,8 @@ class BasicChessBoardLogic extends Component {
       translateXStrategicConcepts: translateXStrategicConcepts,
       translateXOpeningConcepts: translateXOpeningConcepts,
       translateXExpertMode: translateXExpertMode,
-      translateXTextbookCheckmates: translateXTextbookCheckmates,      
+      translateXTextbookCheckmates: translateXTextbookCheckmates, 
+      handleSlide: this.handleSlide     
     });
   }
 }
@@ -635,6 +636,7 @@ export default function BasicChessBoard() {
             onSquareClick,
             onSquareRightClick,
             changeFen,
+            handleSlide,
             changeGameMode,
             xTabNone,
             xTabChessBasics,
@@ -684,11 +686,11 @@ export default function BasicChessBoard() {
               <View style={{flexDirection: "row", alignSelf:"center"}}>
                 {/*Chess Basics*/}
                 <TouchableOpacity
-                    /*onLayout={(event) =>
-                      this.setState({ xTabChessBasics: event.nativeEvent.layout.x })
-                    }*/
+                    onLayout={(event) =>
+                      changeGameMode(1,{ xTabChessBasics: event.nativeEvent.layout.x })
+                    }
                     onPress={() => {
-                      changeGameMode(1, 1);
+                      handleSlide({xTabChessBasics})
                     }}
                 >
                   <ImageBackground
@@ -717,8 +719,11 @@ export default function BasicChessBoard() {
                 
                 {/*Strategic Concepts*/}
                 <TouchableOpacity
+                    onLayout={(event) =>
+                      changeGameMode(2,{ xTabStrategicConcepts: event.nativeEvent.layout.x })
+                    }
                     onPress={() => {
-                      changeGameMode(2, 2);
+                      handleSlide(xTabStrategicConcepts);
                     }}
                 >
                   <ImageBackground
@@ -747,8 +752,11 @@ export default function BasicChessBoard() {
 
                 {/*Opening Concepts*/}
                 <TouchableOpacity
+                    onLayout={(event) =>
+                      changeGameMode(3,{ xTabOpeningConcepts: event.nativeEvent.layout.x })
+                    }
                     onPress={() => {
-                      changeGameMode(3, 3);
+                      handleSlide(xTabOpeningConcepts);
                     }}
                 >
                   <ImageBackground
@@ -777,8 +785,11 @@ export default function BasicChessBoard() {
                 
                 {/*Expert Mode*/}
                 <TouchableOpacity
+                    onLayout={(event) =>
+                      changeGameMode(4,{ xTabExpertMode: event.nativeEvent.layout.x })
+                    }
                     onPress={() => {
-                      changeGameMode(4, 4);
+                      handleSlide(xTabExpertMode);
                     }}
                 >
                   <ImageBackground
@@ -807,8 +818,11 @@ export default function BasicChessBoard() {
                 
                 {/*Textbook Checkmates*/}
                 <TouchableOpacity
+                    onLayout={(event) =>
+                      changeGameMode(5,{ xTabTextbookCheckmates: event.nativeEvent.layout.x })
+                    }
                     onPress={() => {
-                      changeGameMode(5, 5);
+                      handleSlide(xTabExpertMode);
                     }}
                 >
                   <ImageBackground
