@@ -4,6 +4,8 @@ import { UserData } from "../../User/UserData";
 import axios from "axios";
 import bcrypt from "bcryptjs";
 
+import { storeData, deleteData } from "../../Scripts/SaveData";
+
 export const RequestRegister = (username, password, email) => {
   console.log("Register POST Request Test: " + username, password, email);
 
@@ -39,7 +41,7 @@ export const RequestLogin = async (username, password) => {
   console.log("Login POST Request Test: " + username, password);
 
   var postRequest = {
-    PlayerName: username,
+    Email: username,
     HashedPassword: password,
   };
   console.log(postRequest.PlayerName + postRequest.HashedPassword);
@@ -48,6 +50,11 @@ export const RequestLogin = async (username, password) => {
       .post("https://chedu.at:5000/VerifyPlayer", postRequest)
       .then(function (response) {
         console.log(response.data);
+        if (storeData(response.data, username)) {
+          return true;
+        } else {
+          return false;
+        }
       })
       .catch(function (error) {
         console.log("Error: " + error);

@@ -113,13 +113,13 @@ export default class Login extends React.Component {
           <View style={{ justifyContent: "center", alignItems: "center" }}>
             <View style={{ flexDirection: "column" }}>
               <Title style={{ color: this.state.textColor }}>Login</Title>
-              <Text style={{ color: this.state.textColor }}>Username</Text>
+              <Text style={{ color: this.state.textColor }}>Email</Text>
               <TextInput
                 style={styles.Input}
                 onChangeText={(Username) => {
                   this.setState({ Username });
                 }}
-                placeholder="Username"
+                placeholder="Email"
                 keyboardType="default"
               />
               <Text style={{ color: this.state.textColor }}>Password</Text>
@@ -134,8 +134,9 @@ export default class Login extends React.Component {
               <Button
                 style={styles.Buttons}
                 onPress={() => {
-                  RequestLogin(this.state.Username, this.state.Password);
-                  this.props.navigation.navigate("Homepage");
+                  if (RequestLogin(this.state.Username, this.state.Password)) {
+                    this.props.navigation.navigate("Homepage");
+                  }
                 }}
                 title="Login"
               />

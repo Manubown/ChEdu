@@ -1,14 +1,40 @@
 import React from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-
-export const storeData = async (value) => {
+/*
+Benutzername: null,
+Elo: null,
+PlayedGames: null,
+WonGames: null,
+LostGames: null,
+*/
+export const storeData = async (data, Benutzername) => {
   console.log("Store data");
   try {
-    const jsonValue = JSON.stringify(value);
-    console.log("Store Data: " + jsonValue);
-    await AsyncStorage.setItem("@testStorage", jsonValue);
+    console.log("Store Data: " + data);
+    const Won = parseInt(data.Online.WonBlack) + parseInt(data.Online.WonWhite);
+    const Los =
+      parseInt(data.Online.LostBlack) + parseInt(data.Online.LostWhite);
+    const PlayedGames = parseInt(Won) + parseInt(Los);
+
+    const storingString =
+      '{"Benutzername":"' +
+      Benutzername.split("@")[0] +
+      '","Elo":"' +
+      data.Online.OverallPoints +
+      '","PlayedGames":"' +
+      PlayedGames +
+      '","WonGames":"' +
+      Won +
+      '","LosGames":"' +
+      Los +
+      '"}';
+
+    console.log(storingString);
+    await AsyncStorage.setItem("@testStorage", storingString);
+    return true;
   } catch (e) {
     console.log("Store data Error: " + e);
+    return false;
   }
 };
 
@@ -17,8 +43,9 @@ export const getData = async () => {
   try {
     const jsonValue = await AsyncStorage.getItem("@testStorage");
     console.log("try");
-    console.log(jsonValue);
-    return jsonValue != null ? JSON.parse(jsonValue) : null;
+    console.log("GET data Json Value: " + jsonValue);
+
+    return jsonValue;
   } catch (e) {
     console.log("Get data Error: " + e);
   }

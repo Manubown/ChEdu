@@ -47,6 +47,7 @@ import black_separator from "../Pictures/black_separator.png";
 import { white } from "chalk";
 
 import { RequestLogin } from "../Connection/ApiCommunication";
+import { deleteData, getData } from "../../Scripts/SaveData";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -98,13 +99,57 @@ export default class Homepage extends React.Component {
 
     /*User Stats*/
     Benutzername: "Default",
-    Elo: 666,
-    PlayedGames: 11345,
-    WonGames: 8199,
-    LosGames: 3146,
-    SinglePlayer: 7563,
-    Multiplayer: 3782,
-    TimeSpend: "2 Years",
+    Elo: null,
+    PlayedGames: null,
+    WonGames: null,
+    LosGames: null,
+
+    wrongRatio: false,
+    isLoggedIn: false,
+  };
+
+  componentDidMount() {
+    this.props.navigation.addListener("focus", () => {
+      this.updateValuesStats();
+      if (windowWidth < windowHeight) {
+        this.state.wrongRatio = true;
+      }
+    });
+    this.updateValuesStats();
+  }
+
+  /*
+  componentWillUnmount() {
+    this.updateValuesStats();
+  }
+  */
+
+  updateValuesStats = async () => {
+    var data = await getData();
+    console.log("Data: " + data);
+    data = JSON.parse(data);
+    if (data != null) {
+      console.log("Is Logged In");
+      this.setState({
+        Benutzername: data.Benutzername,
+        Elo: data.Elo,
+        PlayedGames: data.PlayedGames,
+        WonGames: data.WonGames,
+        LosGames: data.LosGames,
+        isLoggedIn: true,
+      });
+      console.log("Update Values True:" + this.state.Elo);
+    } else {
+      console.log("Is not Logged In");
+      this.setState({
+        Benutzername: null,
+        Elo: null,
+        PlayedGames: null,
+        WonGames: null,
+        LostGames: null,
+        isLoggedIn: false,
+      });
+    }
   };
 
   handleSwitchBackground = () => {
@@ -264,7 +309,7 @@ export default class Homepage extends React.Component {
               value={this.state.switchValue}
               onValueChange={(switchValue) =>
                 this.setState({ switchValue }, () =>
-                  this.handleSwitchBackground(),
+                  this.handleSwitchBackground()
                 )
               }
             />
@@ -375,21 +420,6 @@ export default class Homepage extends React.Component {
                     >
                       Lost games:{" "}
                     </Text>
-                    <Text
-                      style={{ fontSize: windowWidth / 80, color: "white" }}
-                    >
-                      Singleplayer:{" "}
-                    </Text>
-                    <Text
-                      style={{ fontSize: windowWidth / 80, color: "white" }}
-                    >
-                      Multiplayer:{" "}
-                    </Text>
-                    <Text
-                      style={{ fontSize: windowWidth / 80, color: "white" }}
-                    >
-                      Time Spent:{" "}
-                    </Text>
                   </View>
                   <View
                     style={{
@@ -422,21 +452,6 @@ export default class Homepage extends React.Component {
                       style={{ fontSize: windowWidth / 80, color: "white" }}
                     >
                       {this.state.LosGames}
-                    </Text>
-                    <Text
-                      style={{ fontSize: windowWidth / 80, color: "white" }}
-                    >
-                      {this.state.SinglePlayer}
-                    </Text>
-                    <Text
-                      style={{ fontSize: windowWidth / 80, color: "white" }}
-                    >
-                      {this.state.Multiplayer}
-                    </Text>
-                    <Text
-                      style={{ fontSize: windowWidth / 80, color: "white" }}
-                    >
-                      {this.state.TimeSpend}
                     </Text>
                   </View>
                 </View>
@@ -491,66 +506,69 @@ export default class Homepage extends React.Component {
 
           {/*Menu*/}
           <View>
-            <TouchableOpacity
-              onPress={() => this.props.navigation.navigate("Login")}
-              style={{}}
-            >
-              <View
-                style={
-                  ({ backgroundColor: this.state.CurrentColor },
-                  styles.MenuShadow)
-                }
+            {!this.state.isLoggedIn ? (
+              <TouchableOpacity
+                onPress={() => this.props.navigation.navigate("Login")}
+                style={{}}
               >
-                <Image
-                  source={this.state.SwitchLogin}
+                <View
+                  style={
+                    ({ backgroundColor: this.state.CurrentColor },
+                    styles.MenuShadow)
+                  }
+                >
+                  <Image
+                    source={this.state.SwitchLogin}
+                    style={{
+                      width: (windowWidth / 10) * 0.8,
+                      height: (windowWidth / 10) * 0.8,
+                      color: "white",
+                    }}
+                  />
+                </View>
+                <Text
                   style={{
-                    width: (windowWidth / 10) * 0.8,
-                    height: (windowWidth / 10) * 0.8,
-                    color: "white",
+                    textAlign: "center",
+                    fontWeight: "bold",
+                    color: this.state.TextColor,
                   }}
-                />
-              </View>
-              <Text
-                style={{
-                  textAlign: "center",
-                  fontWeight: "bold",
-                  color: this.state.TextColor,
-                }}
-              >
-                Login
-              </Text>
-            </TouchableOpacity>
+                >
+                  Login
+                </Text>
+              </TouchableOpacity>
+            ) : null}
 
-            <TouchableOpacity
-              onPress={() => this.props.navigation.navigate("Register")}
-              style={{}}
-            >
-              <View
-                style={
-                  ({ backgroundColor: this.state.CurrentColor },
-                  styles.MenuShadow)
-                }
+            {!this.state.isLoggedIn ? (
+              <TouchableOpacity
+                onPress={() => this.props.navigation.navigate("Register")}
+                style={{}}
               >
-                <Image
-                  source={this.state.SwitchRegister}
+                <View
+                  style={
+                    ({ backgroundColor: this.state.CurrentColor },
+                    styles.MenuShadow)
+                  }
+                >
+                  <Image
+                    source={this.state.SwitchRegister}
+                    style={{
+                      width: (windowWidth / 10) * 0.8,
+                      height: (windowWidth / 10) * 0.8,
+                      color: "white",
+                    }}
+                  />
+                </View>
+                <Text
                   style={{
-                    width: (windowWidth / 10) * 0.8,
-                    height: (windowWidth / 10) * 0.8,
-                    color: "white",
+                    textAlign: "center",
+                    fontWeight: "bold",
+                    color: this.state.TextColor,
                   }}
-                />
-              </View>
-              <Text
-                style={{
-                  textAlign: "center",
-                  fontWeight: "bold",
-                  color: this.state.TextColor,
-                }}
-              >
-                Register
-              </Text>
-            </TouchableOpacity>
-
+                >
+                  Register
+                </Text>
+              </TouchableOpacity>
+            ) : null}
             <TouchableOpacity
               onPress={() => this.props.navigation.navigate("User")}
               style={{}}
@@ -580,6 +598,34 @@ export default class Homepage extends React.Component {
                 Userprofil
               </Text>
             </TouchableOpacity>
+            {this.state.isLoggedIn ? (
+              <TouchableOpacity onPress={() => deleteData()} style={{}}>
+                <View
+                  style={
+                    ({ backgroundColor: this.state.CurrentColor },
+                    styles.MenuShadow)
+                  }
+                >
+                  <Image
+                    source={this.state.SwitchLogin}
+                    style={{
+                      width: (windowWidth / 10) * 0.8,
+                      height: (windowWidth / 10) * 0.8,
+                      color: "white",
+                    }}
+                  />
+                </View>
+                <Text
+                  style={{
+                    textAlign: "center",
+                    fontWeight: "bold",
+                    color: this.state.TextColor,
+                  }}
+                >
+                  Log out
+                </Text>
+              </TouchableOpacity>
+            ) : null}
           </View>
         </View>
 
