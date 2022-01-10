@@ -1,31 +1,37 @@
 {
   "files": {
-    "main.js": "./static/js/main.da5f755b.chunk.js",
-    "main.js.map": "./static/js/main.da5f755b.chunk.js.map",
+    "main.js": "./static/js/main.8ca4c244.chunk.js",
+    "main.js.map": "./static/js/main.8ca4c244.chunk.js.map",
     "runtime-main.js": "./static/js/runtime-main.936b84d6.js",
     "runtime-main.js.map": "./static/js/runtime-main.936b84d6.js.map",
-    "static/js/2.aab5b211.chunk.js": "./static/js/2.aab5b211.chunk.js",
-    "static/js/2.aab5b211.chunk.js.map": "./static/js/2.aab5b211.chunk.js.map",
+    "static/js/2.d5aad6fa.chunk.js": "./static/js/2.d5aad6fa.chunk.js",
+    "static/js/2.d5aad6fa.chunk.js.map": "./static/js/2.d5aad6fa.chunk.js.map",
     "index.html": "./index.html",
-    "static/js/2.aab5b211.chunk.js.LICENSE.txt": "./static/js/2.aab5b211.chunk.js.LICENSE.txt",
+    "static/js/2.d5aad6fa.chunk.js.LICENSE.txt": "./static/js/2.d5aad6fa.chunk.js.LICENSE.txt",
     "static/media/Logo.039b3c57.png": "./static/media/Logo.039b3c57.png",
     "static/media/Michael_5EHIF.f7b2ba94.png": "./static/media/Michael_5EHIF.f7b2ba94.png",
+    "static/media/Poster_Schachbrett.23bac306.png": "./static/media/Poster_Schachbrett.23bac306.png",
+    "static/media/black_separator.png": "./static/media/black_separator.5c6d60cc.png",
     "static/media/blank-profile.c3f94521.png": "./static/media/blank-profile.c3f94521.png",
     "static/media/chess_basics.60ee2097.jpg": "./static/media/chess_basics.60ee2097.jpg",
-    "static/media/login.67446af4.png": "./static/media/login.67446af4.png",
+    "static/media/coming_soon.e2c4e743.jpg": "./static/media/coming_soon.e2c4e743.jpg",
+    "static/media/expert_modus.70090dd1.jpg": "./static/media/expert_modus.70090dd1.jpg",
+    "static/media/login.png": "./static/media/login.67446af4.png",
     "static/media/login_white.6784ec22.png": "./static/media/login_white.6784ec22.png",
     "static/media/opening_concepts.cc3364cd.jpg": "./static/media/opening_concepts.cc3364cd.jpg",
-    "static/media/register.269f3a23.png": "./static/media/register.269f3a23.png",
+    "static/media/register.png": "./static/media/register.269f3a23.png",
     "static/media/register_white.9181a770.png": "./static/media/register_white.9181a770.png",
     "static/media/right-arrow.59cc0b60.jpeg": "./static/media/right-arrow.59cc0b60.jpeg",
     "static/media/strategy_concepts.f119a985.jpg": "./static/media/strategy_concepts.f119a985.jpg",
+    "static/media/textbook_checkmates.08decc4f.jpg": "./static/media/textbook_checkmates.08decc4f.jpg",
     "static/media/two_kings.bb72348b.jpg": "./static/media/two_kings.bb72348b.jpg",
-    "static/media/user.1f63c544.png": "./static/media/user.1f63c544.png",
-    "static/media/user_white.1f63c544.png": "./static/media/user_white.1f63c544.png"
+    "static/media/user.png": "./static/media/user.1f63c544.png",
+    "static/media/user_white.1f63c544.png": "./static/media/user_white.1f63c544.png",
+    "static/media/white_separator.0d99d02f.png": "./static/media/white_separator.0d99d02f.png"
   },
   "entrypoints": [
     "static/js/runtime-main.936b84d6.js",
-    "static/js/2.aab5b211.chunk.js",
-    "static/js/main.da5f755b.chunk.js"
+    "static/js/2.d5aad6fa.chunk.js",
+    "static/js/main.8ca4c244.chunk.js"
   ]
 }
