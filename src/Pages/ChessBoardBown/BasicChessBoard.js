@@ -870,7 +870,144 @@ export default function BasicChessBoard() {
                   </ImageBackground>
                 </TouchableOpacity>
               </View>
+              
+              <View>
+                      <TouchableOpacity
+                        onPress={() => {
+                          changeFen("SicilianDefence");
+                        }}
+                      >
+                        <Text>Sicilian Defense </Text>
+                      </TouchableOpacity>
 
+                      <TouchableOpacity
+                        onPress={() => {
+                          changeFen("FrenchDefense");
+                        }}
+                      >
+                        <Text>French Defense </Text>
+                      </TouchableOpacity>
+
+                      <TouchableOpacity
+                        onPress={() => {
+                          changeFen("RuyLopez");
+                        }}
+                      >
+                        <Text>Ruy López </Text>
+                      </TouchableOpacity>
+
+                      <TouchableOpacity
+                        onPress={() => {
+                          changeFen("CaroKann");
+                        }}
+                      >
+                        <Text>Caro-Kann Defense </Text>
+                      </TouchableOpacity>
+
+                      <TouchableOpacity
+                        onPress={() => {
+                          changeFen("ItalianGame");
+                        }}
+                      >
+                        <Text>Italian Game </Text>
+                      </TouchableOpacity>
+
+                      <TouchableOpacity
+                        onPress={() => {
+                          changeFen("ScandinavianDefense");
+                        }}
+                      >
+                        <Text>Scandinavian Defense </Text>
+                      </TouchableOpacity>
+
+                      <TouchableOpacity
+                        onPress={() => {
+                          changeFen("PircDefense");
+                        }}
+                      >
+                        <Text>Pirc Defense </Text>
+                      </TouchableOpacity>
+
+                      <TouchableOpacity
+                        onPress={() => {
+                          changeFen("ScotchGame");
+                        }}
+                      >
+                        <Text>Scotch Game </Text>
+                      </TouchableOpacity>
+
+                      <TouchableOpacity
+                        onPress={() => {
+                          changeFen("ViennaGame");
+                        }}
+                      >
+                        <Text>Vienna Game </Text>
+                      </TouchableOpacity>
+
+                      <TouchableOpacity
+                        onPress={() => {
+                          changeFen("QueensGambit");
+                        }}
+                      >
+                        <Text>Queen's Gambit </Text>
+                      </TouchableOpacity>
+
+                      <TouchableOpacity
+                        onPress={() => {
+                          changeFen("SlavDefense");
+                        }}
+                      >
+                        <Text>Slav Defense </Text>
+                      </TouchableOpacity>
+
+                      <TouchableOpacity
+                        onPress={() => {
+                          changeFen("IndianDefense");
+                        }}
+                      >
+                        <Text>Indian Defense </Text>
+                      </TouchableOpacity>
+
+                      <TouchableOpacity
+                        onPress={() => {
+                          changeFen("DutchDefense");
+                        }}
+                      >
+                        <Text>DutchDefense </Text>
+                      </TouchableOpacity>
+
+                      <TouchableOpacity
+                        onPress={() => {
+                          changeFen("EnglishOpening");
+                        }}
+                      >
+                        <Text>English Opening </Text>
+                      </TouchableOpacity>
+
+                      <TouchableOpacity
+                        onPress={() => {
+                          changeFen("CatalanOpening");
+                        }}
+                      >
+                        <Text>Catalan Opening </Text>
+                      </TouchableOpacity>
+
+                      <TouchableOpacity
+                        onPress={() => {
+                          changeFen("RetiOpening");
+                        }}
+                      >
+                        <Text>Réti Opening </Text>
+                      </TouchableOpacity>
+
+                      <TouchableOpacity
+                        onPress={() => {
+                          changeFen("Start");
+                        }}
+                      >
+                        <Text>Reset </Text>
+                      </TouchableOpacity>
+                    </View>
               <Animated.View
                 style={{
                   position: "absolute",
@@ -884,13 +1021,14 @@ export default function BasicChessBoard() {
               />
 
               {/*All Modes + Every Tab*/}
+              {/*
               <ScrollView>
                 <View
                   style={{
                     flexDirection: "row",
                   }}
                 >
-                  {/*None*/}
+            
                   <Animated.View
                     style={{
                       transform: [{ translateX: translateXNone }],
@@ -899,7 +1037,6 @@ export default function BasicChessBoard() {
                     <Text>None</Text>
                   </Animated.View>
 
-                  {/*Chess Basics*/}
                   <Animated.View
                     style={{
                       transform: [
@@ -912,7 +1049,6 @@ export default function BasicChessBoard() {
                     <Text>Chess Basics</Text>
                   </Animated.View>
 
-                  {/*Strategic Concepts*/}
                   <Animated.View
                     style={{
                       transform: [
@@ -925,7 +1061,6 @@ export default function BasicChessBoard() {
                     <Text>Strategic Concepts</Text>
                   </Animated.View>
 
-                  {/*Opening Concepts*/}
                   <Animated.View
                     style={{
                       transform: [
@@ -1074,7 +1209,6 @@ export default function BasicChessBoard() {
                     </View>
                   </Animated.View>
 
-                  {/*Expert Mode*/}
                   <Animated.View
                     style={{
                       transform: [
@@ -1087,7 +1221,6 @@ export default function BasicChessBoard() {
                     <Text>Expert Mode</Text>
                   </Animated.View>
 
-                  {/*Textbook Checkmates*/}
                   <Animated.View
                     style={{
                       transform: [
@@ -1101,6 +1234,7 @@ export default function BasicChessBoard() {
                   </Animated.View>
                 </View>
               </ScrollView>
+              */}
             </View>
           </View>
         )}
