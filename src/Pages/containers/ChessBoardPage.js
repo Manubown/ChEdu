@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Resource from "../ChessBoardBown/Resource";
 import {
   StyleSheet,
   Text,
@@ -69,6 +70,22 @@ export default class TempPage extends React.Component {
 
   render() {
     let { backgroundColor } = this.state;
+    
+    /*Resource.screen1.setState({
+      fen: "start", //auf Lichess nachschauen
+      // square styles for active drop square
+      dropSquareStyle: {},
+      // custom square styles
+      squareStyles: {},
+      // square with the currently clicked piece
+      pieceSquare: "",
+      // currently clicked square
+      square: "",
+      // array of past game moves
+      history: [], //pgn
+    });
+    Resource.screen1.state.fen*/
+    
     return (
       <View
         style={{

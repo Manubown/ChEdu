@@ -11,6 +11,7 @@ import Homepage from "./Pages/containers/Homepage";
 import Register from "./Pages/containers/Register";
 import AboutUs from "./Pages/containers/AboutUs";
 import User from "./Pages/containers/User";
+import LearnToPlay from "./Pages/containers/LearnToPlay"
 
 const Stack = createNativeStackNavigator();
 
@@ -35,6 +36,12 @@ const MyStack = () => {
         />
 
         <Stack.Screen
+          name="LearnToPlay"
+          component={LearnToPlay}
+          options={{title: "Learn_to_Play"}}
+        />
+
+        <Stack.Screen
           name="Temp"
           component={Temp}
           options={{ title: "ChEdu_Temp" }}
@@ -55,7 +62,7 @@ const MyStack = () => {
         <Stack.Screen
           name="ChessBoard"
           component={ChessBoard}
-          options={{ title: "ChEdu_ChessBoard" }}
+          options={{ title: "ChessBoard" }}
         />
       </Stack.Navigator>
     </NavigationContainer>

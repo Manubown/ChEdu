@@ -2,10 +2,12 @@ import React, { Component } from "react";
 import { Dimensions } from "react-native";
 import PropTypes from "prop-types";
 import * as Chess from "chess.js"; // import Chess from  "chess.js"(default) if recieving an error about new Chess() not being a constructor
+import { RightCircleTwoTone, LeftCircleTwoTone } from "@ant-design/icons";
 
 import Chessboard from "chessboardjsx";
+//import Resource from "./Resource";
 
-const windowheight = Dimensions.get("window").height;
+const windowHeight = Dimensions.get("window").height;
 
 class HumanVsHuman extends Component {
   static propTypes = { children: PropTypes.func };
@@ -22,6 +24,25 @@ class HumanVsHuman extends Component {
     // array of past game moves
     history: [], //pgn
   };
+
+  /*constructor() {
+
+    Resource.screen1 = this;
+    
+    Resource.screen1.setState({
+      fen: "start", //auf Lichess nachschauen
+      // square styles for active drop square
+      dropSquareStyle: {},
+      // custom square styles
+      squareStyles: {},
+      // square with the currently clicked piece
+      pieceSquare: "",
+      // currently clicked square
+      square: "",
+      // array of past game moves
+      history: [], //pgn
+    });
+  } */
 
   componentDidMount() {
     this.game = new Chess(); //this.state.fen übergeben für Logik
@@ -168,7 +189,7 @@ export default function CheduChessBoard() {
         }) => (
           <Chessboard
             id="humanVsHuman"
-            width={(windowheight/4)*3}
+            width={(windowHeight / 4) * 3}
             position={position} //position zB. (a6: 'kW') ==> König auf a6
             onDrop={onDrop}
             onMouseOverSquare={onMouseOverSquare}
@@ -183,6 +204,7 @@ export default function CheduChessBoard() {
             onSquareClick={onSquareClick}
             onSquareRightClick={onSquareRightClick}
           />
+
         )}
       </HumanVsHuman>
     </div>
